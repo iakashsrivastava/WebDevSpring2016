@@ -1,0 +1,25 @@
+.admin-table-glyphicons-links {
+    FONT-SIZE: large;
+    cursor: pointer;
+    vertical-align: bottom;
+
+}
+
+.admin-table-header-links {
+    font-weight: bold;
+    FONT-SIZE: large;
+}
+
+.admin-table-glyphicons-rows-links{
+    cursor: pointer;
+    font-size: large;
+}
+.admin-table-columns-links{
+    text-align: center;
+}
+
+
+
+a:hover{
+    text-decoration: none;
+}
