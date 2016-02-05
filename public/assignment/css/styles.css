@@ -5,13 +5,32 @@
 
 }
 
+.form-table-glyphicons-links {
+    FONT-SIZE:x-large;
+    cursor: pointer;
+    vertical-align: bottom;
+
+}
+
+.move-left-50px{
+    right:55px;
+}
 .admin-table-header-links {
     padding: 5px;
     font-weight: bold;
     FONT-SIZE: large;
 }
 
-.admin-table-nowrap {
+.form-horizontal .control-label {
+    text-align: left !important;
+}
+
+.move-left20px{
+    left:20px;
+}
+
+
+.nowrap {
     white-space: nowrap;
 }
 
@@ -24,8 +43,22 @@
     text-align: center;
 }
 
+.text-align-left-link{
+    text-align: left;
+}
 
+.text-align-right-link{
+    text-align: right;
+}
+
+.width70{
+    width:70%;
+}
 
 a:hover{
     text-decoration: none;
+}
+
+hr {
+    border-top: 1px solid;
 }
