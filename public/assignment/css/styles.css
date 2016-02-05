@@ -6,11 +6,17 @@
 }
 
 .admin-table-header-links {
+    padding: 5px;
     font-weight: bold;
     FONT-SIZE: large;
 }
 
+.admin-table-nowrap {
+    white-space: nowrap;
+}
+
 .admin-table-glyphicons-rows-links{
+    padding: 5px;
     cursor: pointer;
     font-size: large;
 }

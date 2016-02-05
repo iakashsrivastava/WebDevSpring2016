@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Admin</title>
+    <title>Login</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -20,9 +20,6 @@
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-
-    <!-- custom style sheets -->
-    <link href="css/styles.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -50,6 +47,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Register</a></li>
+                <li class="active"><a href="#">Login</a></li>
                 <li><a href="#">Username</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
@@ -64,64 +63,36 @@
             <ul class="nav nav-sidebar">
                 <li><a href="#">Home </a></li>
                 <li><a href="#">Profile</a></li>
-                <li class="active"><a href="#">Admin</a></li>
+                <li><a href="#">Admin</a></li>
                 <li><a href="#">Forms</a></li>
             </ul>
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Admin</h1>
-            <h2> Users </h2>
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped admin-table-nowrap">
-                <tr>
-                    <td>
-                        <a class="admin-table-glyphicons-links glyphicon glyphicon-triangle-bottom"></a>
-                        <span class="admin-table-header-links">Username</span> </td>
-                    <td>
-                    <a class="admin-table-glyphicons-links glyphicon glyphicon-triangle-bottom"></a>
-                    <span class="admin-table-header-links">Password</span> </td>
-                    <td>
-                        <a class="admin-table-glyphicons-links glyphicon glyphicon-triangle-bottom"></a>
-                        <span class="admin-table-header-links">Role</span> </td>
-                    <td>
-                        <a class="admin-table-glyphicons-links glyphicon glyphicon-triangle-bottom"></a>
-                        <span class="admin-table-header-links">Action</span> </td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="form-control" id="inputUsername" placeholder="username"></td>
-                    <td><input type="password" class="form-control" id="inputPassword" placeholder="password"></td>
-                    <td><input type="text" class="form-control" id="inputRole" placeholder="role1,role2"></td>
-                    <td class ="admin-table-columns-links">
-                        <a><span class = "glyphicon glyphicon-plus admin-table-glyphicons-rows-links"></span></a>
-                        <a><span class = "glyphicon glyphicon-ok admin-table-glyphicons-rows-links"></span></a></td>
-                </tr>
-                <tr>
-                    <td>alice</td>
-                    <td></td>
-                    <td>student</td>
-                    <td class ="admin-table-columns-links">
-                        <a><span class = "glyphicon glyphicon-remove admin-table-glyphicons-rows-links"></span></a>
-                        <a><span class = "glyphicon glyphicon-pencil admin-table-glyphicons-rows-links"></span></a></td>
-                </tr>
-                <tr>
-                    <td>bob</td>
-                    <td></td>
-                    <td>faculty | admin</td>
-                    <td class ="admin-table-columns-links">
-                        <a><span class = "glyphicon glyphicon-remove admin-table-glyphicons-rows-links"></span></a>
-                        <a><span class = "glyphicon glyphicon-pencil admin-table-glyphicons-rows-links"></span></a></td>
-                </tr>
-                <tr>
-                    <td>charlie</td>
-                    <td></td>
-                    <td></td>
-                    <td class ="admin-table-columns-links">
-                        <a><span class = "glyphicon glyphicon-remove admin-table-glyphicons-rows-links"></span></a>
-                        <a><span class = "glyphicon glyphicon-pencil admin-table-glyphicons-rows-links"></span></a></td>
-                </tr>
-            </table>
-        </div>
+            <h1 class="page-header">Login</h1>
+
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputUserName" class="col-sm-2 control-label">Username</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputUserName" placeholder="Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-block">Login</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
