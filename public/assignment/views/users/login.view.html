@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Profile</title>
+    <title>Login</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -19,10 +19,10 @@
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
 
     <!-- custom style sheets -->
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -37,80 +37,31 @@
 
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="home.html">Form Maker</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="register.html">Register</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="#">Username</a></li>
-                <li><a href="#">Logout</a></li>
-            </ul>
-
-        </div>
-    </div>
-</nav>
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li><a href="home.html">Home </a></li>
-                <li class="active"><a href="#">Profile</a></li>
-                <li><a href="admin.html">Admin</a></li>
-                <li><a href="forms.html">Forms</a></li>
-            </ul>
-
-        </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Profile</h1>
+            <h1 class="page-header">Login</h1>
 
-            <form class="form-horizontal admin-table-nowrap">
+            <form class="form-horizontal">
                 <div class="form-group">
-                    <label for="inputUserName" class="col-sm-2 control-label ">Username</label>
+                    <label for="inputUserName" class="col-sm-2 control-label  ">Username</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="inputUserName" placeholder="Username">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="col-sm-2 control-label ">Password</label>
+                    <label for="inputPassword" class="col-sm-2 control-label  ">Password</label>
                     <div class="col-sm-10">
                         <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputFirstName" class="col-sm-2 control-label nowrap">First Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputlastName" class="col-sm-2 control-label nowrap">Last Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputlastName" placeholder="Last Name">
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label ">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                </div>
 
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-block">Update</button>
+                        <button type="submit" class="btn btn-block">Login</button>
                     </div>
                 </div>
             </form>
