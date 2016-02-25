@@ -5,7 +5,7 @@
 (function(){
     angular
         .module("FormBuilderApp")
-        .factory(UserService)
+        .factory("UserService",UserService);
 
     var current_users = [
         {        "_id":123, "firstName":"Alice",            "lastName":"Wonderland",
@@ -34,6 +34,7 @@
         return api;
 
         function findUserByCredentials(username, password, callback){
+
             var foundUser = null;
             for	(index = 0; index < current_users.length; index++) {
                 if( current_users[index].username === username && current_users[index].password === password){
@@ -82,6 +83,13 @@
         }
 
         function updateUser(userId, user, callback){
+
+            for	(index = 0; index < current_users.length; index++) {
+                if( current_users[index]._id === userId){
+                    current_users[index] = user;
+                }
+            }
+            callback(user);
 
         }
 
