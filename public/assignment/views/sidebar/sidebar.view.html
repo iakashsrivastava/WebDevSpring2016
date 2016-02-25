@@ -1,27 +1,8 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="../users/profile.view.html">Profile</a></li>
-                <li><a href="../admin/admin.view.html">Admin</a></li>
-                <li><a href="../forms/forms.view.html">Forms</a></li>
-            </ul>
 
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Welcome!</h1>
+<ul class="nav nav-sidebar">
+    <li ng-class=" {'active':$location.url() =='/home'}" ><a href="#/home">Home</a></li>
+    <li ng-class=" {'active':$location.url() =='/profile'}" ><a href="#/profile">Profile</a></li>
+    <li ng-class=" {'active':$location.url() =='/admin'}" ><a href="#/admin">Admin</a></li>
+    <li ng-class=" {'active':$location.url() =='/forms'}" ><a href="#/forms">Forms</a></li>
+</ul>
 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec,
-                mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed
-                eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit
-                amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu
-                diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo
-                hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet
-                orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan,
-                blandit sed diam.
-            </p>
-        </div>
-    </div>
-</div>
