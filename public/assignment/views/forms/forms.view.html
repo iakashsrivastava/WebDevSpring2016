@@ -20,28 +20,22 @@
 
             </tr>
             <tr>
-                <td><input type="text" class="form-control" id="inputUsername" placeholder="name"></td>
+                <td><input type="text" class="form-control" id="inputFormname" placeholder="name" ng-model="title"></td>
                 <td class ="admin-table-columns-links">
-                    <a><span class = "glyphicon glyphicon-plus admin-table-glyphicons-rows-links"></span></a>
-                    <a><span class = "glyphicon glyphicon-ok admin-table-glyphicons-rows-links"></span></a></td>
+                    <a><span class = "glyphicon glyphicon-plus admin-table-glyphicons-rows-links" ng-click="addForm($index)"></span></a>
+                    <a><span class = "glyphicon glyphicon-ok admin-table-glyphicons-rows-links" ng-click="updateForm($index)"></span></a></td>
             </tr>
-            <tr>
-                <td><label><a href="form-fields.view.html">Registration Form</a></label></td>
+
+            <tr ng-repeat="form in allforms">
+                <td>
+                    {{form.title}}
+                </td>
                 <td class ="admin-table-columns-links">
-                    <a><span class = "glyphicon glyphicon-remove admin-table-glyphicons-rows-links"></span></a>
-                    <a><span class = "glyphicon glyphicon-pencil admin-table-glyphicons-rows-links"></span></a></td>
-            </tr>
-            <tr>
-                <td><label><a href="form-fields.view.html">Contact List</a></label></td>
-                <td class ="admin-table-columns-links">
-                    <a><span class = "glyphicon glyphicon-remove admin-table-glyphicons-rows-links"></span></a>
-                    <a><span class = "glyphicon glyphicon-pencil admin-table-glyphicons-rows-links"></span></a></td>
-            </tr>
-            <tr>
-                <td><label><a href="form-fields.view.html">To Do List</a></label></td>
-                <td class ="admin-table-columns-links">
-                    <a><span class = "glyphicon glyphicon-remove admin-table-glyphicons-rows-links"></span></a>
-                    <a><span class = "glyphicon glyphicon-pencil admin-table-glyphicons-rows-links"></span></a></td>
+                <a><span class = "glyphicon glyphicon-remove admin-table-glyphicons-rows-links" ng-click="deleteForm($index)"></span></a>
+                <a><span class = "glyphicon glyphicon-pencil admin-table-glyphicons-rows-links" ng-click="selectForm($index)"></span></a>
+
+                </td>
+
             </tr>
         </table>
     </div>
