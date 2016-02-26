@@ -23,13 +23,13 @@
         }
 
         function addForm(index){
-            if(index>-1) {
+
                 FormService.createFormForUser($rootScope.loggedUser._id, $scope.title, callback);
 
                 function callback(response) {
                     $scope.allforms.push(response);
                     $scope.title = null;
-                }
+
             }
         }
 
@@ -44,9 +44,11 @@
         }
 
         function updateForm(index){
+            console.log(index);
             var form = $scope.allforms[index];
             FormService.updateFormById( form._id,$scope.title,callback);
             function callback(response){
+                console.log(JSON.stringify(response));
 
             }
 

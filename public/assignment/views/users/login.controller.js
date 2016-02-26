@@ -17,7 +17,6 @@
             function callback(response){
                 if(response !== null){
                 $rootScope.loggedUser = response;
-                    console.log($rootScope.loggedUser);
                 $location.url("/profile");
                 }
             }
