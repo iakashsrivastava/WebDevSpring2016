@@ -15,7 +15,9 @@
         $scope.selectForm = selectForm;
 
         $scope.allforms=[];
+        var selectedIndex = -1;
         FormService.findAllFormsForUser($rootScope.loggedUser._id, callback);
+
 
         function callback(response){
             $scope.allforms = response;
@@ -36,20 +38,28 @@
         function selectForm(index){
             var form = $scope.allforms[index];
             $scope.title = form.title;
-
+            selectedIndex = index;
             function callback(response){
 
             }
 
         }
 
-        function updateForm(index){
-            console.log(index);
-            var form = $scope.allforms[index];
-            FormService.updateFormById( form._id,$scope.title,callback);
+        function updateForm(title){
+            console.log(title);
+            var form = $scope.allforms[selectedIndex];
+            console.log(JSON.stringify(form));
+            form.title = title;
+            FormService.updateFormById( form._id,form,callback);
             function callback(response){
-                console.log(JSON.stringify(response));
+                FormService.findAllFormsForUser($rootScope.loggedUser._id, callback);
 
+
+                function callback(response){
+                    $scope.allforms = response;
+                    $scope.title = null;
+
+                }
             }
 
         }
