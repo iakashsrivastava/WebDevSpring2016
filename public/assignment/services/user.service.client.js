@@ -1,6 +1,7 @@
 /**
  * Created by akash on 2/25/16.
  */
+"use strict";
 
 (function(){
     angular
@@ -36,7 +37,7 @@
         function findUserByCredentials(username, password, callback){
 
             var foundUser = null;
-            for	(index = 0; index < current_users.length; index++) {
+            for	(var index = 0; index < current_users.length; index++) {
                 if( current_users[index].username === username && current_users[index].password === password){
                     foundUser = current_users[index];
                     break;
@@ -69,7 +70,7 @@
 
         function deleteUserById(userId, callback){
             var pos =-1;
-            for	(index = 0; index < current_users.length; index++) {
+            for	(var index = 0; index < current_users.length; index++) {
                 if( current_users[index]._id === userId){
                     pos=index;
                     break;
@@ -84,7 +85,7 @@
 
         function updateUser(userId, user, callback){
 
-            for	(index = 0; index < current_users.length; index++) {
+            for	(var index = 0; index < current_users.length; index++) {
                 if( current_users[index]._id === userId){
                     current_users[index] = user;
                 }

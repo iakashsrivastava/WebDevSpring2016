@@ -1,7 +1,7 @@
 /**
  * Created by akash on 2/23/16.
  */
-
+"use strict";
 (function(){
     angular
         .module("FormBuilderApp")
@@ -18,6 +18,11 @@
             .when("/forms",{
                 templateUrl: "./views/forms/forms.view.html",
                 controller: "FormController"
+            })
+
+            .when("/fields",{
+                templateUrl: "./views/forms/form-fields.view.html",
+
             })
 
             .when("/profile",{

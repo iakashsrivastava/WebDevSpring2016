@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li ng-if = "!loggedUser" ng-class=" {'active':$location.url() =='/register'}" ><a href="#/register">Register</a></li>
                 <li ng-if = "!loggedUser" ng-class=" {'active':$location.url() =='/login'}" ><a href="#/login">Login</a></li>
-                <li ng-if = "loggedUser" ng-click="user()" ng-class=" {'active':$location.url() =='/username'}" ><a href="#/profile">{{ loggedUser.firstName}}</a></li>
+                <li ng-if = "loggedUser" ng-click="user()" ng-class=" {'active':$location.url() =='/username'}" ><a href="#/profile">{{ loggedUser.username}}</a></li>
                 <li ng-if = "loggedUser" ng-click="logout()" ng-class=" {'active':$location.url() =='/logout'}" ><a href="#/logout">Logout</a></li>
             </ul>
 

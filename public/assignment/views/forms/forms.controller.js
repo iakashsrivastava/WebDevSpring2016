@@ -1,7 +1,7 @@
 /**
  * Created by akash on 2/23/16.
  */
-
+"use strict";
 (function(){
     angular
         .module("FormBuilderApp")
@@ -46,9 +46,9 @@
         }
 
         function updateForm(title){
-            console.log(title);
+
             var form = $scope.allforms[selectedIndex];
-            console.log(JSON.stringify(form));
+            
             form.title = title;
             FormService.updateFormById( form._id,form,callback);
             function callback(response){
@@ -76,6 +76,5 @@
         }
 
     }
-
 
 })();
