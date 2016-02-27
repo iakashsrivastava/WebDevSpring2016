@@ -60,7 +60,8 @@
                         lastName: user.lastname,
                         username: user.username,
                         password: user.password,
-                        roles: user.roles
+                        roles: user.roles,
+                        email: user.email
                         };
 
             current_users.push(obj);

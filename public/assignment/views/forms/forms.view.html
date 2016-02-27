@@ -22,8 +22,11 @@
             <tr>
                 <td><input type="text" class="form-control" id="inputFormname" placeholder="name" ng-model="title"></td>
                 <td class ="admin-table-columns-links">
-                    <a><span class = "glyphicon glyphicon-plus admin-table-glyphicons-rows-links" ng-click="addForm($index)"></span></a>
-                    <a><span class = "glyphicon glyphicon-ok admin-table-glyphicons-rows-links" ng-click="updateForm(title)"></span></a></td>
+                    <a><span class = "glyphicon glyphicon-plus admin-table-glyphicons-rows-links" ng-if="title" ng-click="addForm($index)"></span></a>
+                    <a><span class = "glyphicon glyphicon-plus admin-table-glyphicons-rows-links" ng-if="!title"></span></a>
+                    <a><span class = "glyphicon glyphicon-ok admin-table-glyphicons-rows-links" ng-if="title" ng-click="updateForm(title)"></span></a>
+                    <a><span class = "glyphicon glyphicon-ok admin-table-glyphicons-rows-links" ng-if="!title"></span></a>
+                </td>
             </tr>
 
             <tr ng-repeat="form in allforms">
