@@ -13,12 +13,46 @@
     <script src="search/search.controller.js"></script>
     <script src =details/details.controller.js></script>
     <script src="service/movie.service.js"></script>
+
 </head>
 <body>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1694412377450348',
+                xfbml      : true,
+                version    : 'v2.5'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    </script>
     <div class="container">
+        <div
+                class="fb-like"
+                data-share="true"
+                data-width="450"
+                data-show-faces="true">
+        </div>
+        <div id="fb-root"></div>
 
+        <!-- Your send button code -->
+        <div class="fb-video" data-href="https://www.facebook.com/facebook/videos/10153231379946729/" data-width="500">
+            <div class="fb-xfbml-parse-ignore">
+                <blockquote cite="https://www.facebook.com/facebook/videos/10153231379946729/">
+                    <a href="https://www.facebook.com/facebook/videos/10153231379946729/">How to Share With Just Friends</a>
+                    <p>How to share with just friends.</p>
+                    Posted by <a href="https://www.facebook.com/facebook/">Facebook</a> on Freitag, 5. Dezember 2014
+                </blockquote>
+            </div>
         <h1>Movie App</h1>
-
 
         <nav ng-controller="NavController">
         <ul class="nav nav-pills">

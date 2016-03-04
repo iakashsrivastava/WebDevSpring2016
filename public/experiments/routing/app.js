@@ -6,4 +6,5 @@
     angular
         .module("MovieApp",['ngRoute']);
 
+
 })();
