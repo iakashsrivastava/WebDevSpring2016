@@ -20,8 +20,5 @@
         function user(){
             $location.url("/profile");
         }
-
-
-
     }
 })();
