@@ -34,6 +34,7 @@
                 var newWidth = 600 + slides.length;
                 slides.push({
                     image: item.picture,
+                    caption: "",
                     text: item.title
                 });
 
