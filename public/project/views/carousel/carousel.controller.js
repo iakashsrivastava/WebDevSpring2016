@@ -1,13 +1,17 @@
 /**
+ * Created by akash on 3/9/16.
+ */
+
+/**
  * Created by akash on 3/3/16.
  */
 
 (function(){
     angular
         .module("SocialMashup")
-        .controller("HomeController",HomeController);
+        .controller("CarouselController",CarouselController);
 
-    function HomeController(HomeService, $scope){
+    function CarouselController(HomeService, $scope){
 
         $scope.CarouselDemoCtrl=CarouselDemoCtrl;
 
