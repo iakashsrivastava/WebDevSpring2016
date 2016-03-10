@@ -2,53 +2,36 @@
  * Created by akash on 3/9/16.
  */
 
-/**
- * Created by akash on 3/3/16.
- */
-
 (function(){
     angular
         .module("SocialMashup")
         .controller("CarouselController",CarouselController);
 
-    function CarouselController(HomeService, $scope){
+    function CarouselController($scope) {
 
-        $scope.CarouselDemoCtrl=CarouselDemoCtrl;
+        $scope.CarouselDemoCtrl = CarouselDemoCtrl;
 
         function CarouselDemoCtrl() {
 
-            HomeService.getTrendingTopics(render);
-
-            function render(response){
-
-                var videosObj = response.videos.data;
-
-                angular.forEach(videosObj,function(item,index){
-
-                    $scope.addSlide(item);
-
-                });
-            }
-
+            $scope.myInterval = 5000;
+            $scope.noWrapSlides = false;
+            $scope.active = 1;
             var slides = $scope.slides = [];
+            var currIndex = 0;
 
-            $scope.addSlide = function(item) {
-                var newWidth = 600 + slides.length;
+            $scope.addSlide = function() {
+                var newWidth = 600 + slides.length + 1;
                 slides.push({
-                    image: item.picture,
-                    text: item.title
+                    image: 'http://lorempixel.com/' + newWidth + '/300',
+                    text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+                    id: currIndex++
                 });
-
             };
 
-            for (var i=0; i<4; i++) {
+            for (var i = 0; i < 4; i++) {
                 $scope.addSlide();
             }
         }
-
-
-
     }
-
 
 })();
