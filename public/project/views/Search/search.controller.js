@@ -7,22 +7,23 @@
         .module("SocialMashup")
         .controller("SearchController",SearchController);
 
-    function SearchController(SearchController, $scope,$location) {
+    function SearchController(SearchService, $scope,$location,$routeParams) {
 
         $scope.searchData = searchData;
         $scope.gotoDetailPage =gotoDetailPage;
+
+        var query = $routeParams.query;
 
         function gotoDetailPage(id){
             $location.url("/details/"+id+"/d");
         }
 
-        function pageData() {
+        function searchData() {
 
-            SearchService.getSearchData(render);
+            SearchService.getSearchData(query,render);
 
             function render(response) {
-                console.log(response);
-                $scope.data = response;
+                $scope.data = response.list;
             }
 
         }

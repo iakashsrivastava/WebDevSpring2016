@@ -21,8 +21,8 @@
                 controller:"DetailsController"
             })
             .when("/search/:query",{
-                templateUrl: "./views/Search/",
-                controller:"DetailsController"
+                templateUrl: "./views/Search/search.view.html",
+                controller:"SearchController"
             })
 
             .otherwise({

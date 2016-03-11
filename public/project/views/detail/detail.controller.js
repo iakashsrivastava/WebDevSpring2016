@@ -7,7 +7,7 @@
         .module("SocialMashup")
         .controller("DetailsController",DetailsController);
 
-    function DetailsController(DetailService,SearchService, $scope,$routeParams,$sce) {
+    function DetailsController(DetailService,DMDetailService, $scope,$routeParams,$sce) {
 
         var postId = $routeParams.Id;
         var source = $routeParams.Source;
@@ -29,16 +29,18 @@
 
         function SearchDataContent() {
 
-            SearchService.getSearchData(postId,render);
+            DMDetailService.getDetailedData(postId,render);
 
             function render(response) {
-                console.log(response);
-                $scope.data = response.list;
+                console.log(source);
+                $scope.data = response;
             }
 
             $scope.trustSrc = function(src) {
                 return $sce.trustAsResourceUrl(src);
             }
+
+
         }
 
         if(source === 'F')

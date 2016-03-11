@@ -1,11 +1,11 @@
-<div ng-init="pageData()"></div>
+<div ng-init="searchData()"></div>
 
 <div class="row">
     <div ng-repeat="d in data">
         <div class="col-md-3">
             <a>
                 {{d.id}}
-                <img class="Thumbnail-image" ng-src={{d.picture}} alt="deq" ng-click="gotoDetailPage(d.id)">
+                <img class="Thumbnail-image" ng-src={{d.thumbnail_url}} alt="deq" ng-click="gotoDetailPage(d.id)">
             </a>
         </div>
     </div>

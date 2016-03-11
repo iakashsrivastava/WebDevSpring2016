@@ -7,7 +7,7 @@
         .module('SocialMashup')
         .factory('SearchService',SearchService);
 
-    function SearchService($http){
+    function SearchService($http,$routeParams){
 
         var url ='https://api.dailymotion.com/videos?fields=id,thumbnail_url,title,&search=';
 
