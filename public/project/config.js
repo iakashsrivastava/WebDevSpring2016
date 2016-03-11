@@ -13,8 +13,12 @@
         $routeProvider
 
             .when("/home",{
-                templateUrl: "./views/home/home.view.html"
-
+                templateUrl: "./views/home/home.view.html",
+                controller:"HomeController"
+            })
+            .when("/details",{
+                templateUrl: "./views/detail/detail.view.html",
+                controller:"DetailsController"
             })
 
             .otherwise({

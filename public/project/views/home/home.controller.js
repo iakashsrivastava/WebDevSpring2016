@@ -7,47 +7,20 @@
         .module("SocialMashup")
         .controller("HomeController",HomeController);
 
-    function HomeController(HomeService, $scope){
+    function HomeController(HomeService, $scope) {
 
-        $scope.CarouselDemoCtrl=CarouselDemoCtrl;
+        $scope.pageData = pageData;
 
-        function CarouselDemoCtrl() {
+        function pageData() {
 
-            HomeService.getTrendingTopics(render);
+            HomeService.getData(render);
 
-            function render(response){
+            function render(response) {
+                $scope.data =response.videos.data;
 
-                var videosObj = response.videos.data;
-
-                angular.forEach(videosObj,function(item,index){
-
-                    $scope.addSlide(item);
-
-                });
             }
 
-
-
-            var slides = $scope.slides = [];
-
-            $scope.addSlide = function(item) {
-                var newWidth = 600 + slides.length;
-                slides.push({
-                    image: item.picture,
-                    caption: "",
-                    text: item.title
-                });
-
-            };
-
-            for (var i=0; i<4; i++) {
-                $scope.addSlide();
-            }
         }
-
-
-
     }
-
 
 })();
