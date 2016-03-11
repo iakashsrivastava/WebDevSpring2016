@@ -7,9 +7,14 @@
         .module("SocialMashup")
         .controller("HomeController",HomeController);
 
-    function HomeController(HomeService, $scope) {
+    function HomeController(HomeService, $scope,$location) {
 
         $scope.pageData = pageData;
+        $scope.gotoDetailPage =gotoDetailPage;
+
+        function gotoDetailPage(id){
+            $location.url("/details/"+id);
+        }
 
         function pageData() {
 

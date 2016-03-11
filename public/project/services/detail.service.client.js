@@ -17,8 +17,8 @@
 
         return api;
 
-        function getDetailedData(callback){
-            $http.get('https://graph.facebook.com/696303527177824?fields=description,source,title&access_token=1694412377450348|LuFMN9doZ_i3TZMc0p3c3t6X360')
+        function getDetailedData(postId,callback){
+            $http.get('https://graph.facebook.com/' + postId +'?fields=description,source,title&access_token=1694412377450348|LuFMN9doZ_i3TZMc0p3c3t6X360')
                 .success(callback);
         }
 
