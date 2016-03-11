@@ -3,10 +3,12 @@
 <div class="row">
     <div ng-repeat="d in data">
         <div class="col-md-3">
-            <a>
-                {{d.id}}
-                <img class="Thumbnail-image" ng-src={{d.thumbnail_url}} alt="deq" ng-click="gotoDetailPage(d.id)">
-            </a>
+            <div class="thumbnail">
+                <img ng-src={{d.thumbnail_url}} alt="Picture Not Available" ng-click="gotoDetailPage(d.id)">
+                <div class="caption">
+                    <label>{{d.title}}</label>
+                </div>
+            </div>
         </div>
     </div>
 </div>

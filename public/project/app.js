@@ -5,6 +5,6 @@
 "use strict";
 (function(){
     angular
-        .module("SocialMashup",['ngRoute','ui.bootstrap']);
+        .module("SocialMashup",['ngRoute','ui.bootstrap','angularSpinner']);
 
 })();

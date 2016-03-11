@@ -10,6 +10,11 @@
     function HeaderController($scope,$location) {
 
         $scope.call =call;
+        $scope.gotoHome =gotoHome;
+
+        function gotoHome(){
+            $location.url("/home");
+        }
 
         function call(searchText){
             $location.url("/search/"+searchText);

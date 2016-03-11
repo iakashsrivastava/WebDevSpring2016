@@ -7,7 +7,7 @@
         .module("SocialMashup")
         .controller("HomeController",HomeController);
 
-    function HomeController(HomeService, $scope,$location) {
+    function HomeController(HomeService, $scope,$location,usSpinnerService) {
 
         $scope.pageData = pageData;
         $scope.gotoDetailPage =gotoDetailPage;
@@ -19,8 +19,8 @@
         function pageData() {
 
             HomeService.getData(render);
-
             function render(response) {
+
                 $scope.data =response.videos.data;
 
             }
