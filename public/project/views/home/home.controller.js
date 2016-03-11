@@ -13,7 +13,7 @@
         $scope.gotoDetailPage =gotoDetailPage;
 
         function gotoDetailPage(id){
-            $location.url("/details/"+id);
+            $location.url("/details/"+id+"/F");
         }
 
         function pageData() {
