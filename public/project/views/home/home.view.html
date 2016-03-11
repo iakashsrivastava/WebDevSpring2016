@@ -1,15 +1,8 @@
 <div ng-init="pageData()"></div>
 
 <!--Carousel-->
-    <ng-include src="'./views/carousel/carousel.view.html'"></ng-include>
 
-<div class="row">
-    <div ng-repeat="d in data">
-        <div class="col-md-3">
-            <a>
-                {{d.id}}
-                <img class="Thumbnail-image" ng-src={{d.picture}} alt="deq" ng-click="gotoDetailPage(d.id)">
-            </a>
-        </div>
+    <div class="row">
+        <ng-include src="'./views/carousel/carousel.view.html'"></ng-include>
+        <ng-include src="'./views/home/categories.view.html'"></ng-include>
     </div>
-</div>

@@ -1,4 +1,4 @@
-<div style="height: 100px"  ng-controller="CarouselController" ng-init="CarouselDemoCtrl()">
+<div ng-controller="CarouselController" ng-init="CarouselDemoCtrl()">
 
         <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
             <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">

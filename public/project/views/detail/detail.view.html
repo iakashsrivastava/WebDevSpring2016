@@ -1,4 +1,14 @@
+<h2><label>
+    {{trustSrc(data.title)}}
+</label>
+</h2>
+
 <iframe width="1024" height="500"
         ng-src="{{trustSrc(data.source)}}" allowfullscreen frameborder="0">
     <p>Your browser does not support iframes.</p>
 </iframe>
+
+<h4>
+    {{trustSrc(data.description)}}
+
+</h4>
