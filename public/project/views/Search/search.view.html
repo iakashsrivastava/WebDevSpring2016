@@ -1,14 +1,11 @@
 <div ng-init="searchData()"></div>
 
-<div class="row">
-    <div ng-repeat="d in data">
-        <div class="col-md-3">
-            <div class="thumbnail">
-                <img class="thumbnailImage" ng-src={{d.thumbnail_url}} alt="Picture Not Available" ng-click="gotoDetailPage(d.id)">
-                <div class="caption">
-                    <h6><label>{{d.title}}</label></h6>
-                </div>
-            </div>
+<div ng-repeat="d in data">
+    <div class="col-md-2">
+        <div class="thumbnail"><a style="cursor: pointer">
+            <img  ng-src={{d.thumbnail_url}} alt="Picture Not Available" ng-click="gotoDetailPage(d.id)">
+            <h6><label>{{d.title}}</label></h6>
+        </a>
         </div>
     </div>
 </div>
