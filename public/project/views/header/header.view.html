@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapsible" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -9,8 +9,9 @@
             </button>
             <a href='' class="navbar-brand" ng-click="gotoHome()">Mashup</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
 
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
             <form action="" class="navbar-form navbar-right">
                 <div class="input-group">
                     <input type="Search" placeholder="Search..." class="form-control" ng-model="searchText"/>
@@ -21,7 +22,7 @@
                     </div>
                 </div>
             </form>
-
+            </ul>
         </div>
     </div>
 </nav>

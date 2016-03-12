@@ -4,9 +4,9 @@
     <div ng-repeat="d in data">
         <div class="col-md-3">
             <div class="thumbnail">
-                <img ng-src={{d.thumbnail_url}} alt="Picture Not Available" ng-click="gotoDetailPage(d.id)">
+                <img class="thumbnailImage" ng-src={{d.thumbnail_url}} alt="Picture Not Available" ng-click="gotoDetailPage(d.id)">
                 <div class="caption">
-                    <label>{{d.title}}</label>
+                    <h6><label>{{d.title}}</label></h6>
                 </div>
             </div>
         </div>
