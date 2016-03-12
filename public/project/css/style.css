@@ -3,9 +3,7 @@
     height: 200px;
 }
 
-.playerConfig{
-    background: black;
-    /* align-items: center; */
-    /* align-content: center; */
-    text-align: center;
+.detailText{
+    padding-left: 50px;
+    padding-right: 50px;
 }

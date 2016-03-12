@@ -2,11 +2,12 @@
 <div class="row">
 <div ng-repeat="d in data">
 <div class="col-md-2">
-    <div class="thumbnail">
+    <div class="thumbnail"><a style="cursor: pointer">
         <img ng-src={{d.picture}} alt="Picture Not Available" ng-click="gotoDetailPage(d.id)">
         <div class="caption">
             <label>{{d.title}}</label>
         </div>
+       </a>
     </div>
 </div>
     </div>
