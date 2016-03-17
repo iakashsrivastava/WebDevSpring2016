@@ -2,9 +2,9 @@
 
 <div ng-repeat="d in data">
     <div class="col-md-2">
-        <div class="thumbnail"><a style="cursor: pointer">
+        <div class="thumbnail effectfront"><a style="cursor: pointer">
             <img  ng-src={{d.thumbnail_url}} alt="Picture Not Available" ng-click="gotoDetailPage(d.id)">
-            <h6><label>{{d.title}}</label></h6>
+            <h6>{{d.title}}</h6>
         </a>
         </div>
     </div>
