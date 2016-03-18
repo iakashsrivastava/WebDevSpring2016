@@ -18,7 +18,6 @@
         var selectedIndex = -1;
         FormService.findAllFormsForUser($rootScope.loggedUser._id, callback);
 
-
         function callback(response){
             $scope.allforms = response;
 

@@ -13,12 +13,11 @@
         $scope.profile = $rootScope.loggedUser;
         $scope.update = update;
 
-        function update(loggedUser){
-            UserService.updateUser(loggedUser._id,loggedUser,callback);
-
-            function callback(response){
-                $rootScope.loggedUser = response;
-            }
+        function update(loggedUser) {
+            UserService.updateUser(loggedUser._id,loggedUser).then(
+                function(response){
+                    $rootScope.loggedUser = response;
+                });
         }
     }
 

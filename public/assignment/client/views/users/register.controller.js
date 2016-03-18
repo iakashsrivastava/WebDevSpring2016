@@ -11,13 +11,12 @@
 
         $scope.register = register;
 
-        function register(newuser){
-            UserService.createUser(newuser,callback);
-
-            function callback(response){
-                $rootScope.loggedUser = response;
-                $location.url('/profile');
-            }
+        function register(newuser) {
+            UserService.createUser(newuser).then(
+                function(response){
+                    $rootScope.loggedUser = response;
+                    $location.url("/profile");
+                });
         }
 
     }

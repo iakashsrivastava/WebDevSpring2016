@@ -13,15 +13,15 @@
         $scope.login = login;
 
         function login(existingUser){
-            UserService.findUserByCredentials(existingUser.username,existingUser.password,callback);
-
-            function callback(response){
-                if(response !== null){
-                $rootScope.loggedUser = response;
-                $location.url("/profile");
-                }
-            }
+            UserService.findUserByCredentials(existingUser.username,existingUser.password).then(
+                function(response){
+                    if(response !== null) {
+                        $rootScope.loggedUser = response;
+                        $location.url("/profile");
+                    }
+                });
         }
+
     }
 
 
