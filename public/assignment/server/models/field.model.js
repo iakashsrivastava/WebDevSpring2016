@@ -1,4 +1,8 @@
 /**
+ * Created by akash on 3/18/16.
+ */
+
+/**
  * Created by akash on 3/17/16.
  */
 
@@ -8,7 +12,7 @@ var uuid = require('node-uuid');
 module.exports = function() {
 
     var api = {
-        getUserForms : getUserForms,
+        getFormFields : getFormFields,
         getForm : getForm,
         createForm:createForm,
         updateForm: updateForm,
@@ -18,16 +22,15 @@ module.exports = function() {
 
     return api;
 
-    function getUserForms(userId){
-
-        var array = [];
-        userId = parseInt(userId);
+    function getFormFields(formId){
+        var fields=null;
         for (var index = 0; index < formData.length; index++) {
-            if (formData[index].userId === userId) {
-                array.push(formData[index]);
+            if (formData[index]._id === formId) {
+                fields = formData[index].fields;
+                break;
             }
         }
-        return array;
+        return fields;
     }
 
     function getForm(formId){

@@ -31,7 +31,6 @@ module.exports = function(app) {
     function updateForm(req, res){
         var formId = req.params.formId;
         var title = req.body.title;
-        console.log(formId);
         res.send(userModel.updateForm(formId,title));
     }
 

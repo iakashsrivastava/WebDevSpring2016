@@ -22,6 +22,7 @@
 
             .when("/fields",{
                 templateUrl: "./views/forms/form-fields.view.html",
+                controller: "FieldController"
 
             })
 

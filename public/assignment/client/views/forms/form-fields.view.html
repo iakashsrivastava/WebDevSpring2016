@@ -5,126 +5,84 @@
     <li ng-class=" {'active':$location.url() =='/forms'}" ><a href="#/forms">Forms</a></li>
     <li ng-class=" {'active':$location.url() =='/fields'}" ><a href="#/fields">Fields</a></li>
 </ul>
+
 <div class="panel panel-default">
     <div class="panel-body">
-        <label>First Name:</label>
-        <div class="row">
-            <div class="col-md-6">
-           <span> <input type="text" class="form-control" id="inputfirstname"
-                         placeholder="First Name"></span>
+        <div class="row move-left20px" ng-switch on="selection">
+            <div ng-switch-when="Single Line Text"> <label>New Text Field</label> </div>
+            <div ng-switch-when="Multi Line Text Field"> <label>New Text Field</label> </div>
+            <div ng-switch-when="Date Field"> <label>New Date Field</label> </div>
+            <div ng-switch-when="Dropdown Field"> <label>New Dropdown</label> </div>
+            <div ng-switch-when="Checkboxes Field"> <label>New Checkboxes</label> </div>
+            <div ng-switch-when="Radio Buttons Field"> <label>New Radio Buttons</label> </div>
+        </div>
+
+    <div class="row">
+        <div ng-switch on="selection">
+        <div class="col-md-6">
+
+                <div ng-switch-when="Single Line Text">
+                    <span> <input type="text" class="form-control" id="a"
+                              placeholder="New Field"></span>
+                </div>
+
+                <div ng-switch-when="Multi Line Text Field">
+                    <span>
+                        <textarea name="Text1" cols="40" rows="5" placeholder="New Field"></textarea>
+                    </span>
+                </div>
+
+                <div ng-switch-when="Date Field">
+                    <span>
+                        <input type="date" class="form-control" id="b" placeholder="New Date Field">
+                    </span>
+                </div>
+
+                <div ng-switch-when="Dropdown Field">
+                     <span> <select class="form-control">
+                                <option value="Option 1">Option 1</option>
+                                <option value="Option 2">Option 2</option>
+                                <option value="Option 3">Option 3</option>
+                             </select>
+                    </span>
+                </div>
+
+                <div ng-switch-when="Checkboxes Field">
+                    <span>
+                        <label class="checkbox"><input type="checkbox" value="">Option A</label>
+                        <label class="checkbox"><input type="checkbox" value="">Option B</label>
+                        <label class="checkbox"><input type="checkbox" value="">Option C</label>
+                    </span>
+                </div>
+
+                <div ng-switch-when="Radio Buttons Field">
+                    <span>
+                        <label class="radio"><input type="radio" name="optradio">Option A</label>
+                        <label class="radio"><input type="radio" name="optradio">Option B</label>
+                        <label class="radio"><input type="radio" name="optradio">Option C</label>
+                    </span>
+                </div>
+
             </div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3 text-align-right-link">
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3 text-align-right-link" ng-if="selection">
             <a><span class = "glyphicon glyphicon-pencil form-table-glyphicons-links "></span></a>
             <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links"></span></a>
             <a><span class = "glyphicon glyphicon-remove form-table-glyphicons-links"></span></a>
             <a><span class = "glyphicon glyphicon-align-justify form-table-glyphicons-links"></span></a>
-            </div>
         </div>
-        <br>
-        <label>Last Name:</label>
-        <div class="row">
-            <div class="col-md-6">
-           <span> <input type="text" class="form-control" id="inputlastname"
-                         placeholder="First Name"></span>
-            </div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3 text-align-right-link">
-                <a><span class = "glyphicon glyphicon-pencil form-table-glyphicons-links "></span></a>
-                <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links"></span></a>
-                <a><span class = "glyphicon glyphicon-remove form-table-glyphicons-links"></span></a>
-                <a><span class = "glyphicon glyphicon-align-justify form-table-glyphicons-links"></span></a>
-            </div>
-        </div>
-        <br>
-        <label>Date of Birth:</label>
-        <div class="row">
-            <div class="col-md-6">
-           <span> <input type="date" class="form-control" id="inputGender"
-                         placeholder="Select Date"></span>
-            </div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3 text-align-right-link">
-                <a><span class = "glyphicon glyphicon-pencil form-table-glyphicons-links "></span></a>
-                <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links"></span></a>
-                <a><span class = "glyphicon glyphicon-remove form-table-glyphicons-links"></span></a>
-                <a><span class = "glyphicon glyphicon-align-justify form-table-glyphicons-links"></span></a>
-            </div>
-        </div>
-        <br>
-        <label>Gender:</label>
-        <div class="row">
-            <div class="col-md-6">
-           <span> <select class="form-control">
-               <option value="Male">Male</option>
-               <option value="Female">Female</option>
-           </select>
-           </span>
-            </div>
+    </div>
 
-            <div class="col-md-3"></div>
-            <div class="col-md-3 text-align-right-link">
-                <a><span class = "glyphicon glyphicon-pencil form-table-glyphicons-links "></span></a>
-                <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links"></span></a>
-                <a><span class = "glyphicon glyphicon-remove form-table-glyphicons-links"></span></a>
-                <a><span class = "glyphicon glyphicon-align-justify form-table-glyphicons-links"></span></a>
-            </div>
-        </div>
-
-        <br>
-        <label>Roles:</label>
-        <div class="row">
-            <div class="col-md-6 move-left20px">
-            <span>
-                <label class="checkbox"><input type="checkbox" value="">Admin</label>
-                <label class="checkbox"><input type="checkbox" value="">Student</label>
-                <label class="checkbox"><input type="checkbox" value="">User</label>
-            </span>
-            </div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3 text-align-right-link">
-                <a><span class = "glyphicon glyphicon-pencil form-table-glyphicons-links "></span></a>
-                <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links"></span></a>
-                <a><span class = "glyphicon glyphicon-remove form-table-glyphicons-links"></span></a>
-                <a><span class = "glyphicon glyphicon-align-justify form-table-glyphicons-links"></span></a>
-            </div>
-        </div>
-
-        <br>
-        <label>License Agreement:</label>
-        <div class="row">
-            <div class="col-md-6 move-left20px">
-            <span>
-                <label class="radio"><input type="radio" name="optradio">Yes</label>
-                <label class="radio"><input type="radio" name="optradio">No</label>
-            </span>
-            </div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3 text-align-right-link">
-                <a><span class = "glyphicon glyphicon-pencil form-table-glyphicons-links "></span></a>
-                <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links"></span></a>
-                <a><span class = "glyphicon glyphicon-remove form-table-glyphicons-links"></span></a>
-                <a><span class = "glyphicon glyphicon-align-justify form-table-glyphicons-links"></span></a>
-            </div>
-        </div>
-        <hr>
 
         <label>Add New Field:</label>
         <div class="row">
             <div class="col-md-6">
-            <span> <select class="form-control">
-                <option value="Single Line Text">Single Line Text</option>
-                <option value="Date">Date</option>
-                <option value="Dropdown">Dropdown</option>
-                <option value="Checkboxes">Checkboxes</option>
-                <option value="Radio buttons">Radio buttons</option>
-                <option value="Paragraph Text Field">Paragraph Text Field</option>
-
-            </select>
+                <select ng-model="selection" ng-options="item for item in items"> </select>
             </div>
             <div class="col-md-3"></div>
             <div class="col-md-3 text-align-right-link">
-                <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links move-left-50px"></span></a>
+                <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links move-left-50px" ng-click="addField(model.fieldType)"></span></a>
             </div>
         </div>
 

@@ -31,7 +31,7 @@
 
             <tr ng-repeat="form in allforms">
                 <td>
-                    {{form.title}}
+                    <span ng-click="getFormFields($index)"><a href="">{{form.title}}</a></span>
                 </td>
                 <td class ="admin-table-columns-links">
                 <a><span class = "glyphicon glyphicon-remove admin-table-glyphicons-rows-links" ng-click="deleteForm($index)"></span></a>

@@ -13,6 +13,7 @@
         $scope.updateForm = updateForm;
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;
+        $scope.getFormFields = getFormFields;
 
         $scope.allforms=[];
         var selectedIndex = -1;
@@ -25,7 +26,6 @@
         function addForm(index){
             FormService.createFormForUser($rootScope.loggedUser._id, $scope.title).then(
                 function(response){
-                    console.log(response);
                     $scope.allforms = response;
                     $scope.title = null;
                 });
@@ -40,6 +40,7 @@
 
         function updateForm(title){
             var form = $scope.allforms[selectedIndex];
+            console.log(form._id,title);
             FormService.updateFormById( form._id,title).then(
                 function(response){
                     $scope.allforms = response;
@@ -53,6 +54,10 @@
                 function(response){
                     $scope.allforms = response;
                 });
+        }
+
+        function getFormFields(index){
+            $location.url("/fields");
         }
 
     }

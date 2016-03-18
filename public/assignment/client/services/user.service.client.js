@@ -17,7 +17,6 @@
             findUserByCredentials: findUserByCredentials,
             findAllUsers: findAllUsers,
             deleteUserById: deleteUserById
-
         };
 
         return api;
@@ -107,7 +106,6 @@
 
             return deferred.promise;
         }
-
 
     }
 })();
