@@ -37,7 +37,7 @@ module.exports = function() {
     }
 
     function updateUser(userId, user){
-
+        userId = parseInt(userId);
         for(var i =0; i<mock.length; i++){
             if(mock[i]._id === userId){
                 mock[i] = user;

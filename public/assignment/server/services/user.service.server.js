@@ -3,7 +3,6 @@
  */
 
 module.exports = function(app) {
-    console.log("uukn");
     var userModel = require("./../models/user.model.js")();
 
     app.get("/api/assignment/user",getUsers);
@@ -14,13 +13,13 @@ module.exports = function(app) {
 
     function getUsers(req, res){
 
-        if(query.req.username && query.req.password){
-            var username = query.req.username;
-            var password = query.req.password;
+        if(req.query.username && req.query.password){
+            var username = req.query.username;
+            var password = req.query.password;
             res.send(userModel.getUserDetails(username,password));
         }
         else if(query.req.username){
-            var username = query.req.username;
+            var username = req.query.username;
             res.send(userModel.getUserDetailsByUsername(username));
         }
         else{
@@ -36,20 +35,20 @@ module.exports = function(app) {
     }
 
     function getUser(req, res){
-        var userId = req.param.id;
+        var userId = req.params.id;
         res.send(userModel.getUser(userId));
     }
 
 
     function updateUser(req, res){
-        var userId = req.param.id;
+        var userId = req.params.id;
         var user = req.body.user;
         res.send(userModel.updateUser(userId,user));
     }
 
 
     function deleteUser(req, res){
-        var userId = req.param.id;
+        var userId = req.params.id;
         res.send(userModel.deleteuser(userId));
 
     }

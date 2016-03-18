@@ -3,7 +3,6 @@
  */
 
 module.exports = function(app) {
-    console.log("vkbkjj");
     require("./services/user.service.server.js")(app);
-
+    require("./services/form.service.server.js")(app);
 };

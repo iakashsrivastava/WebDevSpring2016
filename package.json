@@ -25,7 +25,8 @@
   "dependencies": {
     "angular-spinner": "^0.8.1",
     "body-parser": "^1.15.0",
-    "express": "^3.4.8"
+    "express": "^3.4.8",
+    "node-uuid": "^1.4.7"
   },
   "devDependencies": {},
   "bundleDependencies": [],
