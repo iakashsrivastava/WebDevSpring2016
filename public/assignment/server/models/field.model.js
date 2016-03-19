@@ -14,9 +14,10 @@ module.exports = function() {
     var api = {
         getFormFields : getFormFields,
         getForm : getForm,
-        createForm:createForm,
-        updateForm: updateForm,
-        deleteForm:deleteForm
+        createField:createField,
+        updateField: updateField,
+        deleteField:deleteField,
+        cloneField:cloneField
 
     };
 
@@ -47,47 +48,96 @@ module.exports = function() {
         return form;
     }
 
-    function createForm(userId,form){
+    function createField(formId,field){
 
-        var form = {
-            _id: uuid.v1(),
-            title: form.title,
-            userId: parseInt(userId)
-        }
-        formData.push(form);
-
-        var userForms = getUserForms(userId);
-        return userForms;
-    }
-
-    function updateForm(formId,title){
-        var userId =-1;
+        field._id = uuid.v1();
 
         for (var index = 0; index < formData.length; index++) {
             if (formData[index]._id === formId) {
-                formData[index].title = title;
-                userId = formData[index].userId;
+                formData[index].fields.push(field);
                 break;
             }
         }
-        var userForms = getUserForms(userId);
-        return userForms;
+        var formFields = getFormFields(formId);
+        return formFields;
     }
 
-    function deleteForm(formId){
+    function updateField(formId,fieldId,field) {
+
+        for (var index = 0; index < formData.length; index++) {
+            if (formData[index]._id === formId) {
+                var fields = formData[index].fields;
+
+                for (var ind = 0; ind < fields.length; ind++) {
+                    if (fields[ind]._id === fieldId && fields[ind].type === field.type) {
+                        fields[ind].label = field.label;
+                        fields[ind].placeholder = field.value;
+                        break;
+                    }
+                    if (fields[ind]._id === fieldId && fields[ind].type === field.type) {
+                        fields[ind].label = field.label;
+                        fields[ind].placeholder = field.value;
+                        break;
+                    }
+                }
+
+            }
+
+            var formFields = getFormFields(formId);
+            return formFields;
+        }
+    }
+
+    function deleteField(formId, fieldId){
         var pos =-1;
         var uid =-1;
         for	(var index = 0; index < formData.length; index++) {
             if( formData[index]._id === formId){
-                pos=index;
-                uid=formData[index].userId;
-                break;
+                var fields = formData[index].fields;
+
+                for(var ind =0; ind < fields.length; ind++){
+                    if(fields[ind]._id === fieldId){
+                        pos = ind;
+                        break;
+                    }
+                }
+
+                if(pos !== -1) {
+                    formData[index].fields.splice(pos, 1);
+                    break;
+                }
             }
         }
-        if(pos !== -1)
-            formData.splice(pos,1);
 
-        return getUserForms(uid);
+        var formFields = getFormFields(formId);
+        return formFields;
+
+    }
+
+    function cloneField(formId, fieldId){
+        var pos =-1;
+        var field =null;
+        for	(var index = 0; index < formData.length; index++) {
+            if( formData[index]._id === formId){
+                var fields = formData[index].fields;
+
+                for(var ind =0; ind < fields.length; ind++){
+                    if(fields[ind]._id === fieldId){
+                        pos = ind;
+                        field = fields[ind];
+                    }
+                }
+
+                if(pos !== -1) {
+                    field._id = uuid.v1();
+                    formData[index].fields.push(field);
+                    break;
+                }
+            }
+        }
+
+        var formFields = getFormFields(formId);
+        return formFields;
 
     }
 

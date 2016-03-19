@@ -15,12 +15,16 @@
                 templateUrl: "./views/home/home.view.html"
             })
 
+            .when("/modal",{
+                templateUrl: "./views/forms/modalTest.html"
+            })
+
             .when("/forms",{
                 templateUrl: "./views/forms/forms.view.html",
                 controller: "FormController"
             })
 
-            .when("/fields",{
+            .when("/fields/:formId",{
                 templateUrl: "./views/forms/form-fields.view.html",
                 controller: "FieldController"
 

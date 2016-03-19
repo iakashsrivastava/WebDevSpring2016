@@ -3,16 +3,17 @@
  */
 
 module.exports = function(app) {
-    var userModel = require("./../models/form.model.js")();
+    var userModel = require("./../models/field.model.js")();
 
     app.get("/api/assignment/form/:formId/field",getFormFields);
     app.get("/api/assignment/form/:formId/field/:fieldId",getFormField);
     app.post("/api/assignment/form/:formId/field",createField);
     app.put("/api/assignment/form/:formId/field/:fieldId",updateField);
+    app.put("/api/assignment/form/:formId/field/:fieldId/clone",cloneField);
     app.delete("/api/assignment/form/:formId/field/:fieldId",deleteField);
 
     function getFormFields(req, res){
-        var userId = req.params.formId;
+        var formId = req.params.formId;
         res.send(userModel.getFormFields(formId));
     }
 
@@ -30,9 +31,17 @@ module.exports = function(app) {
 
     function updateField(req, res){
         var formId = req.params.formId;
-        var title = req.body.title;
-        res.send(userModel.updateField(formId,title));
+        var fieldId = req.params.fieldId;
+        var field = req.body.field;
+        res.send(userModel.updateField(formId,fieldId,field));
     }
+
+    function cloneField(req, res){
+        var formId = req.params.formId;
+        var fieldId = req.params.fieldId;
+        res.send(userModel.cloneField(formId,fieldId));
+    }
+
 
     function deleteField(req, res){
         var formId = req.params.formId;

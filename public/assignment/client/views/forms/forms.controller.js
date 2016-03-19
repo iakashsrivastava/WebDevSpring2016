@@ -57,7 +57,8 @@
         }
 
         function getFormFields(index){
-            $location.url("/fields");
+            var form = $scope.allforms[index];
+            $location.url("/fields/"+form._id);
         }
 
     }

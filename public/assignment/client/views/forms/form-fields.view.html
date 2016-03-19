@@ -1,90 +1,176 @@
-<h1 class="page-header">Forms : Registration Form</h1>
+    <h1 class="page-header">Forms : Registration Form</h1>
 
 
-<ul class="nav nav-tabs">
-    <li ng-class=" {'active':$location.url() =='/forms'}" ><a href="#/forms">Forms</a></li>
-    <li ng-class=" {'active':$location.url() =='/fields'}" ><a href="#/fields">Fields</a></li>
-</ul>
+    <ul class="nav nav-tabs">
+        <li ng-class=" {'active':$location.url() =='/forms'}" ><a href="#/forms">Forms</a></li>
+        <li ng-class=" {'active':$location.url() =='/fields/:formId'}" ><a href="#/fields/:formId">Fields</a></li>
+    </ul>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="row move-left20px" ng-switch on="selection">
-            <div ng-switch-when="Single Line Text"> <label>New Text Field</label> </div>
-            <div ng-switch-when="Multi Line Text Field"> <label>New Text Field</label> </div>
-            <div ng-switch-when="Date Field"> <label>New Date Field</label> </div>
-            <div ng-switch-when="Dropdown Field"> <label>New Dropdown</label> </div>
-            <div ng-switch-when="Checkboxes Field"> <label>New Checkboxes</label> </div>
-            <div ng-switch-when="Radio Buttons Field"> <label>New Radio Buttons</label> </div>
-        </div>
 
-    <div class="row">
-        <div ng-switch on="selection">
-        <div class="col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div ng-if="value">
 
-                <div ng-switch-when="Single Line Text">
-                    <span> <input type="text" class="form-control" id="a"
-                              placeholder="New Field"></span>
+                <div class="modal-dialog" role="dialog" >
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+
+                        </div>
+
+                        <div class="modal-body">
+                            <label>Label</label>
+                            <br>
+                            <input type="text" placeholder="" ng-model="field.label">
+                            <br>
+                            <div ng-if="value.type != 'DATE' && value.type != 'CHECKBOXES' && value.type != 'RADIOS' && value.type != 'OPTIONS'">
+                                <label>PlaceHolder</label>
+                                <br>
+                                <input type="text" placeholder="" ng-model="field.value">
+                            </div>
+                            <div ng-if="value.type == 'CHECKBOXES' || value.type == 'RADIOS' || value.type == 'OPTIONS'">
+                                <label>Options</label>
+                                <br>
+                                <textarea name="Text1" cols="40" rows="5" placeholder="" ng-model="field.options"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
+                            <button type="button" class="btn btn-default" ng-click="fromModal(value._id,field,value.type)">Close</button>
+                        </div>
+
+                    </div>
+
                 </div>
-
-                <div ng-switch-when="Multi Line Text Field">
-                    <span>
-                        <textarea name="Text1" cols="40" rows="5" placeholder="New Field"></textarea>
-                    </span>
-                </div>
-
-                <div ng-switch-when="Date Field">
-                    <span>
-                        <input type="date" class="form-control" id="b" placeholder="New Date Field">
-                    </span>
-                </div>
-
-                <div ng-switch-when="Dropdown Field">
-                     <span> <select class="form-control">
-                                <option value="Option 1">Option 1</option>
-                                <option value="Option 2">Option 2</option>
-                                <option value="Option 3">Option 3</option>
-                             </select>
-                    </span>
-                </div>
-
-                <div ng-switch-when="Checkboxes Field">
-                    <span>
-                        <label class="checkbox"><input type="checkbox" value="">Option A</label>
-                        <label class="checkbox"><input type="checkbox" value="">Option B</label>
-                        <label class="checkbox"><input type="checkbox" value="">Option C</label>
-                    </span>
-                </div>
-
-                <div ng-switch-when="Radio Buttons Field">
-                    <span>
-                        <label class="radio"><input type="radio" name="optradio">Option A</label>
-                        <label class="radio"><input type="radio" name="optradio">Option B</label>
-                        <label class="radio"><input type="radio" name="optradio">Option C</label>
-                    </span>
-                </div>
-
             </div>
-        </div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3 text-align-right-link" ng-if="selection">
-            <a><span class = "glyphicon glyphicon-pencil form-table-glyphicons-links "></span></a>
-            <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links"></span></a>
-            <a><span class = "glyphicon glyphicon-remove form-table-glyphicons-links"></span></a>
-            <a><span class = "glyphicon glyphicon-align-justify form-table-glyphicons-links"></span></a>
-        </div>
-    </div>
+            <table>
+                <tbody>
+                <tr ng-repeat="field in allFields">
 
+                        <td ng-if="field.type=='TEXT'">
+                            <label>{{field.label}}</label>
+                            <input type="text" class="form-control" placeholder={{field.placeholder}}>
+                        </td>
 
-        <label>Add New Field:</label>
+                        <td ng-if="field.type=='TEXTAREA'">
+                            <label>{{field.label}}</label>
+                            <textarea name="Text1" cols="40" rows="5" placeholder={{field.placeholder}}></textarea>
+                        </td>
+
+                        <td ng-if="field.type=='DATE'">
+                            <label>{{field.label}}</label>
+                            <input type="DATE" class="form-control" placeholder={{field.placeholder}}>
+                        </td>
+
+                        <td ng-if="field.type=='CHECKBOXES'">
+                            <label>{{field.label}}</label>
+                                <span ng-repeat="option in field.options">
+                                    <label class="checkbox"><input type="checkbox" value={{ option.value}}>{{ option.label}}</label>
+                                </span>
+                        </td>
+
+                        <td ng-if="field.type=='OPTIONS'">
+                            <label>{{field.label}}</label>
+                            <select class="form-control">
+                                <option ng-repeat="option in field.options" value="option.value">{{option.label}}</option>
+                            </select>
+                        </td>
+
+                        <td ng-if="field.type=='RADIOS'">
+                            <label>{{field.label}}</label>
+                            <span ng-repeat="option in field.options">
+                                <label class="radio"><input type="checkbox" value={{ option.value}}>{{ option.label}}</label>
+                            </span>
+                        </td>
+
+                        <td ng-if="field.type=='EMAIL'">
+                            <label>{{field.label}}</label>
+                            <input type="email" class="form-control" placeholder={{field.placeholder}}>
+                        </td>
+
+                        <td>
+                            <a><span class = "glyphicon glyphicon-pencil form-table-glyphicons-links " ng-click="openModal(field)"></span></a>
+                            <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links" ng-click="cloneField(field._id)"></span></a>
+                            <a><span class = "glyphicon glyphicon-remove form-table-glyphicons-links" ng-click="deleteField(field._id)"></span></a>
+                            <a><span class = "glyphicon glyphicon-align-justify form-table-glyphicons-links"></span></a>
+                        </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <hr>
+            <div class="row move-left20px" ng-switch on="selection">
+                <div ng-switch-when="Single Line Text"> <label>New Text Field</label> </div>
+                <div ng-switch-when="Multi Line Text Field"> <label>New Text Field</label> </div>
+                <div ng-switch-when="Date Field"> <label>New Date Field</label> </div>
+                <div ng-switch-when="Dropdown Field"> <label>New Dropdown</label> </div>
+                <div ng-switch-when="Checkboxes Field"> <label>New Checkboxes</label> </div>
+                <div ng-switch-when="Radio Buttons Field"> <label>New Radio Buttons</label> </div>
+            </div>
+
         <div class="row">
+            <div ng-switch on="selection">
             <div class="col-md-6">
-                <select ng-model="selection" ng-options="item for item in items"> </select>
-            </div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3 text-align-right-link">
-                <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links move-left-50px" ng-click="addField(model.fieldType)"></span></a>
+
+                    <div ng-switch-when="Single Line Text">
+                        <span> <input type="text" class="form-control" id="a"
+                                  placeholder="New Field"></span>
+                    </div>
+
+                    <div ng-switch-when="Multi Line Text Field">
+                        <span>
+                            <textarea name="Text1" cols="40" rows="5" placeholder="New Field"></textarea>
+                        </span>
+                    </div>
+
+                    <div ng-switch-when="Date Field">
+                        <span>
+                            <input type="date" class="form-control" id="b" placeholder="New Date Field">
+                        </span>
+                    </div>
+
+                    <div ng-switch-when="Dropdown Field">
+                         <span> <select class="form-control">
+                                    <option value="Option 1">Option 1</option>
+                                    <option value="Option 2">Option 2</option>
+                                    <option value="Option 3">Option 3</option>
+                                 </select>
+                        </span>
+                    </div>
+
+                    <div ng-switch-when="Checkboxes Field">
+                        <span>
+                            <label class="checkbox"><input type="checkbox" value="">Option A</label>
+                            <label class="checkbox"><input type="checkbox" value="">Option B</label>
+                            <label class="checkbox"><input type="checkbox" value="">Option C</label>
+                        </span>
+                    </div>
+
+                    <div ng-switch-when="Radio Buttons Field">
+                        <span>
+                            <label class="radio"><input type="radio" name="optradio">Option A</label>
+                            <label class="radio"><input type="radio" name="optradio">Option B</label>
+                            <label class="radio"><input type="radio" name="optradio">Option C</label>
+                        </span>
+                    </div>
+
+                </div>
             </div>
         </div>
 
+            <label>Add New Field:</label>
+            <div class="row">
+                <div class="col-md-6">
+                    <select ng-model="selection" ng-options="item for item in items"> </select>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3 text-align-right-link">
+                    <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links move-left-50px" ng-click="addField(selection)"></span></a>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>

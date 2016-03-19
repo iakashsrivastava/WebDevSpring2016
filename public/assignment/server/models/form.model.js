@@ -49,7 +49,8 @@ module.exports = function() {
         var form = {
             _id: uuid.v1(),
             title: form.title,
-            userId: parseInt(userId)
+            userId: parseInt(userId),
+            fields:[]
         }
         formData.push(form);
 
