@@ -10,13 +10,16 @@
     function FieldController(FieldService,$scope,$rootScope,$location,$routeParams){
 
         var formId = $routeParams.formId;
-
+        $scope.formTitle = $routeParams.title;
         $scope.addField = addField;
         $scope.deleteField =deleteField;
         $scope.cloneField = cloneField;
         $scope.openModal =openModal;
         $scope.fromModal =fromModal;
         $scope.cancelModal =cancelModal;
+        $scope.sortOption ={
+          handle : '.mover'
+        };
 
         $scope.items = ['Single Line Text', 'Multi Line Text Field', 'Date Field',
                         'Dropdown Field', 'Checkboxes Field', 'Radio Buttons Field'];

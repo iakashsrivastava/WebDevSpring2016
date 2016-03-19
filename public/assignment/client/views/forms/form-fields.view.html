@@ -1,9 +1,9 @@
-    <h1 class="page-header">Forms : Registration Form</h1>
+    <h1 class="page-header">Forms : {{formTitle}}</h1>
 
 
     <ul class="nav nav-tabs">
         <li ng-class=" {'active':$location.url() =='/forms'}" ><a href="#/forms">Forms</a></li>
-        <li ng-class=" {'active':$location.url() =='/fields/:formId'}" ><a href="#/fields/:formId">Fields</a></li>
+        <li class="active" ><a >Fields</a></li>
     </ul>
 
 
@@ -46,8 +46,9 @@
 
                 </div>
             </div>
-            <table>
-                <tbody>
+            <div class="table-responsive">
+            <table class="table">
+                <tbody ui-sortable="sortOption">
                 <tr ng-repeat="field in allFields">
 
                         <td ng-if="field.type=='TEXT'">
@@ -65,42 +66,44 @@
                             <input type="DATE" class="form-control" placeholder={{field.placeholder}}>
                         </td>
 
-                        <td ng-if="field.type=='CHECKBOXES'">
+                        <td ng-if="field.type=='CHECKBOXES'" class="width70">
                             <label>{{field.label}}</label>
-                                <span ng-repeat="option in field.options">
-                                    <label class="checkbox"><input type="checkbox" value={{ option.value}}>{{ option.label}}</label>
+                                <span ng-repeat="option in field.options" class="checkbox">
+                                    <label><input type="checkbox" value={{ option.value}}>{{ option.label}}</label>
                                 </span>
                         </td>
 
-                        <td ng-if="field.type=='OPTIONS'">
+                        <td ng-if="field.type=='OPTIONS'" class="width70">
                             <label>{{field.label}}</label>
                             <select class="form-control">
                                 <option ng-repeat="option in field.options" value="option.value">{{option.label}}</option>
                             </select>
                         </td>
 
-                        <td ng-if="field.type=='RADIOS'">
+                        <td ng-if="field.type=='RADIOS'" class="width70">
                             <label>{{field.label}}</label>
-                            <span ng-repeat="option in field.options">
-                                <label class="radio"><input type="checkbox" value={{ option.value}}>{{ option.label}}</label>
+                            <span ng-repeat="option in field.options" class="radio">
+                                <label ><input type="radio" value={{ option.value}}>{{ option.label}}</label>
                             </span>
                         </td>
 
-                        <td ng-if="field.type=='EMAIL'">
+                        <td ng-if="field.type=='EMAIL'" class="width70">
                             <label>{{field.label}}</label>
                             <input type="email" class="form-control" placeholder={{field.placeholder}}>
                         </td>
 
                         <td>
+                            <div class="tbl-btns text-align-right-link">
                             <a><span class = "glyphicon glyphicon-pencil form-table-glyphicons-links " ng-click="openModal(field)"></span></a>
                             <a><span class = "glyphicon glyphicon-plus form-table-glyphicons-links" ng-click="cloneField(field._id)"></span></a>
                             <a><span class = "glyphicon glyphicon-remove form-table-glyphicons-links" ng-click="deleteField(field._id)"></span></a>
-                            <a><span class = "glyphicon glyphicon-align-justify form-table-glyphicons-links"></span></a>
+                            <a><span class = "mover glyphicon glyphicon-align-justify form-table-glyphicons-links"></span></a>
+                            </div>
                         </td>
                 </tr>
                 </tbody>
             </table>
-
+            </div>
             <hr>
             <div class="row move-left20px" ng-switch on="selection">
                 <div ng-switch-when="Single Line Text"> <label>New Text Field</label> </div>
@@ -142,18 +145,18 @@
                     </div>
 
                     <div ng-switch-when="Checkboxes Field">
-                        <span>
-                            <label class="checkbox"><input type="checkbox" value="">Option A</label>
-                            <label class="checkbox"><input type="checkbox" value="">Option B</label>
-                            <label class="checkbox"><input type="checkbox" value="">Option C</label>
-                        </span>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Option A</label>
+                            <label><input type="checkbox" value="">Option B</label>
+                            <label><input type="checkbox" value="">Option C</label>
+                        </div>
                     </div>
 
-                    <div ng-switch-when="Radio Buttons Field">
-                        <span>
-                            <label class="radio"><input type="radio" name="optradio">Option A</label>
-                            <label class="radio"><input type="radio" name="optradio">Option B</label>
-                            <label class="radio"><input type="radio" name="optradio">Option C</label>
+                    <div ng-switch-when="Radio Buttons Field" >
+                        <span class="radio">
+                            <label><input type="radio" name="optradio">Option A</label>
+                            <label><input type="radio" name="optradio">Option B</label>
+                            <label><input type="radio" name="optradio">Option C</label>
                         </span>
                     </div>
 

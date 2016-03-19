@@ -62,3 +62,7 @@ a:hover{
 hr {
     border-top: 1px solid;
 }
+
+.tbl-btns{
+    padding: 25px;
+}

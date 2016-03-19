@@ -56,9 +56,9 @@
                 });
         }
 
-        function getFormFields(index){
+        function getFormFields(index,title){
             var form = $scope.allforms[index];
-            $location.url("/fields/"+form._id);
+            $location.url("/fields/"+form._id+"/title/"+title);
         }
 
     }
