@@ -11,7 +11,7 @@
         <div class="panel-body">
             <div ng-if="value">
 
-                <div class="modal-dialog" role="dialog" >
+                <div class="modal modal-dialog" role="dialog" >
 
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -47,21 +47,22 @@
                 </div>
             </div>
             <div class="table-responsive">
-            <table class="table">
+            <table class="table table-borderless">
                 <tbody ui-sortable="sortOption">
                 <tr ng-repeat="field in allFields">
 
-                        <td ng-if="field.type=='TEXT'">
+                        <td ng-if="field.type=='TEXT'" class="width70">
                             <label>{{field.label}}</label>
                             <input type="text" class="form-control" placeholder={{field.placeholder}}>
                         </td>
 
-                        <td ng-if="field.type=='TEXTAREA'">
+                        <td ng-if="field.type=='TEXTAREA'" class="width70">
                             <label>{{field.label}}</label>
+                            <br>
                             <textarea name="Text1" cols="40" rows="5" placeholder={{field.placeholder}}></textarea>
                         </td>
 
-                        <td ng-if="field.type=='DATE'">
+                        <td ng-if="field.type=='DATE'" class="width70">
                             <label>{{field.label}}</label>
                             <input type="DATE" class="form-control" placeholder={{field.placeholder}}>
                         </td>

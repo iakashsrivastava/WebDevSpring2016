@@ -106,10 +106,11 @@
         }
 
         function fromModal(fieldId, field,type){
+            $scope.value =null;
             FieldService.updateField(formId,fieldId,field,type).then(
                 function(response){
                     $scope.allFields = response;
-                    $scope.value =null;
+
                 });
         }
 
