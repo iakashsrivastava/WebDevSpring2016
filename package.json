@@ -24,9 +24,11 @@
   },
   "dependencies": {
     "angular-spinner": "^0.8.1",
+    "bluebird": "^3.3.4",
     "body-parser": "^1.15.0",
     "express": "^3.4.8",
-    "node-uuid": "^1.4.7"
+    "node-uuid": "^1.4.7",
+    "request-promise": "^2.0.1"
   },
   "devDependencies": {},
   "bundleDependencies": [],

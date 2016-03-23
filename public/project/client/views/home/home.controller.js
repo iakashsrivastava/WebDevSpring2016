@@ -16,15 +16,12 @@
             $location.url("/details/"+id+"/F");
         }
 
-        function pageData() {
-
-            HomeService.getData(render);
-            function render(response) {
-
-                $scope.data =response.videos.data;
-
-            }
-
+        function pageData(){
+            HomeService.getData().then(
+                function(response){
+                    console.log(response);
+                    $scope.data =response.videos.data;
+                });
         }
     }
 
