@@ -6,21 +6,12 @@
     <span us-spinner></span>
 </div>
 
-<!--<div ng-if = "data && entertaintmentdata" ui-sortable="sortOption">-->
-    <!--<label>News</label>-->
-    <!--<ng-include src="'./views/home/categories.view.html'"></ng-include>-->
-    <!--<br>-->
-    <!--<label>Entertaintment</label>-->
-    <!--<ng-include src="'./views/home/entertaintment.view.html'"></ng-include>-->
-<!--</div>-->
-
-
 <div ng-if = "data && entertaintmentdata" ng-repeat="category in categories">
-
-    <div ng-repeat="d in category track by $index">
+    <h4><label>{{category.name}}</label></h4>
+    <div ng-repeat="d in category.items track by $index">
         <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
             <div class="thumbnail"><a style="cursor: pointer">
-                <img  ng-src={{d.picture}} alt="Picture Not Available" ng-click="gotoDetailPage(d.id)">
+                <img  class="img-responsive" ng-src={{d.picture}} alt="Picture Not Available" ng-click="gotoDetailPage(d.id)">
                 <h6><label>{{d.title}}</label></h6>
             </a>
             </div>

@@ -24,16 +24,22 @@
         function pageData(){
             HomeService.getData().then(
                 function(response){
-                    $scope.data =response;
-                    $scope.categories.push(response);
+                    $scope.categories.push({
+                        items:response,
+                        name:"News"
+                    });
+                    $scope.data =true;
                 });
         }
 
         function getEntertaintmentData(){
             HomeService.getEntertaintmentData().then(
                 function(response){
-                    $scope.entertaintmentdata =response;
-                    $scope.categories.push(response);
+                    $scope.categories.push({
+                        items:response,
+                        name:"Entertaintment"
+                    });
+                    $scope.entertaintmentdata =true;
                 });
         }
 

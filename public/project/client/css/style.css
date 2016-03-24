@@ -1,12 +1,12 @@
 .thumbnail {
     height: 137px;
-    width: 200px;
+    width: 100%;
     border: none;
 }
 
 .thumbnail a>img {
     height: 108.25px;
-    width: 192px;
+    width: 100%;
 }
 
 .container {
