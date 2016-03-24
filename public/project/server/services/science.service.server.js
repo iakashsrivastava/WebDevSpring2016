@@ -4,14 +4,14 @@
 
 module.exports = function(app) {
 
-    app.get("/api/project/entertaintment/content",getHomeContent);
+    app.get("/api/project/science/content",getHomeContent);
 
     var https = require('https');
     var request = require('request-promise');
     var Promise = require('bluebird');
 
     var url = "https://graph.facebook.com/";
-    var id = [134075539977097];
+    var id = [96191425588];
     var fields = "videos.limit(12){picture,title,content_category,updated_time,place,likes.limit(0).summary(true),comments.limit(0).summary(true)}";
     var accessKey = "1694412377450348|LuFMN9doZ_i3TZMc0p3c3t6X360";
     var allContent = [];
@@ -31,6 +31,7 @@ module.exports = function(app) {
                     allContent.push(data[j]);
                 }
             }
+            console.log("Hi")
             res.send(allContent);
 
         });

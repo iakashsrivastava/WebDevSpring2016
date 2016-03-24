@@ -10,7 +10,10 @@
 
         var api = {
             getData: getData,
-            getEntertaintmentData:getEntertaintmentData
+            getEntertaintmentData:getEntertaintmentData,
+            getScienceData:getScienceData,
+            getSportsData:getSportsData
+
         };
 
         return api;
@@ -30,6 +33,28 @@
             var deferred = $q.defer();
 
             $http.get('/api/project/entertaintment/content')
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
+        }
+
+        function getScienceData(){
+            var deferred = $q.defer();
+            console.log("client service");
+            $http.get('/api/project/science/content')
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
+        }
+
+        function getSportsData(){
+            var deferred = $q.defer();
+
+            $http.get('/api/project/sports/content')
                 .success(function(response){
                     deferred.resolve(response);
                 });

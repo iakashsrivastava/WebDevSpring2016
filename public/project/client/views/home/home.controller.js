@@ -12,6 +12,9 @@
         $scope.pageData = pageData;
         $scope.gotoDetailPage =gotoDetailPage;
         $scope.getEntertaintmentData = getEntertaintmentData;
+        $scope.getSportsData =getSportsData;
+        $scope.getScienceData =getScienceData;
+
         $scope.sortOption ={
             handle : '.mover'
         };
@@ -38,6 +41,29 @@
                     $scope.categories.push({
                         items:response,
                         name:"Entertaintment"
+                    });
+                    $scope.entertaintmentdata =true;
+                });
+        }
+
+        function getSportsData(){
+            HomeService.getSportsData().then(
+                function(response){
+                    $scope.categories.push({
+                        items:response,
+                        name:"Sports"
+                    });
+                    $scope.entertaintmentdata =true;
+                });
+        }
+
+        function getScienceData(){
+            console.log("client controller");
+            HomeService.getScienceData().then(
+                function(response){
+                    $scope.categories.push({
+                        items:response,
+                        name:"Science"
                     });
                     $scope.entertaintmentdata =true;
                 });

@@ -18,7 +18,7 @@ module.exports = function(app) {
 
     var string1 = url +id[0] + "/?fields=" +fields+ "&access_token=" + accessKey;
     function getHomeContent(req, res){
-
+        var allContent = [];
         var urls = [string1];
         Promise.map(urls, function(url){    // executes concurrently
             return request(url)
