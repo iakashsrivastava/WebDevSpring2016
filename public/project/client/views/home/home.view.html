@@ -7,7 +7,7 @@
     <span us-spinner></span>
 </div>
 
-<div>
+<div ng-if="data && entertaintmentdata">
 <ul ui-sortable="sortableOptions" ng-model="categories">
 
     <li style="list-style: none" ng-if="data && entertaintmentdata" ng-repeat="category in categories">

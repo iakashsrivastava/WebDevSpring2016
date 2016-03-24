@@ -21,7 +21,7 @@
         function getData(){
             var deferred = $q.defer();
 
-            $http.get('/api/project/home/content')
+            $http.get('/api/category/news/content')
                 .success(function(response){
                     deferred.resolve(response);
                 });
@@ -32,7 +32,7 @@
         function getEntertaintmentData(){
             var deferred = $q.defer();
 
-            $http.get('/api/project/entertaintment/content')
+            $http.get('/api/category/entertaintment/content')
                 .success(function(response){
                     deferred.resolve(response);
                 });
@@ -43,7 +43,7 @@
         function getScienceData(){
             var deferred = $q.defer();
             console.log("client service");
-            $http.get('/api/project/science/content')
+            $http.get('/api/category/science/content')
                 .success(function(response){
                     deferred.resolve(response);
                 });
@@ -54,7 +54,7 @@
         function getSportsData(){
             var deferred = $q.defer();
 
-            $http.get('/api/project/sports/content')
+            $http.get('/api/category/sports/content')
                 .success(function(response){
                     deferred.resolve(response);
                 });

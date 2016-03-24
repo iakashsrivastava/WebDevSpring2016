@@ -11,7 +11,7 @@ module.exports = function(app) {
     var Promise = require('bluebird');
 
     var url = "https://graph.facebook.com/";
-    var id = [134075539977097];
+    var id = [17614953850];
     var fields = "videos.limit(12){picture,title,content_category,updated_time,place,likes.limit(0).summary(true),comments.limit(0).summary(true)}";
     var accessKey = "1694412377450348|LuFMN9doZ_i3TZMc0p3c3t6X360";
     var allContent = [];

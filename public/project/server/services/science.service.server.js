@@ -31,7 +31,6 @@ module.exports = function(app) {
                     allContent.push(data[j]);
                 }
             }
-            console.log("Hi")
             res.send(allContent);
 
         });
