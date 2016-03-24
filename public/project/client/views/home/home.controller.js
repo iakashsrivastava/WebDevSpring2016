@@ -11,6 +11,11 @@
 
         $scope.pageData = pageData;
         $scope.gotoDetailPage =gotoDetailPage;
+        $scope.getEntertaintmentData = getEntertaintmentData;
+        $scope.sortOption ={
+            handle : '.mover'
+        };
+        $scope.categories =[];
 
         function gotoDetailPage(id){
             $location.url("/details/"+id+"/F");
@@ -19,10 +24,20 @@
         function pageData(){
             HomeService.getData().then(
                 function(response){
-                    console.log(response);
-                    $scope.data =response.videos.data;
+                    $scope.data =response;
+                    $scope.categories.push(response);
                 });
         }
+
+        function getEntertaintmentData(){
+            HomeService.getEntertaintmentData().then(
+                function(response){
+                    $scope.entertaintmentdata =response;
+                    $scope.categories.push(response);
+                });
+        }
+
+
     }
 
 })();

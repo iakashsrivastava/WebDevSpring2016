@@ -9,7 +9,8 @@
     function HomeService($http,$q){
 
         var api = {
-            getData: getData
+            getData: getData,
+            getEntertaintmentData:getEntertaintmentData
         };
 
         return api;
@@ -22,15 +23,18 @@
                     deferred.resolve(response);
                 });
 
-            (deferred.promise).then(
-                function(response){
-                    var x = [];
-                    for(var i=0; i < response.length; i++) {
-                        x.push( JSON.parse(response[i]).videos.data );
-                    }
-                    console.log(x);
-                }
-            );
+            return deferred.promise;
+        }
+
+        function getEntertaintmentData(){
+            var deferred = $q.defer();
+
+            $http.get('/api/project/entertaintment/content')
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
         }
 
     }
