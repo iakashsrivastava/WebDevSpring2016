@@ -24,6 +24,10 @@
                 templateUrl: "./views/Search/search.view.html",
                 controller:"SearchController"
             })
+            .when("/category/:category",{
+                templateUrl: "./views/category/category.view.html",
+                controller:"CategoryController"
+            })
 
             .otherwise({
                 redirectTo: "/home"

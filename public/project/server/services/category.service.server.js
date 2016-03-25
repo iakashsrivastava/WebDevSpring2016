@@ -10,15 +10,15 @@ module.exports = function(app) {
     var categoryModel = require("./../models/category.model.js")();
 
     app.get("/api/category/news/content",getNewsContent);
-    app.get("/api/category/entertaintment/content",getEntertaintmentContent);
+    app.get("/api/category/entertainment/content",getEntertainmentContent);
     app.get("/api/category/science/content",geScienceContent);
     app.get("/api/category/sports/content",getSportsContent);
 
     var newsContent=[];
     var newsId = [407570359384477];
 
-    var entertaintmentContent=[];
-    var entertaintmentId = [17614953850];
+    var entertainmentContent=[];
+    var entertainmentId = [17614953850];
 
     var sportsContent=[];
     var sportsId = [10911153761];
@@ -46,20 +46,20 @@ module.exports = function(app) {
         }
     }
 
-    function getEntertaintmentContent(req, res){
+    function getEntertainmentContent(req, res){
 
-        if (entertaintmentContent.length > 0) {
+        if (entertainmentContent.length > 0) {
             console.log("Inside if")
-            res.send(entertaintmentContent);
+            res.send(entertainmentContent);
         }
         else {
             console.log("Inside else")
-            categoryModel.getContent(entertaintmentId)
+            categoryModel.getContent(entertainmentId)
                 .then(
                     function (result) {
 
-                        entertaintmentContent = result;
-                        res.send(entertaintmentContent);
+                        entertainmentContent = result;
+                        res.send(entertainmentContent);
                     }
                 );
         }

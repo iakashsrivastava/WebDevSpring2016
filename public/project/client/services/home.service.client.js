@@ -10,7 +10,7 @@
 
         var api = {
             getData: getData,
-            getEntertaintmentData:getEntertaintmentData,
+            getEntertainmentData:getEntertainmentData,
             getScienceData:getScienceData,
             getSportsData:getSportsData
 
@@ -29,10 +29,10 @@
             return deferred.promise;
         }
 
-        function getEntertaintmentData(){
+        function getEntertainmentData(){
             var deferred = $q.defer();
 
-            $http.get('/api/category/entertaintment/content')
+            $http.get('/api/category/entertainment/content')
                 .success(function(response){
                     deferred.resolve(response);
                 });

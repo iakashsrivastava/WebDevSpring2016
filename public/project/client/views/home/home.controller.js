@@ -11,7 +11,7 @@
 
         $scope.pageData = pageData;
         $scope.gotoDetailPage =gotoDetailPage;
-        $scope.getEntertaintmentData = getEntertaintmentData;
+        $scope.getEntertainmentData = getEntertainmentData;
         $scope.getSportsData =getSportsData;
         $scope.getScienceData =getScienceData;
 
@@ -31,18 +31,16 @@
                         items:response,
                         name:"News"
                     });
-                    $scope.data =true;
                 });
         }
 
-        function getEntertaintmentData(){
-            HomeService.getEntertaintmentData().then(
+        function getEntertainmentData(){
+            HomeService.getEntertainmentData().then(
                 function(response){
                     $scope.categories.push({
                         items:response,
-                        name:"Entertaintment"
+                        name:"Entertainment"
                     });
-                    $scope.entertaintmentdata =true;
                 });
         }
 
@@ -53,7 +51,6 @@
                         items:response,
                         name:"Sports"
                     });
-                    $scope.entertaintmentdata =true;
                 });
         }
 
@@ -65,7 +62,6 @@
                         items:response,
                         name:"Science"
                     });
-                    $scope.entertaintmentdata =true;
                 });
         }
 

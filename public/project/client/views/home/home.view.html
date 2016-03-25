@@ -1,27 +1,26 @@
 <div ng-init="pageData()"></div>
 <div ng-init="getSportsData()"></div>
 <div ng-init="getScienceData()"></div>
-<div ng-init="getEntertaintmentData()"></div>
+<div ng-init="getEntertainmentData()"></div>
 
-<div ng-if="!data && !entertaintmentdata">
-    <span us-spinner></span>
-</div>
+<!--<div ng-if="!data && !entertaintmentdata">-->
+    <!--<span us-spinner></span>-->
+<!--</div>-->
 
-<div ng-if="data && entertaintmentdata">
-<ul ui-sortable="sortableOptions" ng-model="categories">
+    <ul ui-sortable="sortableOptions" ng-model="categories">
 
-    <li style="list-style: none" ng-if="data && entertaintmentdata" ng-repeat="category in categories">
-        <h4><label>{{category.name}}</label></h4>
-        <div ng-repeat="d in category.items track by $index">
-            <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
-                <div class="thumbnail "><a style="cursor: pointer">
-                    <img class="img-responsive " ng-src={{d.picture}} alt="Picture Not Available"
-                         ng-click="gotoDetailPage(d.id)">
-                    <h6><label>{{d.title}}</label></h6>
-                </a>
+        <li style="list-style: none" ng-repeat="category in categories">
+            <h4><label>{{category.name}}</label></h4>
+            <div ng-repeat="d in category.items track by $index">
+                <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
+                    <div class="thumbnail "><a style="cursor: pointer">
+                        <img class="img-responsive " ng-src={{d.picture}} alt="Picture Not Available"
+                             ng-click="gotoDetailPage(d.id)">
+                        <h6><label>{{d.title}}</label></h6>
+                    </a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </li>
-</ul></div>
+        </li>
+    </ul>
