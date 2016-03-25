@@ -10,9 +10,26 @@
         .module("SocialMashup")
         .controller("CategoryController",CategoryController);
 
-    function CategoryController($scope,$routeParams) {
+    function CategoryController(HomeService,$scope,$routeParams,$location) {
 
-        $scope.category = $routeParams.category;
+        var category = $routeParams.category;
+        $scope.getCategoryDetails =getCategoryDetails;
+        $scope.gotoDetailPage=gotoDetailPage;
+
+        $scope.section =category;
+
+        function getCategoryDetails(){
+            console.log(category);
+            HomeService.getCategoryDetails(category).then(
+                function(response){
+                    $scope.categorydata = response;
+                    console.log(response);
+                });
+        }
+
+        function gotoDetailPage(id){
+            $location.url("/details/"+id+"/F");
+        }
 
     }
 

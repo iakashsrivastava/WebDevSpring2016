@@ -10,7 +10,7 @@ module.exports = function(app) {
     var categoryModel = require("./../models/category.model.js")();
 
     app.get("/api/category/news/content",getNewsContent);
-    app.get("/api/category/news/detail",getNewsDetail);
+    app.get("/api/category/detail/:category",getCategoryDetails);
     app.get("/api/category/entertainment/content",getEntertainmentContent);
     app.get("/api/category/science/content",geScienceContent);
     app.get("/api/category/sports/content",getSportsContent);
@@ -28,9 +28,32 @@ module.exports = function(app) {
     var sportsId = [10911153761];
 
     var scienceContent=[];
-    var scienceNext=[];
+    var scienceNext=null;
     var scienceId = [96191425588];
 
+    var next = [];
+
+    function getCategoryDetails(req, res){
+        var category = req.params.category;
+
+        if (next.length == 0){
+            console.log("Inside");
+            categoryModel.getDetailedContent(newsId)
+                .then(
+                    function (result) {
+                        next = result.next;
+                        scienceNext={
+                            obj:result.content
+                        }
+                        res.send(result.content);
+                    }
+                );
+        }
+        else{
+            res.send(scienceNext.obj)
+        }
+
+    }
 
     function getNewsContent(req, res){
 
@@ -47,19 +70,6 @@ module.exports = function(app) {
                     }
                 );
         }
-    }
-
-    function getNewsDetail(req, res){
-
-        categoryModel.getDetailedContent(newsNext)
-            .then(
-                function (result) {
-                    newsNext =result.next;
-                    newsContent.push(result.content);
-                    res.send(newsContent);
-                }
-            );
-
     }
 
     function getEntertainmentContent(req, res){
@@ -112,5 +122,7 @@ module.exports = function(app) {
                 );
         }
     }
+
+
 
 };

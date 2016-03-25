@@ -12,7 +12,8 @@
             getData: getData,
             getEntertainmentData:getEntertainmentData,
             getScienceData:getScienceData,
-            getSportsData:getSportsData
+            getSportsData:getSportsData,
+            getCategoryDetails:getCategoryDetails
 
         };
 
@@ -56,6 +57,18 @@
 
             $http.get('/api/category/sports/content')
                 .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
+        }
+
+        function getCategoryDetails(category){
+            var deferred = $q.defer();
+
+            $http.get('/api/category/detail/:'+category)
+                .success(function(response){
+                    console.log(response);
                     deferred.resolve(response);
                 });
 

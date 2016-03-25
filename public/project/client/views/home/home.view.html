@@ -10,7 +10,7 @@
     <ul ui-sortable="sortableOptions" ng-model="categories">
 
         <li style="list-style: none" ng-repeat="category in categories">
-            <h4><label>{{category.name}}</label></h4>
+            <h4><label ng-click="getCategoryDetails(category.name)">{{category.name}}</label></h4>
             <div ng-repeat="d in category.items track by $index">
                 <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
                     <div class="thumbnail "><a style="cursor: pointer">

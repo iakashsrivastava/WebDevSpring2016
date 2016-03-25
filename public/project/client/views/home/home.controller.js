@@ -14,11 +14,16 @@
         $scope.getEntertainmentData = getEntertainmentData;
         $scope.getSportsData =getSportsData;
         $scope.getScienceData =getScienceData;
+        $scope.getCategoryDetails=getCategoryDetails;
 
         $scope.sortOption ={
             handle : '.mover'
         };
         $scope.categories =[];
+
+        function getCategoryDetails(category){
+            $location.url("/category/"+category);
+        }
 
         function gotoDetailPage(id){
             $location.url("/details/"+id+"/F");
