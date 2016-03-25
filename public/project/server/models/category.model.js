@@ -9,11 +9,13 @@ var Promise = require('bluebird');
 module.exports = function () {
 
     var api = {
-        getContent: getContent
+        getContent: getContent,
+        getDetailedContent:getDetailedContent
     };
     var url = "https://graph.facebook.com/";
-    var fields = "videos.limit(12){picture,title,content_category,updated_time,place,likes.limit(0).summary(true),comments.limit(0).summary(true)}";
+    var fields = "videos.limit(12){picture,title}";
     var accessKey = "1694412377450348|LuFMN9doZ_i3TZMc0p3c3t6X360";
+
 
     return api;
 
@@ -32,15 +34,44 @@ module.exports = function () {
 
     }
 
-    function formatJson(resultsArray){
+    function getDetailedContent(urls) {
+
+        return Promise.map(urls, function (url) {    // executes concurrently
+            return request(url);
+        }).then(function (resultsArray) {
+            return formatJsonDetail(resultsArray);
+        });
+    }
+
+    function formatJsonDetail(resultsArray){
         var content =[];
+        var next = [];
         for(var i=0; i < resultsArray.length; i++) {
-            var data =JSON.parse(resultsArray[i]).videos.data;
+            var data =JSON.parse(resultsArray[i]).data;
+            next.push(JSON.parse(resultsArray[i]).paging.next);
             for(var j=0;j<data.length;j++){
                 content.push(data[j]);
             }
         }
-        return content;
+        return {content :content,
+            next :next};
+    }
+
+
+
+    function formatJson(resultsArray){
+        var content =[];
+        var next = [];
+        for(var i=0; i < resultsArray.length; i++) {
+            var data =JSON.parse(resultsArray[i]).videos.data;
+            next.push(JSON.parse(resultsArray[i]).videos.paging.next);
+            for(var j=0;j<data.length;j++){
+                content.push(data[j]);
+            }
+        }
+        console.log("From Models  " + content);
+        return {content :content,
+            next :next};
     }
 
 }
