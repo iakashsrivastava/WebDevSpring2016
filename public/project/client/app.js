@@ -5,6 +5,6 @@
 "use strict";
 (function(){
     angular
-        .module("SocialMashup",['ngRoute','ui.bootstrap','angularSpinner','ui.sortable']);
+        .module("SocialMashup",['ngRoute','ui.bootstrap','angularSpinner','ui.sortable','lazy-scroll']);
 
 })();

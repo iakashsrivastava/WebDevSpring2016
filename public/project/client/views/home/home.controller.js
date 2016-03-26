@@ -16,9 +16,7 @@
         $scope.getScienceData =getScienceData;
         $scope.getCategoryDetails=getCategoryDetails;
 
-        $scope.sortOption ={
-            handle : '.mover'
-        };
+
         $scope.categories =[];
 
         function getCategoryDetails(category){

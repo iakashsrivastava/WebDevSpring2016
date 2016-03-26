@@ -14,7 +14,7 @@ module.exports = function () {
     };
     var url = "https://graph.facebook.com/";
     var fields = "videos.limit(12){picture,title}";
-    var fieldsforDetail = "videos.limit(60){picture,title}";
+    var fieldsforDetail = "videos.limit(30){picture,title}";
     var accessKey = "1694412377450348|LuFMN9doZ_i3TZMc0p3c3t6X360";
 
 

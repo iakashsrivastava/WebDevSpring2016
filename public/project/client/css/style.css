@@ -36,3 +36,6 @@ h6 {
     -webkit-transition: all 0.3s;
 }
 
+.class-pointer{
+    cursor: pointer; !important;
+}

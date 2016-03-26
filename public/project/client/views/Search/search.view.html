@@ -2,8 +2,8 @@
 
 <div ng-repeat="d in data">
     <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
-        <div class="thumbnail "><a style="cursor: pointer">
-            <img  ng-src={{d.thumbnail_url}} alt="Picture Not Available" ng-click="gotoDetailPage(d.id)">
+        <div class="thumbnail" ng-click="gotoDetailPage(d.id)"><a style="cursor: pointer">
+            <img  ng-src={{d.thumbnail_url}} alt="Picture Not Available">
             <h6>{{d.title}}</h6>
         </a>
         </div>

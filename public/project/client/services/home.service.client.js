@@ -68,7 +68,6 @@
 
             $http.get('/api/category/detail/:'+category)
                 .success(function(response){
-                    console.log(response);
                     deferred.resolve(response);
                 });
 
