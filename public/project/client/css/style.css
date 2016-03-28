@@ -39,3 +39,8 @@ h6 {
 .class-pointer{
     cursor: pointer; !important;
 }
+
+.highlight-text:hover {
+    color: black;
+    text-decoration: underline;
+}

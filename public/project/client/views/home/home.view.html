@@ -7,24 +7,31 @@
 <!--<span us-spinner></span>-->
 <!--</div>-->
 
-<ul ui-sortable="sortableOptions" ng-model="categories">
+<!--<ul ui-sortable="sortableOptions" ng-model="categories">-->
 
-    <li style="list-style: none" ng-repeat="category in categories">
+<!--<li style="list-style: none"  ng-repeat="category in categories">-->
 
-        <h4><label ng-click="getCategoryDetails(category.name)" class="class-pointer">
-            {{category.name}}
-        </label></h4>
+<div ng-repeat="category in categories">
 
-        <div ng-repeat="d in category.items track by $index">
-            <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
-                <div class="thumbnail" ng-click="gotoDetailPage(d.id)">
-                    <a class="class-pointer">
-                        <img class="img-responsive " ng-src={{d.picture}} alt="Picture Not Available">
-                        <h6><label class="class-pointer">{{d.title}}</label></h6>
-                    </a>
-                </div>
+
+    <h4><label ng-click="getCategoryDetails(category.name)" class="class-pointer highlight-text ">
+        {{category.name}}
+    </label></h4>
+
+    <!--<span ng-class=" {'active':$location.url() =='/home'} " ><a class="navbar-brand" href="#/home">Mashup</a></span>-->
+
+    <div  ng-repeat="d in category.items track by $index">
+
+        <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
+            <div class="thumbnail" ng-click="gotoDetailPage(d.id)">
+                <a class="class-pointer">
+                    <img class="img-responsive " ng-src={{d.picture}} alt="Picture Not Available">
+                    <h6><label class="class-pointer">{{d.title}}</label></h6>
+                </a>
             </div>
         </div>
+    </div>
+</div>
 
-    </li>
-</ul>
+<!--</li>-->
+<!--</ul>-->
