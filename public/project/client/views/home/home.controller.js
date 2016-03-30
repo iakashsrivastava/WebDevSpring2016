@@ -15,12 +15,17 @@
         $scope.getSportsData =getSportsData;
         $scope.getScienceData =getScienceData;
         $scope.getCategoryDetails=getCategoryDetails;
+        $scope.gotoPersonalised =gotoPersonalised;
 
 
         $scope.categories =[];
 
         function getCategoryDetails(category){
             $location.url("/category/"+category);
+        }
+
+        function gotoPersonalised(){
+            $location.url("/personalise");
         }
 
         function gotoDetailPage(id){

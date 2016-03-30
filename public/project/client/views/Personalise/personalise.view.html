@@ -1,0 +1,23 @@
+<div class="modal modal-dialog" role="dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h5><label>Personalize Your Feed</label></h5>
+        </div>
+
+        <div class="modal-body">
+            <div ng-repeat ="category in categories">
+                {{category}}
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
+            <button type="button" class="btn btn-default" ng-click="fromModal(value._id,field,value.type)">Close</button>
+        </div>
+
+    </div>
+
+</div>

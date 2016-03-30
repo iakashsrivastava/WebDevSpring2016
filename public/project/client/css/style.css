@@ -44,3 +44,29 @@ h6 {
     color: black;
     text-decoration: underline;
 }
+
+.container-padding{
+    padding: 13px;
+}
+
+.basic-title{
+    background-color: whiteSmoke;
+    padding: 0;
+    zoom: 1;
+    height: 35px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: block;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    /*background-color: #333333;*/
+    /*opacity:0.8; !important;*/
+}

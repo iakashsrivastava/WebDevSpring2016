@@ -45,6 +45,12 @@
 
             })
 
+            .when("/personalise",{
+                templateUrl: "./views/personalise/personalise.view.html",
+                controller: "PersonaliseController"
+
+            })
+
             .otherwise({
                 redirectTo: "/home"
             });
