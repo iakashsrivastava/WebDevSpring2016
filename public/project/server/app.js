@@ -4,5 +4,6 @@
 
 module.exports = function(app) {
     require("./services/category.service.server.js")(app);
+    require("./services/category_backup.service.server.js")(app);
     require("./services/user.service.server.js")(app);
 };

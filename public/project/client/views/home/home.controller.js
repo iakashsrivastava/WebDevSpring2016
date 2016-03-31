@@ -15,8 +15,10 @@
         $scope.getSportsData =getSportsData;
         $scope.getScienceData =getScienceData;
         $scope.getCategoryDetails=getCategoryDetails;
-        $scope.gotoPersonalised =gotoPersonalised;
+        $scope.getHomeContent=getHomeContent;
 
+
+        var categoriesList =['science','sports','news'];
 
         $scope.categories =[];
 
@@ -24,12 +26,21 @@
             $location.url("/category/"+category);
         }
 
-        function gotoPersonalised(){
-            $location.url("/personalise");
-        }
-
         function gotoDetailPage(id){
             $location.url("/details/"+id+"/F");
+        }
+
+        function getHomeContent(){
+            for(var i=0; i<categoriesList.length; i++){
+                var categoryName=categoriesList[i];
+                HomeService.getCategoryContent(categoriesList[i]).then(
+                    function(response){
+                        $scope.categories.push({
+                            items : response,
+                            name : categoryName
+                        });
+                    });
+            }
         }
 
         function pageData(){
@@ -52,8 +63,8 @@
                 });
         }
 
-        function getSportsData(){
-            HomeService.getSportsData().then(
+        function getSportsData(data){
+            HomeService.getSportsData(data).then(
                 function(response){
                     $scope.categories.push({
                         items:response,

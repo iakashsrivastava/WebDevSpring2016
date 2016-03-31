@@ -11,7 +11,15 @@
         .controller("PersonaliseController",PersonaliseController);
 
     function PersonaliseController($scope) {
-        $scope.categories=['Sports','News','Entertaintment'];
+
+        $scope.colors = {Blue: true, Orange: true};
+
+        $scope.categories = {
+            News: true,
+            Entertainment: true,
+            Sports:true,
+            Science:true };
+
 
     }
 
