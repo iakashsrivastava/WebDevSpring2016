@@ -1,7 +1,4 @@
-<!--<div ng-init="pageData()"></div>-->
-<!--<div ng-init="getSportsData('sports')"></div>-->
-<!--<div ng-init="getScienceData()"></div>-->
-<!--<div ng-init="getEntertainmentData()"></div>-->
+
 <div ng-init="getHomeContent()"></div>
 <!--<div ng-if="!data && !entertaintmentdata">-->
 <!--<span us-spinner></span>-->
@@ -10,6 +7,37 @@
 <!--<ul ui-sortable="sortableOptions" ng-model="categories">-->
 
 <!--<li style="list-style: none"  ng-repeat="category in categories">-->
+<button type="button" class="btn btn-primary" ng-click="viewModal()">Personalise</button>
+<div ng-if="isModalVisible">
+
+    <div class="modal modal-dialog" role="dialog" >
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5><label>Personalize Your Feed</label></h5>
+            </div>
+
+            <div class="modal-body">
+
+                <label ng-repeat="(color,enabled) in colors">
+                    <input type="checkbox" ng-model="colors[color]"> {{color}}
+                </label>
+                <p>colors: {{colors}}</p>
+
+
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="turnModalOff()">Cancel</button>
+                <button type="button" class="btn btn-default" ng-click="fromModal(value._id,field,value.type)">Close</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
 <div ng-repeat="category in categories">
 

@@ -17,10 +17,10 @@ module.exports = function () {
     };
 
     var topics=[
-        { "category" : ":news" , value : [407570359384477]},
-        { "category" :":entertainment", value : [17614953850]},
-        { "category" :":sports", value : [10911153761]},
-        { "category" : ":science", value : [96191425588]}
+        { "category" : ":News" , value : [407570359384477]},
+        { "category" : ":Entertainment", value : [17614953850]},
+        { "category" : ":Sports", value : [10911153761]},
+        { "category" : ":Science", value : [96191425588]}
     ];
 
     var mashup_content=[];
@@ -79,4 +79,38 @@ module.exports = function () {
         mashup_content.push(obj);
         return obj.content;
     }
+
+    function getUserCategories(){
+
+    }
+
+    function formatJsonDetail(resultsArray){
+        var content =[];
+        var next = [];
+        for(var i=0; i < resultsArray.length; i++) {
+            var data =JSON.parse(resultsArray[i]).data;
+            next.push(JSON.parse(resultsArray[i]).paging.next);
+            for(var j=0;j<data.length;j++){
+                content.push(data[j]);
+            }
+        }
+        return {content :content,
+            next :next};
+    }
+
+    function getDetailedContent(id) {
+
+        var urls = [];
+        for(var i=0;i<id.length;i++){
+            urls.push( url + id[i] + "/?fields=" + fieldsforDetail + "&access_token=" + accessKey );
+        }
+
+        return Promise.map(urls, function (url) {    // executes concurrently
+            return request(url);
+        }).then(function (resultsArray) {
+            return formatJson(resultsArray);
+        });
+
+    }
+
 }

@@ -9,21 +9,25 @@
 
     function HomeController(HomeService, $scope,$location,usSpinnerService) {
 
-        $scope.pageData = pageData;
         $scope.gotoDetailPage =gotoDetailPage;
-        $scope.getEntertainmentData = getEntertainmentData;
-        $scope.getSportsData =getSportsData;
-        $scope.getScienceData =getScienceData;
         $scope.getCategoryDetails=getCategoryDetails;
         $scope.getHomeContent=getHomeContent;
+        $scope.isModalVisible = false;
+        $scope.turnModalOff = turnModalOff;
+        $scope.viewModal =viewModal;
 
+        $scope.colors = {Blue: true, Orange: true};
 
-        var categoriesList =['science','sports','news'];
+        var categoriesList =['Science','Sports','News'];
 
         $scope.categories =[];
 
         function getCategoryDetails(category){
             $location.url("/category/"+category);
+        }
+
+        function viewModal(){
+            $scope.isModalVisible = true;
         }
 
         function gotoDetailPage(id){
@@ -43,45 +47,8 @@
             }
         }
 
-        function pageData(){
-            HomeService.getData().then(
-                function(response){
-                    $scope.categories.push({
-                        items:response,
-                        name:"News"
-                    });
-                });
-        }
-
-        function getEntertainmentData(){
-            HomeService.getEntertainmentData().then(
-                function(response){
-                    $scope.categories.push({
-                        items:response,
-                        name:"Entertainment"
-                    });
-                });
-        }
-
-        function getSportsData(data){
-            HomeService.getSportsData(data).then(
-                function(response){
-                    $scope.categories.push({
-                        items:response,
-                        name:"Sports"
-                    });
-                });
-        }
-
-        function getScienceData(){
-            console.log("client controller");
-            HomeService.getScienceData().then(
-                function(response){
-                    $scope.categories.push({
-                        items:response,
-                        name:"Science"
-                    });
-                });
+        function turnModalOff(){
+            $scope.isModalVisible = false;
         }
 
 
