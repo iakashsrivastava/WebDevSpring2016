@@ -2,9 +2,13 @@
  * Created by akash on 3/17/16.
  */
 
-var mock = require("./user.mock.json");
+//var mock = require("./user.mock.json");
 
-module.exports = function() {
+
+module.exports = function(db,mongoose) {
+    var userSchema = require("./user.schema.server.js")(mongoose);
+    var mock = mongoose.model('user', userSchema);
+
     var api = {
         createUser: createUser,
         getUsers:getUsers,

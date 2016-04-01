@@ -2,8 +2,7 @@
  * Created by akash on 3/17/16.
  */
 
-module.exports = function(app) {
-    var userModel = require("./../models/field.model.js")();
+module.exports = function(app, userModel,formModel,fieldModel) {
 
     app.get("/api/assignment/form/:formId/field",getFormFields);
     app.get("/api/assignment/form/:formId/field/:fieldId",getFormField);
