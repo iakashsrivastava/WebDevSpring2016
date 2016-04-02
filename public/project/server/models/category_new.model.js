@@ -12,15 +12,16 @@ var Promise = require('bluebird');
 module.exports = function () {
 
     var api = {
-        getCategoryContent: getCategoryContent
+        getCategoryContent: getCategoryContent,
+        getDetailedContent:getDetailedContent
 
     };
 
     var topics=[
-        { "category" : ":News" , value : [407570359384477]},
-        { "category" : ":Entertainment", value : [17614953850]},
-        { "category" : ":Sports", value : [10911153761]},
-        { "category" : ":Science", value : [96191425588]}
+        { "category" : "News" , value : [407570359384477]},
+        { "category" : "Entertainment", value : [17614953850]},
+        { "category" : "Sports", value : [10911153761]},
+        { "category" : "Science", value : [96191425588]}
     ];
 
     var mashup_content=[];
@@ -98,9 +99,11 @@ module.exports = function () {
             next :next};
     }
 
-    function getDetailedContent(id) {
+    function getDetailedContent(category) {
 
         var urls = [];
+        var id = getCategoryId(category);
+
         for(var i=0;i<id.length;i++){
             urls.push( url + id[i] + "/?fields=" + fieldsforDetail + "&access_token=" + accessKey );
         }
@@ -112,5 +115,4 @@ module.exports = function () {
         });
 
     }
-
 }

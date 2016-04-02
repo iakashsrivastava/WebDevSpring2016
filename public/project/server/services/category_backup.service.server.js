@@ -13,14 +13,17 @@ module.exports = function (app) {
 
     app.get("/api/content/category/:category", getCategoryContent);
     app.get("/api/content/category/:category", getUserCategories);
-    app.get("/api/category/detail/:category",getCategoryDetails);
+    app.get("/api/category/detail/:category",getCategoryDetailedContent);
 
     function getCategoryContent(req, res) {
         var category = req.params.category;
         categoryModel.getCategoryContent(category)
             .then(
                 function (result) {
-                    res.send(result);
+                    res.send({
+                        item: result,
+                        name: category
+                    });
                 });
     }
 
@@ -32,26 +35,14 @@ module.exports = function (app) {
                 });
     }
 
-    function getCategoryDetails(req, res){
+    function getCategoryDetailedContent(req, res) {
         var category = req.params.category;
-
-        if (next.length == 0){
-            console.log("Inside");
-            categoryModel.getDetailedContent(newsId)
-                .then(
-                    function (result) {
-                        next = result.next;
-                        scienceNext={
-                            obj:result.content
-                        }
-                        res.send(result.content);
-                    }
-                );
-        }
-        else{
-            res.send(scienceNext.obj)
-        }
-
+        console.log(category);
+        categoryModel.getDetailedContent(category)
+            .then(
+                function (result) {
+                    res.send(result);
+                });
     }
 
 

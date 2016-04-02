@@ -36,12 +36,11 @@
 
         function getHomeContent(){
             for(var i=0; i<categoriesList.length; i++){
-                var categoryName=categoriesList[i];
                 HomeService.getCategoryContent(categoriesList[i]).then(
                     function(response){
                         $scope.categories.push({
-                            items : response,
-                            name : categoryName
+                            items : response.item,
+                            name : response.name
                         });
                     });
             }

@@ -17,7 +17,7 @@
 
         function getCategoryContent(category){
             var deferred = $q.defer();
-            $http.get('/api/content/category/:'+category)
+            $http.get('/api/content/category/'+category)
                 .success(function(response){
                     deferred.resolve(response);
                 });
@@ -28,7 +28,7 @@
         function getCategoryDetails(category){
             var deferred = $q.defer();
 
-            $http.get('/api/category/detail/:'+category)
+            $http.get('/api/category/detail/'+category)
                 .success(function(response){
                     deferred.resolve(response);
                 });
