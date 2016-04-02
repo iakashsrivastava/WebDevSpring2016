@@ -82,6 +82,5 @@ hr {
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
     outline: 0;
-    background-color: #333333;
-    opacity:0.8;
+
 }

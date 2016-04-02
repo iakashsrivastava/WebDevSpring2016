@@ -40,7 +40,7 @@
 
         function updateForm(title){
             var form = $scope.allforms[selectedIndex];
-            console.log(form._id,title);
+
             FormService.updateFormById( form._id,title).then(
                 function(response){
                     $scope.allforms = response;

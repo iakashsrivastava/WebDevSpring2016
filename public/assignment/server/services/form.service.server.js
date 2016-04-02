@@ -2,7 +2,7 @@
  * Created by akash on 3/17/16.
  */
 
-module.exports = function(app, userModel,formModel,fieldModel) {
+module.exports = function(app,formModel) {
 
     app.get("/api/assignment/user/:userId/form",getUserForms);
     app.get("/api/assignment/form/:formId",getForm);
@@ -12,32 +12,90 @@ module.exports = function(app, userModel,formModel,fieldModel) {
 
     function getUserForms(req, res){
         var userId = req.params.userId;
-        res.send(userModel.getUserForms(userId));
+        formModel.getUserForms(userId)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
+
+                    res.send(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function getForm(req, res){
         var formId = req.params.formId;
-        res.send(userModel.getForm(formId));
+        formModel.getForm(formId)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
+
+                    res.send(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function createForm(req, res){
         var userId = req.params.userId;
         var form = req.body.form;
-        res.send(userModel.createForm(userId,form));
-    }
+        formModel.createForm(userId,form)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
 
+                    res.send(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
+    }
 
     function updateForm(req, res){
         var formId = req.params.formId;
         var title = req.body.title;
-        res.send(userModel.updateForm(formId,title));
+        formModel.updateForm(formId,title)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
+
+                    res.send(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
 
     function deleteForm(req, res){
         var formId = req.params.formId;
-        res.send(userModel.deleteForm(formId));
+        formModel.deleteForm(formId)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
 
+                    res.send(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
 };

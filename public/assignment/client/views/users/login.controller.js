@@ -15,6 +15,7 @@
         function login(existingUser){
             UserService.findUserByCredentials(existingUser.username,existingUser.password).then(
                 function(response){
+
                     if(response !== null) {
                         $rootScope.loggedUser = response;
                         $location.url("/profile");

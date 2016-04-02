@@ -2,21 +2,25 @@
  * Created by akash on 3/17/16.
  */
 
-//var formData = require("./form.mock.json");
+//var formModel = require("./form.mock.json");
 var uuid = require('node-uuid');
-
+var q = require("q");
 
 module.exports = function(db,mongoose) {
+    var uide = null;
+    var FormSchema = require("./form.schema.server.js")(mongoose);
 
-    var formSchema = require("./form.schema.server.js")(mongoose);
-    var formData = mongoose.model('form', formSchema);
+    //create model for schema
+    var formModel = mongoose.model('form', FormSchema);
 
     var api = {
         getUserForms : getUserForms,
         getForm : getForm,
         createForm:createForm,
         updateForm: updateForm,
-        deleteForm:deleteForm
+        deleteForm:deleteForm,
+        getMongooseModel: getMongooseModel
+
 
     };
 
@@ -24,73 +28,137 @@ module.exports = function(db,mongoose) {
 
     function getUserForms(userId){
 
-        var array = [];
-        userId = parseInt(userId);
-        for (var index = 0; index < formData.length; index++) {
-            if (formData[index].userId === userId) {
-                array.push(formData[index]);
+        var deferred = q.defer();
+        uide = userId;
+        // find without first argument retrieves all documents
+        formModel.find({ userId: userId }, function(err, docs) {
+            if (err) {
+                // reject promise if error
+                deferred.reject(err);
+            } else {
+                // resolve promise
+                deferred.resolve(docs);
             }
-        }
-        return array;
+        });
+        return deferred.promise;
     }
 
     function getForm(formId){
 
-        var form = null;
-        formId = parseInt(formId);
-
-        for (var index = 0; index < formData.length; index++) {
-            if (formData[index]._id === formId) {
-                form = formData[index];
-                break;
+        var deferred = q.defer();
+        // find without first argument retrieves all documents
+        formModel.findbyId(formId, function(err, docs) {
+            if (err) {
+                // reject promise if error
+                deferred.reject(err);
+            } else {
+                // resolve promise
+                deferred.resolve(docs);
             }
-        }
-        return form;
+        });
+        return deferred.promise;
     }
 
     function createForm(userId,form){
 
         var form = {
-            _id: uuid.v1(),
             title: form.title,
-            userId: parseInt(userId),
+            userId: userId,
             fields:[]
         }
-        formData.push(form);
+        // use q to defer the response
+        var deferred = q.defer();
 
-        var userForms = getUserForms(userId);
-        return userForms;
+        // insert new user with mongoose user model's create()
+        formModel.create(form, function (err, doc) {
+
+            if (err) {
+                // reject promise if error
+                deferred.reject(err);
+            } else {
+                // resolve promise
+                return doc;
+            }
+
+        }).then(function(doc){
+            getUserForms(userId).then(
+                function(docs) {
+
+                    deferred.resolve(docs);
+                },
+                function(err) {
+                    deferred.reject(err);
+                }
+            )
+        });
+
+        // return a promise
+        return deferred.promise;
+
+        //var userForms = getUserForms(userId);
+        //return userForms;
     }
 
     function updateForm(formId,title){
-        var userId =-1;
-
-        for (var index = 0; index < formData.length; index++) {
-            if (formData[index]._id === formId) {
-                formData[index].title = title;
-                userId = formData[index].userId;
-                break;
+        var userId =null;
+        var deferred = q.defer();
+        formModel.findById(formId, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                userId = doc.userId;
+                return doc;
             }
-        }
-        var userForms = getUserForms(userId);
-        return userForms;
+        }).then(function(doc) {
+            doc.title = title;
+            doc.save(function(err, resp) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    return doc;
+                }
+            });
+        }).then(function(doc){
+            getUserForms(userId).then(
+                function(docs) {
+                    deferred.resolve(docs);
+                },
+                function(err) {
+                    deferred.reject(err);
+                }
+            )
+        });
+
+        // return a promise
+        return deferred.promise;
+
     }
 
     function deleteForm(formId){
-        var pos =-1;
-        var uid =-1;
-        for	(var index = 0; index < formData.length; index++) {
-            if( formData[index]._id === formId){
-                pos=index;
-                uid=formData[index].userId;
-                break;
+        var deferred = q.defer();
+
+        formModel.remove({_id: formId}, function (err, resp) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                return resp;
             }
-        }
-        if(pos !== -1)
-            formData.splice(pos,1);
+        }).then(function(resp){
+            getUserForms(uide).then(
+                function(docs) {
+                    deferred.resolve(docs);
+                },
+                function(err) {
+                    deferred.reject(err);
+                }
+            )
+        });
 
-        return getUserForms(uid);
-
+        return deferred.promise;
     }
 
-}
+    function getMongooseModel(){
+        return formModel;
+    }
+
+};

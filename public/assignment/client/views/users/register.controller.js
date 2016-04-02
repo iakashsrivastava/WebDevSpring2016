@@ -12,6 +12,8 @@
         $scope.register = register;
 
         function register(newuser) {
+            newuser.emails =newuser.emails.split(',');
+
             UserService.createUser(newuser).then(
                 function(response){
                     $rootScope.loggedUser = response;

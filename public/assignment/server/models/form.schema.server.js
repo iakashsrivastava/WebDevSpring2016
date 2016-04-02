@@ -2,13 +2,16 @@
  * Created by akash on 4/1/16.
  */
 
-module.exports = function(db,mongoose) {
+
+module.exports = function(mongoose) {
+    var FieldSchema = require("./field.schema.server.js")(mongoose);
 
     var FormSchema = mongoose.Schema({
-        "_id" :String,
-        title: String,
         userId: String,
-        fields:[String]
+        title: String,
+        fields:[FieldSchema],
+        created: { type: Date, default: Date.now },
+        updated: { type: Date, default: Date.now }
     }, {collection: 'form'});
     return FormSchema;
 

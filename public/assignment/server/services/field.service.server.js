@@ -2,7 +2,7 @@
  * Created by akash on 3/17/16.
  */
 
-module.exports = function(app, userModel,formModel,fieldModel) {
+module.exports = function(app, fieldModel) {
 
     app.get("/api/assignment/form/:formId/field",getFormFields);
     app.get("/api/assignment/form/:formId/field/:fieldId",getFormField);
@@ -13,40 +13,101 @@ module.exports = function(app, userModel,formModel,fieldModel) {
 
     function getFormFields(req, res){
         var formId = req.params.formId;
-        res.send(userModel.getFormFields(formId));
+
+        fieldModel.getFormFields(formId)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
+
+                    res.json(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function getFormField(req, res){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        res.send(userModel.getFormField(formId,fieldId));
+        fieldModel.getFormField(formId,fieldId)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
+
+                    res.send(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function createField(req, res){
         var formId = req.params.formId;
         var field = req.body.field;
-        res.send(userModel.createField(formId,field));
+        fieldModel.createField(formId,field)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
+
+                    res.send(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function updateField(req, res){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         var field = req.body.field;
-        res.send(userModel.updateField(formId,fieldId,field));
+
+        fieldModel.updateField(formId,fieldId,field)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
+
+                    res.send(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function cloneField(req, res){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        res.send(userModel.cloneField(formId,fieldId));
+        res.send(fieldModel.cloneField(formId,fieldId));
     }
 
 
     function deleteField(req, res){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        res.send(userModel.deleteField(formId,fieldId));
 
+        fieldModel.deleteField(formId,fieldId)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
+
+                    res.send(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
     }
-
 };

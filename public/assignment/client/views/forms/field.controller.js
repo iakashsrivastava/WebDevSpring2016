@@ -26,13 +26,15 @@
         $scope.selection = null;
         $scope.allFields=[];
 
-        FieldService.getFieldsForForm(formId).then(
-            function(response) {
-                $scope.allFields = response;
-                console.log($scope.allFields);
-            }
-        )
+        function getfields(formId) {
+            FieldService.getFieldsForForm(formId).then(
+                function (response) {
+                    $scope.allFields = response;
+                }
+            );
+        }
 
+        getfields(formId);
         function deleteField(fieldId){
             FieldService.deleteField(formId,fieldId).then(
                 function(response){
@@ -42,7 +44,7 @@
 
         function addField(item){
             var field = null;
-            if(item === 'Single Line Text Field'){
+            if(item === 'Single Line Text'){
                 field = {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
             }
             else if(item === 'Multi Line Text Field') {
@@ -88,12 +90,13 @@
                     $scope.selection = null;
                 }
             )
+
         }
 
         function cloneField(fieldId){
             FieldService.cloneField(formId,fieldId).then(
                 function(response){
-                    $scope.allFields = response;
+                    getfields(formId);
                 });
         }
 
@@ -112,6 +115,7 @@
                     $scope.allFields = response;
 
                 });
+            getfields(formId);
         }
 
     }
