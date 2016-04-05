@@ -12,27 +12,16 @@
         $scope.gotoDetailPage =gotoDetailPage;
         $scope.getCategoryDetails=getCategoryDetails;
         $scope.getHomeContent=getHomeContent;
-        $scope.isModalVisible = false;
-        $scope.turnModalOff = turnModalOff;
-        $scope.viewModal =viewModal;
         $scope.categoryNext = categoryNext;
         $scope.categoryPrevious = categoryPrevious;
-
-        $scope.colors = {Blue: true, Orange: true};
 
         $scope.categoriesList =[{name :'Science', page:0, content: [], prev:-6,next:0},
                             {name :'News', page:0, content: [], prev:-6,next:0},
                             {name :'Entertainment', page:0, content: [], prev:-6,next:0},
                             {name :'Sports', page:0, content: [], prev:-6,next:0}];
 
-        $scope.categories =[];
-
         function getCategoryDetails(category){
             $location.url("/category/"+category);
-        }
-
-        function viewModal(){
-            $scope.isModalVisible = true;
         }
 
         function gotoDetailPage(id){
@@ -86,11 +75,6 @@
                 }
             }
         }
-
-        function turnModalOff(){
-            $scope.isModalVisible = false;
-        }
-
 
     }
 

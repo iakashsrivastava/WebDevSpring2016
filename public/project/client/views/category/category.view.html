@@ -1,12 +1,18 @@
 <div ng-init="getCategoryDetails()"></div>
+<div ng-init="getDocHeight()"></div>
 
-<h4><label>{{section}}</label></h4>
-<div ng-repeat="d in categorydata">
-    <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
-        <div class="thumbnail "><a style="cursor: pointer">
-            <img  ng-src={{d.picture}} alt="Picture Not Available" ng-click="gotoDetailPage(d.id)">
-            <h6>{{d.title}}</h6>
-        </a>
+<h4><label>{{detailedContent.name}}</label></h4>
+<div ng-repeat="content in detailedContent.content">
+    <div ng-repeat="d in content">
+        <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
+            <div class="thumbnail "><a style="cursor: pointer">
+                <img  ng-src={{d.picture}} alt="Picture Not Available" ng-click="gotoDetailPage(d.id)">
+                <h6>{{d.title}}</h6>
+            </a>
+            </div>
         </div>
     </div>
 </div>
+
+
+

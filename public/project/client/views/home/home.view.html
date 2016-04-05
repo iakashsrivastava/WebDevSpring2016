@@ -44,8 +44,8 @@
     </label></h4>
     {{category.next}}
     {{category.prev}}
-        <button type="button" class="btn btn-primary" ng-click="categoryNext(category.name)">Next</button>
-        <button type="button" class="btn btn-primary" ng-click="categoryPrevious(category.name)" ng-show="category.prev >= 0">Previous</button>
+    <button type="button" class="btn btn-primary" ng-click="categoryNext(category.name)">Next</button>
+    <button type="button" class="btn btn-primary" ng-click="categoryPrevious(category.name)" ng-show="category.prev >= 0">Previous</button>
     <!--<span ng-class=" {'active':$location.url() =='/home'} " ><a class="navbar-brand" href="#/home">Mashup</a></span>-->
 
     <div  ng-repeat="d in category.content track by $index">

@@ -11,16 +11,16 @@
         .module("SocialMashup")
         .controller("CategoryController",CategoryController);
 
-    function CategoryController(HomeService,$scope,$routeParams,$location) {
+    function CategoryController(HomeService,$scope,$routeParams,$location,$window) {
 
         var category = $routeParams.category;
         $scope.getCategoryDetails =getCategoryDetails;
         $scope.gotoDetailPage=gotoDetailPage;
-
+        $scope.detailedContent = {name :category, page:0, content: []};
         $scope.section =category;
+        $scope.getDocHeight =getDocHeight;
 
-        function getCategoryDetails(){
-            console.log(category);
+        function getCategoryDetails1(){
             HomeService.getCategoryDetails(category).then(
                 function(response){
                     $scope.categorydata = response;
@@ -28,10 +28,45 @@
                 });
         }
 
+        function getCategoryDetails(){
+            HomeService.getCategoryDetails($scope.detailedContent.name,$scope.detailedContent.page).then(
+                function(response){
+                    $scope.detailedContent.content.push(response);
+                });
+            $scope.detailedContent.page = $scope.detailedContent.page + 30;
+        }
+
         function gotoDetailPage(id){
             $location.url("/details/"+id+"/F");
         }
 
+        function getDocHeight() {
+            //var D = document;
+            //var l = Math.max(
+            //    D.body.scrollHeight, D.documentElement.scrollHeight,
+            //    D.body.offsetHeight, D.documentElement.offsetHeight,
+            //    D.body.clientHeight, D.documentElement.clientHeight
+            //);
+            //var k = $window.innerHeight;
+            //console.log(k);
+            //console.log(l);
+            //var windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+            //var body = document.body, html = document.documentElement;
+            //var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
+            //windowBottom = windowHeight + window.pageYOffset;
+            //if (windowBottom >= docHeight) {
+            //    alert('bottom reached');
+            //}
+        }
+        angular.element($window).bind("scroll", function() {
+            var windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+            var body = document.body, html = document.documentElement;
+            var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
+            windowBottom = windowHeight + window.pageYOffset;
+            if (windowBottom >= docHeight) {
+                getCategoryDetails();
+            }
+        });
     }
 
 })();

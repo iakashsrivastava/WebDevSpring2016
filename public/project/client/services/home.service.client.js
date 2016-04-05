@@ -19,8 +19,6 @@
             var deferred = $q.defer();
             $http.get('/api/content/category/'+category +'/page/'+page)
                 .success(function(response){
-                    console.log(response);
-                    console.log(category);
                     var content = {items :response,
                                     category: category,
                                     counter: counter};
@@ -31,11 +29,11 @@
             return deferred.promise;
         }
 
-        function getCategoryDetails(category){
+        function getCategoryDetails(category,page){
             var deferred = $q.defer();
-
-            $http.get('/api/category/detail/'+category)
+            $http.get('/api/detail/category/'+category +'/page/'+page)
                 .success(function(response){
+
                     deferred.resolve(response);
                 });
 
