@@ -15,11 +15,17 @@
 
         return api;
 
-        function getCategoryContent(category){
+        function getCategoryContent(category,page,counter){
             var deferred = $q.defer();
-            $http.get('/api/content/category/'+category)
+            $http.get('/api/content/category/'+category +'/page/'+page)
                 .success(function(response){
-                    deferred.resolve(response);
+                    console.log(response);
+                    console.log(category);
+                    var content = {items :response,
+                                    category: category,
+                                    counter: counter};
+
+                    deferred.resolve(content);
                 });
 
             return deferred.promise;

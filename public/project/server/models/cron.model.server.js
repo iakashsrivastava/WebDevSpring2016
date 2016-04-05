@@ -21,16 +21,23 @@ module.exports = function () {
     ];
 
     var url = "https://graph.facebook.com/";
-    var fields = "videos.limit(12){picture,title}";
+    var fields = "videos.limit(24){picture,title}";
     var accessKey = "1694412377450348|LuFMN9doZ_i3TZMc0p3c3t6X360";
 
+    var job = new CronJob({
+        cronTime: '00 00 */1 * * *',
+        onTick: getContent,
+        start: false,
+        timeZone: 'America/Los_Angeles'
+    });
 
     getContent();
 
     return api;
 
     function getContent(){
-        console.log("Get Content");
+
+        console.log((new Date).toLocaleTimeString() )
         for (var i =0; i< topics.length; i++){
             var category = topics[i].category;
             var id = topics[i].id;

@@ -6,9 +6,8 @@
  * Created by akash on 3/24/16.
  */
 
-var data = require("./cron.model.server.js");
 
-module.exports = function () {
+module.exports = function (app,contentModel) {
 
     var api = {
         getCategoryData: getCategoryData
@@ -16,20 +15,17 @@ module.exports = function () {
 
     return api;
 
-    function getCategoryData(category,counter , detailed){
+    function getCategoryData(category,counter){
 
-        if(detailed === true)
-            limit = counter + 10;
-        else
-            limit = counter +6;
-                             getCategoryData
-        category_data = data.getCategoryData(category);
+        category_data = contentModel.getCategoryData(category);
         content =[]
-        for( var i=counter; i <limit; i++)
-            content.push(category[i]);
+        var limit = parseInt(counter) + 6;
+        for( var i=counter; i < limit ; i++) {
+            console.log(i);
+            content.push(category_data[i]);
+        }
 
         return content;
     }
-
 
 }

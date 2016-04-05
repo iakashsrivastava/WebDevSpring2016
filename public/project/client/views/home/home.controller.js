@@ -15,10 +15,15 @@
         $scope.isModalVisible = false;
         $scope.turnModalOff = turnModalOff;
         $scope.viewModal =viewModal;
+        $scope.categoryNext = categoryNext;
+        $scope.categoryPrevious = categoryPrevious;
 
         $scope.colors = {Blue: true, Orange: true};
 
-        var categoriesList =['Science','Sports','News'];
+        $scope.categoriesList =[{name :'Science', page:0, content: [], prev:-6,next:0},
+                            {name :'News', page:0, content: [], prev:-6,next:0},
+                            {name :'Entertainment', page:0, content: [], prev:-6,next:0},
+                            {name :'Sports', page:0, content: [], prev:-6,next:0}];
 
         $scope.categories =[];
 
@@ -35,14 +40,50 @@
         }
 
         function getHomeContent(){
-            for(var i=0; i<categoriesList.length; i++){
-                HomeService.getCategoryContent(categoriesList[i]).then(
+
+            for(var i=0; i<$scope.categoriesList.length; i++){
+                HomeService.getCategoryContent($scope.categoriesList[i].name,$scope.categoriesList[i].next,i).then(
                     function(response){
-                        $scope.categories.push({
-                            items : response.item,
-                            name : response.name
-                        });
+                        var counter = response.counter;
+                        $scope.categoriesList[counter].content = response.items;
                     });
+                $scope.categoriesList[i].next = $scope.categoriesList[i].next + 6;
+            }
+        }
+
+        function categoryNext(category){
+
+            for(var i=0; i<$scope.categoriesList.length; i++){
+
+                if($scope.categoriesList[i].name === category){
+
+                    HomeService.getCategoryContent($scope.categoriesList[i].name,$scope.categoriesList[i].next,i).then(
+                        function(response){
+                            var counter = response.counter;
+                            $scope.categoriesList[counter].content = response.items;
+                        });
+                    $scope.categoriesList[i].prev = $scope.categoriesList[i].prev + 6;
+                    $scope.categoriesList[i].next = $scope.categoriesList[i].next + 6;
+                    break;
+                    }
+            }
+        }
+
+        function categoryPrevious(category){
+
+            for(var i=0; i<$scope.categoriesList.length; i++){
+
+                if($scope.categoriesList[i].name === category){
+
+                    HomeService.getCategoryContent($scope.categoriesList[i].name,$scope.categoriesList[i].prev,i).then(
+                        function(response){
+                            var counter = response.counter;
+                            $scope.categoriesList[counter].content = response.items;
+                        });
+                    $scope.categoriesList[i].prev = $scope.categoriesList[i].prev - 6;
+                    $scope.categoriesList[i].next = $scope.categoriesList[i].next - 6;
+                    break;
+                }
             }
         }
 
