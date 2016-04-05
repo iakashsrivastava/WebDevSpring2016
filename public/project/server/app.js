@@ -3,7 +3,11 @@
  */
 
 module.exports = function(app) {
-    //require("./services/category.service.server.js")(app);
-    require("./services/category_backup.service.server.js")(app);
-    require("./services/user.service.server.js")(app);
+
+    var contentModel = require("./models/cron.model.server.js")(app);
+
+    var contentData = require("./services/category_backup.service.server.js")(app,contentModel);
+    //require("./services/user.service.server.js")(app);
+
+
 };

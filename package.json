@@ -26,6 +26,7 @@
     "angular-spinner": "^0.8.1",
     "bluebird": "^3.3.4",
     "body-parser": "^1.15.0",
+    "cron": "^1.1.0",
     "express": "^3.4.8",
     "mongoose": "^4.4.10",
     "node-uuid": "^1.4.7",

@@ -5,6 +5,7 @@
  * Created by akash on 3/24/16.
  */
 
+var CronJob = require('cron').CronJob;
 var https = require('https');
 var request = require('request-promise');
 var Promise = require('bluebird');
@@ -31,27 +32,44 @@ module.exports = function () {
     var fieldsforDetail = "videos.limit(30){picture,title}";
     var accessKey = "1694412377450348|LuFMN9doZ_i3TZMc0p3c3t6X360";
 
+    getContent();
+
+    var job = new CronJob({
+        cronTime: '* * */10 * * *',
+        onTick: getContent,
+        start: true,
+        timeZone: 'America/Los_Angeles'
+    });
+
     return api;
+
+    function getContent(){
+        console.log("Inside");
+        mashup_content=[];
+        for(var counter =0; counter < topics.length; counter++){
+
+            var urls = [];
+            var id = topics[counter].value;
+
+            for(var i=0;i<id.length;i++)
+                urls.push( url + id[i] + "/?fields=" + fields + "&access_token=" + accessKey );
+
+            Promise.map(urls, function (url) {    // executes concurrently
+                return request(url);
+            }).then(function (resultsArray) {
+                return formatJson(resultsArray,topics[counter].category);
+            });
+
+        }
+    }
 
     function getCategoryContent(category) {
 
         for(var i=0;i<mashup_content.length;i++){
             if(mashup_content[i].category === category){
+                console.log("Inside2");
                 return Promise.resolve(mashup_content[i].content);
-        }}
-        var urls = [];
-        var id = getCategoryId(category);
-
-        for(var i=0;i<id.length;i++){
-            urls.push( url + id[i] + "/?fields=" + fields + "&access_token=" + accessKey );
-        }
-
-        return Promise.map(urls, function (url) {    // executes concurrently
-            return request(url);
-        }).then(function (resultsArray) {
-            return formatJson(resultsArray,category);
-        });
-
+            }}
     }
 
     function getCategoryId(category){
