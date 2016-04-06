@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
@@ -19,14 +21,14 @@
     <link href="css/carousel.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
-    <![endif]-->
 </head>
 
 <body ng-controller="MainController" >
 <ng-include src="'./views/header/header.view.html'"></ng-include>
 
 <div class="container">
-    <div class="row container-padding">
+    <div class="row">
+    <!--<div class="row container-padding">-->
         <!--
                     <div class="col-sm-3 col-md-2 sidebar">
                         <ng-include src="'./views/sidebar/sidebar.view.html'"></ng-include>
@@ -70,5 +72,8 @@
 <script src="views/users/profile.controller.js"></script>
 <script src="views/users/register.controller.js"></script>
 <script src="views/personalise/personalise.controller.js"></script>
+<script src="views/trends/trends.controller.client.js"></script>
+<script src="services/trends.service.client.js"></script>
+
 </body>
 </html>

@@ -6,7 +6,10 @@ module.exports = function(app) {
 
     var contentModel = require("./models/cron.model.server.js")(app);
     var categoryModel = require("./models/category.model.server.js")(app,contentModel);
+    var trendModel = require("./models/twitter.model.server.js")(app);
 
-    var contentData = require("./services/category_backup.service.server.js")(app,categoryModel);
+    var contentData = require("./services/category_backup.service.server.js")(app,categoryModel,trendModel);
+
+
 
 };

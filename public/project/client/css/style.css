@@ -11,7 +11,7 @@
 
 .container {
     width: 98% !important;
-    margin: 10px;
+    /*margin: 10px;*/
 }
 
 .detailText{
@@ -69,4 +69,22 @@ h6 {
     outline: 0;
     /*background-color: #333333;*/
     /*opacity:0.8; !important;*/
+}
+
+.button-next-right{
+    position: absolute;
+    right: 52px;
+}
+
+.button-prev-right{
+    position: absolute;
+    right: 120px;
+}
+
+.no-padding-detail-page{
+    margin-left: -8px; !important
+}
+
+.bkl{
+    background-color: lightslategrey; !important;
 }

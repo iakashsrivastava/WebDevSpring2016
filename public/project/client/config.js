@@ -51,6 +51,11 @@
 
             })
 
+            .when("/trends",{
+                templateUrl: "./views/trends/trends.view.client.html",
+                controller:"TrendsController"
+            })
+
             .otherwise({
                 redirectTo: "/home"
             });

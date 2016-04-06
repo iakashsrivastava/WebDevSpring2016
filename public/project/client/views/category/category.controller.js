@@ -18,7 +18,6 @@
         $scope.gotoDetailPage=gotoDetailPage;
         $scope.detailedContent = {name :category, page:0, content: []};
         $scope.section =category;
-        $scope.getDocHeight =getDocHeight;
 
         function getCategoryDetails1(){
             HomeService.getCategoryDetails(category).then(
@@ -40,24 +39,6 @@
             $location.url("/details/"+id+"/F");
         }
 
-        function getDocHeight() {
-            //var D = document;
-            //var l = Math.max(
-            //    D.body.scrollHeight, D.documentElement.scrollHeight,
-            //    D.body.offsetHeight, D.documentElement.offsetHeight,
-            //    D.body.clientHeight, D.documentElement.clientHeight
-            //);
-            //var k = $window.innerHeight;
-            //console.log(k);
-            //console.log(l);
-            //var windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
-            //var body = document.body, html = document.documentElement;
-            //var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
-            //windowBottom = windowHeight + window.pageYOffset;
-            //if (windowBottom >= docHeight) {
-            //    alert('bottom reached');
-            //}
-        }
         angular.element($window).bind("scroll", function() {
             var windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
             var body = document.body, html = document.documentElement;

@@ -38,16 +38,16 @@ module.exports = function () {
     function getContent(){
 
         console.log((new Date).toLocaleTimeString() )
-        for (var i =0; i< topics.length; i++){
-            var category = topics[i].category;
-            var id = topics[i].id;
-            getCategoryContent(id, i)
-                .then(
-                    function (result) {
-                        position = result.position;
-                        topics[position].content = result.content;
-                    });
-        }
+        //for (var i =0; i< topics.length; i++){
+        //    var category = topics[i].category;
+        //    var id = topics[i].id;
+        //    getCategoryContent(id, i)
+        //        .then(
+        //            function (result) {
+        //                position = result.position;
+        //                topics[position].content = result.content;
+        //            });
+        //}
     }
 
     function getCategoryContent( id , position) {
