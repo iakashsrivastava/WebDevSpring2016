@@ -15,11 +15,16 @@
 
         return api;
 
-        function getTrendsData(postId,callback){
+        function getTrendsData(location,page,counter){
             var deferred = $q.defer();
-            $http.get('/api/content/trends/data')
+            $http.get('/api/content/trends/'+location)
                 .success(function(response){
-                    deferred.resolve(response);
+                    var obj = {
+                        content :response,
+                        counter : counter
+
+                    }
+                    deferred.resolve(obj);
                 });
 
             return deferred.promise;

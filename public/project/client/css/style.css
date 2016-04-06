@@ -88,3 +88,21 @@ h6 {
 .bkl{
     background-color: lightslategrey; !important;
 }
+
+.trend-name-color{
+    font-weight: bold;
+    color: #2B7BB9;
+}
+
+.trend-count-color{
+    text-align: right; !important;
+    color: #8899a6;
+}
+
+.trend-bkg-color-on-hover{
+    background-color: grey; !important;
+}
+
+.text-align-center{
+    text-align: center; !important;
+}

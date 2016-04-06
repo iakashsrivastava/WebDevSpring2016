@@ -3,18 +3,16 @@
  */
 module.exports = function (app) {
     var Twitter = require('twitter');
-    var q = require('q');
 
 
-    console.log("Inside Twitter Model");
 
     var topics=[
         { "Location" : "Worldwide" , id : 1, content :[]},
         { "Location" : "India" , id : 23424848, content :[]},
-        //{ "Location" : "Delhi" , id : 20070458, content :[]}
-        //{ "Location" : "Mumbai" , id : 2295411, content :[]},
-        //{ "Location" : "Chennai" , id : 2295424, content :[]},
-        //{ "Location" : "Bangalore" , id : 2295420, content :[]},
+        { "Location" : "Delhi" , id : 20070458, content :[]},
+        { "Location" : "Mumbai" , id : 2295411, content :[]},
+        { "Location" : "Chennai" , id : 2295424, content :[]},
+        { "Location" : "Pune" , id : 2295420, content :[]}
         //{ "Location" : "Hyderabad" , id : 2295414, content :[]},
         //{ "Location" : "Pune" , id : 2295412, content :[]},
         //{ "Location" : "Srinagar" , id : 2295387, content :[]},
@@ -37,46 +35,49 @@ module.exports = function (app) {
     function loadTrendingData(){
         console.log("Loading Data.....")
         for(var i=0; i<topics.length; i++){
-            loadLocationData(topics[i].id , i)
-                // handle model promise
-                .then(
-                    // login user if promise resolved
-                    function ( response ) {
-                        var counter = response.counter;
-                        topics[counter].content = response.content;
-                        res.send(doc);
-                    },
-                    // send error if promise rejected
-                    function ( err ) {
-                        res.status(400).send(err);
-                    }
-                );
-
+            loadLocationData(topics[i].id , i);
         }
 
     }
 
     function loadLocationData(id, i){
-        var deferred = q.defer();
-        // find without first argument retrieves all documents
+
         client.get('trends/place', {id: id}, function(err, reply) {
             if (err) {
                 // reject promise if error
-                deferred.reject(err);
+                console.log(err);
             } else {
                 // resolve promise
-                var obj={
-                    counter: i,
-                    content: reply
-                }
-                deferred.resolve(obj);
+                formatJson(reply , i);
             }
         });
-        return deferred.promise;
     }
 
+    function formatJson(resultsArray , position){
+        //console.log(JSON.stringify(resultsArray));
+        var content =[];
+        var trends = resultsArray[0].trends;
+        for(var i=0; i < 15; i++) {
+            content.push(trends[i]);
+        }
+        //console.log(content);
 
-    function getTrendingData(){
-        return topics;
+        topics[position].content.push(content);
+        topics[position].content.push(content);
+        topics[position].content.push(content);
+        topics[position].content.push(content);
+        topics[position].content.push(content);
+        console.log(topics);
+    }
+
+    function getTrendingData(Location){
+        console.log("Get Trending Data")
+        for(var i=0; i< topics.length; i++){
+            console.log(topics[i].Location);
+            if(topics[i].Location === Location) {
+                console.log("Matched");
+                return topics[i].content;
+            }
+        }
     }
 }

@@ -1,5 +1,29 @@
-{{trends}}
+<div ng-repeat="location in locationsList track by $index">
+    <div ng-if="location.content.length >0">
+        <h4><label>
+            {{location.location}}
+        </label>
+        </h4>
+    </div>
+    <!--<span ng-class=" {'active':$location.url() =='/home'} " ><a class="navbar-brand" href="#/home">Mashup</a></span>-->
+    <div  ng-repeat="trend in location.content track by $index">
+        <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+            <table class="table  table-hover table-condensed">
+                <tr>
+                    <label class="text-align-center">{{timeStamps[$index]}}</label>
+                </tr>
+                <tbody>
+                <tr ng-repeat="t in trend track by $index" ng-mouseenter="changeColor(t.name,$parent.$parent.$index)"
+                    ng-mouseleave="noBackground(t.name,$parent.$parent.$index)">
 
-<div ng-repeat="loc in trends">
-    <div ng-repeat=""
+                    <th class="trend-name-color">{{t.name}}</th>
+                    <th class="trend-count-color" ng-if=" t.tweet_volume != null ">{{t.tweet_volume}} Tweets</th>
+                    <th class="trend-count-color" ng-if=" t.tweet_volume == null "> New </th>
+                    <!--<th class="trend-count-color" >{{t.promoted_content}}</th>-->
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

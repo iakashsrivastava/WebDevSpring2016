@@ -12,7 +12,7 @@ module.exports = function (app,categoryModel,trendModel) {
 
     app.get("/api/content/category/:category/page/:page", getCategoryContent);
     app.get("/api/detail/category/:category/page/:page", getCategoryDetails);
-    app.get("/api/content/trends/data", getallTrends);
+    app.get("/api/content/trends/:location", getLocationTrends);
 
     function getCategoryContent(req, res) {
         var category = req.params.category;
@@ -28,11 +28,9 @@ module.exports = function (app,categoryModel,trendModel) {
         res.send(data);
     }
 
-    function getallTrends(req, res) {
-        var data  = trendModel.getTrendingData();
+    function getLocationTrends(req, res) {
+        var location = req.params.location;
+        var data  = trendModel.getTrendsData(location,0);
         res.send(data);
     }
-
-
-
 };
