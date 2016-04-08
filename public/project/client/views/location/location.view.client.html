@@ -1,0 +1,38 @@
+
+<div ng-repeat="location in locationsList track by $index">
+
+        <h3 style="margin-bottom: -15px;"><label>
+            <img src="./views/trends/TwitterLogo.png" alt="logo" width="50px"/>
+            {{location.location}}
+        </label>
+        </h3>
+    <h4><label>{{timeStamps[0]}}</label></h4>
+        <!--<span ng-class=" {'active':$location.url() =='/home'} " ><a class="navbar-brand" href="#/home">Mashup</a></span>-->
+
+<div class="row">
+    <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+
+        <table class="table  table-hover table-condensed well">
+            <tbody>
+            <tr ng-repeat="t in location.content[0] track by $index" ng-mouseenter="changeColor(t.name,$parent.$parent.$index)"
+                ng-mouseleave="noBackground(t.name,$parent.$parent.$index)">
+
+                <th ng-style="t.promoted_content" class="trend-name-color class-pointer" ng-click="gotoURL(t.url)">{{t.name}}</th>
+                <th ng-style="t.promoted_content" class="trend-count-color" ng-if=" t.tweet_volume != null ">{{t.tweet_volume}} Tweets</th>
+                <th ng-style="t.promoted_content"class="trend-count-color" ng-if=" t.tweet_volume == null "> New </th>
+                <!--<th class="trend-count-color" >{{t.promoted_content}}</th>-->
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-9 col-lg-9 col-sm-6">
+        <span class="well"></span>
+    </div>
+
+</div>
+</div>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Not done yet! In his 2nd-to-last home game, Kobe leads all scorers with 17 Pts. Lakers lose to Clippers, 91-81. <a href="https://t.co/TFejjmbTnJ">pic.twitter.com/TFejjmbTnJ</a></p>&mdash; SportsCenter (@SportsCenter) <a href="https://twitter.com/SportsCenter/status/717936957985263616">April 7, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

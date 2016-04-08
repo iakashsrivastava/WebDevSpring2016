@@ -2,12 +2,16 @@
  * Created by akash on 4/6/16.
  */
 
+/**
+ * Created by akash on 4/6/16.
+ */
+
 (function(){
     angular
         .module("SocialMashup")
-        .controller("TrendsController",TrendsController);
+        .controller("LocationController",LocationController);
 
-    function TrendsController(TrendsService,$scope,$rootScope,$location,$window){
+    function LocationController(TrendsService,$scope,$rootScope,$location,$window){
 
         $scope.loadTrends = loadTrends;
         $scope.changeColor = changeColor;

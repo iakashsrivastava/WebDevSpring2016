@@ -7,12 +7,21 @@
 var https = require('https');
 var request = require('request-promise');
 var Promise = require('bluebird');
+var Twitter = require('twitter');
+
+var client = new Twitter({
+    consumer_key: 'DvXFFgAHw0x71SWT81SLz3myM',
+    consumer_secret: '4Y13VpNvvctsCRUDKwnAEMZ9YlzNRmHsImkIAJSQo5GanRnOTH',
+    access_token_key: '717497901220569088-N9SkG4PfpOf3msh6A3FOWvgFHGNBpqd',
+    access_token_secret: 'l0Qflg7c0nxkgQacoPQDdhX4PjFXfjQ4uLyyOeX7MCxfO'
+});
 
 module.exports = function (app,categoryModel,trendModel) {
 
     app.get("/api/content/category/:category/page/:page", getCategoryContent);
     app.get("/api/detail/category/:category/page/:page", getCategoryDetails);
     app.get("/api/content/trends/:location", getLocationTrends);
+    app.get("/api/all/trends/location", getLocationTrends1);
 
     function getCategoryContent(req, res) {
         var category = req.params.category;
@@ -33,4 +42,16 @@ module.exports = function (app,categoryModel,trendModel) {
         var data  = trendModel.getTrendsData(location,0);
         res.send(data);
     }
+
+    function getLocationTrends1(req, res) {
+        //client.get('search/tweets', {q: '#WorldHealthDay',result_type:'popular'}, function (error, tweets, response) {
+        //    res.send(tweets);
+        //});
+        client.get('statuses/oembed.json', {id: '717943077738930176'}, function (error, embed) {
+            res.send(embed);
+        });
+    }
+
+
+
 };

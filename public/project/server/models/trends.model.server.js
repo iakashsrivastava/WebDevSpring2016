@@ -13,13 +13,13 @@ module.exports = function (app,trendsCron) {
     function getTrendsData(location,counter){
 
         trends_data = trendsCron.getTrendingData(location);
-        content =[]
-        var limit = parseInt(counter) + 4;
-        for( var i=counter; i < limit ; i++) {
-            console.log(i);
-            content.push(trends_data[i]);
-        }
-        return content;
+        //content =[]
+        //var limit = parseInt(counter) + 4;
+        //for( var i=counter; i < limit ; i++) {
+        //    console.log(i);
+        //    content.push(trends_data[i]);
+        //}
+        return trends_data;
     }
 
 }
