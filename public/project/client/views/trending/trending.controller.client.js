@@ -9,9 +9,9 @@
 (function(){
     angular
         .module("SocialMashup")
-        .controller("LocationController",LocationController);
+        .controller("TrendingController",TrendingController);
 
-    function LocationController(TrendsService,$scope,$rootScope,$location,$window){
+    function TrendingController(TrendsService,$scope,$rootScope,$location,$window){
 
         $scope.loadTrends = loadTrends;
         $scope.changeColor = changeColor;
@@ -27,7 +27,7 @@
                 {location :'Chennai', content: [], prev:-6,next:0},
                 {location :'Pune', content: [], prev:-6,next:0}];
 
-        $scope.timeStamps = ['Trending Now','15 Minutes Ago', '1 Hour Ago', '2 Hour Ago']
+        $scope.timeStamps = ['Trending Now'];
 
         loadTrends();
 

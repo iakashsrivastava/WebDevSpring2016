@@ -20,8 +20,9 @@ module.exports = function (app,categoryModel,trendModel) {
 
     app.get("/api/content/category/:category/page/:page", getCategoryContent);
     app.get("/api/detail/category/:category/page/:page", getCategoryDetails);
-    app.get("/api/content/trends/:location", getLocationTrends);
-    app.get("/api/all/trends/location", getLocationTrends1);
+    app.get("/api/content/trends/:trending", getLocationTrends);
+    app.get("/api/content/topic/:topic", getTopicTweets);
+    app.get("/api/all/trends/:trending", getLocationTrends1);
 
     function getCategoryContent(req, res) {
         var category = req.params.category;
@@ -43,14 +44,28 @@ module.exports = function (app,categoryModel,trendModel) {
         res.send(data);
     }
 
+    function getTopicTweets(req,res){
+        var topic = req.params.topic;
+        var data  = trendModel.getTopicTweets(topic);
+        res.send(data);
+    }
+
     function getLocationTrends1(req, res) {
-        //client.get('search/tweets', {q: '#WorldHealthDay',result_type:'popular'}, function (error, tweets, response) {
+        //var topic = req.params.trending;
+        //client.get('search/tweets', {q: topic,result_type:'popular'}, function (error, tweets, response) {
+        //    console.log(tweets.statuses[0].id_str);
+        //    console.log(tweets.statuses[0].retweet_count);
+        //    console.log(tweets.statuses[0].favorite_count);
         //    res.send(tweets);
         //});
-        client.get('statuses/oembed.json', {id: '717943077738930176'}, function (error, embed) {
+        client.get('statuses/oembed.json', {id: '718148816025858048'}, function (error, embed) {
             res.send(embed);
         });
     }
+    //718148816025858000
+    //718148816025858048
+    //3419
+    //839
 
 
 

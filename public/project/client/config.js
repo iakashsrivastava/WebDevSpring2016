@@ -56,9 +56,9 @@
                 controller:"TrendsController"
             })
 
-            .when("/location",{
-                templateUrl: "./views/location/location.view.client.html",
-                controller:"LocationController"
+            .when("/trending",{
+                templateUrl: "views/trending/trending.view.client.html",
+                controller:"TrendingController"
             })
 
             .otherwise({
