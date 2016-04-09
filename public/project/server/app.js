@@ -2,7 +2,10 @@
  * Created by akash on 3/17/16.
  */
 
-module.exports = function(app) {
+module.exports = function(app, db, mongoose) {
+
+    var userModel    = require("./models/user.model.server.js")(db, mongoose);
+    var userService = require("./services/user.service.server.js")(app, userModel);
 
     var contentModel = require("./models/cron.model.server.js")(app);
     var categoryModel = require("./models/category.model.server.js")(app,contentModel);

@@ -2,8 +2,7 @@
  * Created by akash on 3/17/16.
  */
 
-module.exports = function(app) {
-    var userModel = require("./../models/user.model.js")();
+module.exports = function(app, userModel) {
 
     app.get("/api/assignment/user",getUsers);
     app.post("/api/assignment/user",createUser);
@@ -16,40 +15,118 @@ module.exports = function(app) {
         if(req.query.username && req.query.password){
             var username = req.query.username;
             var password = req.query.password;
-            res.send(userModel.getUserDetails(username,password));
+            userModel.getUserDetails(username,password)
+                // handle model promise
+                .then(
+                    // login user if promise resolved
+                    function ( doc ) {
+                        res.json(doc);
+                    },
+                    // send error if promise rejected
+                    function ( err ) {
+                        res.status(400).send(err);
+                    }
+                );
         }
         else if(query.req.username){
             var username = req.query.username;
-            res.send(userModel.getUserDetailsByUsername(username));
+            userModel.getUserDetailsByUsername(username)
+                // handle model promise
+                .then(
+                    // login user if promise resolved
+                    function ( doc ) {
+                        res.json(doc);
+                    },
+                    // send error if promise rejected
+                    function ( err ) {
+                        res.status(400).send(err);
+                    }
+                );
         }
         else{
-            var allUsers = userModel.getUsers();
-            res.send(allUsers);
+            userModel.getUsers()
+                // handle model promise
+                .then(
+                    // login user if promise resolved
+                    function ( doc ) {
+                        res.json(doc);
+                    },
+                    // send error if promise rejected
+                    function ( err ) {
+                        res.status(400).send(err);
+                    }
+                );
         }
 
     }
 
     function createUser(req, res){
         var user = req.body.user;
-        res.send(userModel.createUser(user));
+        user = userModel.createUser(user)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
+                    console.log(doc);
+                    res.json(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function getUser(req, res){
         var userId = req.params.id;
-        res.send(userModel.getUser(userId));
-    }
+        userModel.getUser(userId)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
 
+                    res.json(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
+    }
 
     function updateUser(req, res){
         var userId = req.params.id;
         var user = req.body.user;
-        res.send(userModel.updateUser(userId,user));
+        userModel.updateUser(userId,user)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
+                    console.log(doc);
+                    res.json(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
     }
-
 
     function deleteUser(req, res){
         var userId = req.params.id;
-        res.send(userModel.deleteuser(userId));
+        userModel.deleteUser(userId)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
+
+                    res.json(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
 
     }
 
