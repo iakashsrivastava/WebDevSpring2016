@@ -14,8 +14,17 @@
         function register(newuser) {
             UserService.createUser(newuser).then(
                 function(response){
-                    $rootScope.loggedUser = response;
-                    $location.url("/profile");
+                    console.log(response);
+                    //$rootScope.loggedUser = response;
+                    //$location.url("/profile");
+                    var user = response;
+                    if(user != null) {
+                            $rootScope.loggedUser = user;
+                            $location.url("/home");
+                        }
+                    },
+                    function(err) {
+                        $scope.error = err;
                 });
         }
 

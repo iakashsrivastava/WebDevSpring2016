@@ -14,11 +14,17 @@
 
             .when("/home",{
                 templateUrl: "./views/home/home.view.html",
-                controller:"HomeController"
+                controller:"HomeController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
             })
             .when("/details/:Id/:Source",{
                 templateUrl: "./views/detail/detail.view.html",
-                controller:"DetailsController"
+                controller:"DetailsController",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             })
             .when("/search/:query",{
                 templateUrl: "./views/Search/search.view.html",
@@ -66,5 +72,48 @@
             });
 
     }
+
+    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope)
+    {
+        var deferred = $q.defer();
+
+        $http.get('/api/loggedin').success(function(user)
+        {
+            $rootScope.errorMessage = null;
+            // User is Authenticated
+            if (user !== '0')
+            {
+                $rootScope.currentUser = user;
+                deferred.resolve();
+            }
+            // User is Not Authenticated
+            else
+            {
+                $rootScope.errorMessage = 'You need to log in.';
+                deferred.reject();
+                $location.url('/login');
+            }
+        });
+
+        return deferred.promise;
+    };
+
+    var checkCurrentUser = function($q, $timeout, $http, $location, $rootScope)
+    {
+        var deferred = $q.defer();
+
+        $http.get('/api/project/loggedin').success(function(user)
+        {
+            $rootScope.errorMessage = null;
+            // User is Authenticated
+            if (user !== '0')
+            {
+                $rootScope.loggedUser = user;
+            }
+            deferred.resolve();
+        });
+
+        return deferred.promise;
+    };
 
 })();

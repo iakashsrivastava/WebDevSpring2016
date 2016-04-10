@@ -6,7 +6,12 @@ module.exports = function (app) {
     var request = require('request-promise');
     var Promise = require('bluebird');
 
-
+    var client = new Twitter({
+        consumer_key: 'DvXFFgAHw0x71SWT81SLz3myM',
+        consumer_secret: '4Y13VpNvvctsCRUDKwnAEMZ9YlzNRmHsImkIAJSQo5GanRnOTH',
+        access_token_key: '717497901220569088-N9SkG4PfpOf3msh6A3FOWvgFHGNBpqd',
+        access_token_secret: 'l0Qflg7c0nxkgQacoPQDdhX4PjFXfjQ4uLyyOeX7MCxfO'
+    });
     console.log("Inside Twitter Model");
 
     var topics=[
@@ -51,7 +56,7 @@ module.exports = function (app) {
         getTopicTweets: getTopicTweets
     }
 
-    loadTrendingDataForAllLocations();
+    //loadTrendingDataForAllLocations();
 
     return api;
 

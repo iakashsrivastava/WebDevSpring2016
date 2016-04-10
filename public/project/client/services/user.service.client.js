@@ -16,7 +16,8 @@
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
             findAllUsers: findAllUsers,
-            deleteUserById: deleteUserById
+            deleteUserById: deleteUserById,
+            logout: logout
         };
 
         return api;
@@ -25,7 +26,7 @@
 
             var deferred = $q.defer();
 
-            var endpoint = "/api/assignment/user";
+            var endpoint = "/api/project/user";
             var req = {
                 method: 'POST',
                 url: endpoint,
@@ -74,15 +75,22 @@
         }
 
         function findUserByCredentials(username,password){
-            var deferred = $q.defer();
-            var string = "/api/assignment/user?username="+ username + "&password=" +password;
+            //var deferred = $q.defer();
+            //var string = "/api/assignment/user?username="+ username + "&password=" +password;
+            //
+            //$http.get(string)
+            //    .success(function(response){
+            //        deferred.resolve(response);
+            //    });
+            //
+            //return deferred.promise;
 
-            $http.get(string)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
+            var user = {
+                username: username,
+                password: password
+            };
 
-            return deferred.promise;
+            return $http.post("/api/project/login", user);
         }
 
         function findAllUsers(){
@@ -107,5 +115,8 @@
             return deferred.promise;
         }
 
+        function logout() {
+            return $http.post("/api/project/logout");
+        }
     }
 })();

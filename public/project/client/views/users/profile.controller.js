@@ -16,8 +16,13 @@
         function update(loggedUser) {
             UserService.updateUser(loggedUser._id,loggedUser).then(
                 function(response){
-                    $rootScope.loggedUser = response;
-                });
+                    //$rootScope.loggedUser = response;
+                        $scope.loggedUser = response;
+                    },
+                    function(err) {
+                        $scope.error = err;
+                    }
+                );
         }
     }
 

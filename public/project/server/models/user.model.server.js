@@ -16,14 +16,27 @@ module.exports = function(db,mongoose) {
 
     var api = {
         createUser: createUser,
-        getUsers:getUsers,
+        findAllUsers:findAllUsers,
         updateUser:updateUser,
-        getUserDetails:getUserDetails,
+        findUserByCredentials:findUserByCredentials,
         deleteUser:deleteUser,
-        getUserDetailsByUsername:getUserDetailsByUsername
+        findUserByUsername:findUserByUsername,
+        findUserById:findUserById,
+        findUserByFacebookId:findUserByFacebookId,
+        findUserByGoogleId:findUserByGoogleId,
+        getMongooseModel: getMongooseModel
+
     };
 
     return api;
+
+    function findUserByFacebookId(facebookId) {
+        return UserModel.findOne({'facebook.id': facebookId});
+    }
+
+    function findUserByGoogleId(googleId) {
+        return UserModel.findOne({'google.id': googleId});
+    }
 
     function createUser(user) {
 
@@ -47,7 +60,7 @@ module.exports = function(db,mongoose) {
         return deferred.promise;
     }
 
-    function getUsers(){
+    function findAllUsers(){
         var deferred = q.defer();
         // find without first argument retrieves all documents
         UserModel.find({}, function(err, docs) {
@@ -62,7 +75,7 @@ module.exports = function(db,mongoose) {
         return deferred.promise;
     }
 
-    function getUserDetails(username, password){
+    function findUserByCredentials(username, password){
         var deferred = q.defer();
         // find without first argument retrieves all documents
         UserModel.findOne({ username: username ,password: password }, function(err, docs) {
@@ -78,61 +91,49 @@ module.exports = function(db,mongoose) {
 
     }
 
-    function getUserDetailsByUsername(username){
-        var deferred = q.defer();
-        // find without first argument retrieves all documents
-        UserModel.findOne({ username: username }, function(err, docs) {
-            if (err) {
-                // reject promise if error
-                deferred.reject(err);
-            } else {
-                // resolve promise
-                deferred.resolve(docs);
-            }
-        });
-        return deferred.promise;
+    function findUserByUsername(username){
+        if(username) {
+            var deferred = q.defer();
+            // find without first argument retrieves all documents
+            UserModel.findOne({username: username}, function (err, docs) {
+                if (err) {
+                    // reject promise if error
+                    deferred.reject(err);
+                } else {
+                    // resolve promise
+                    deferred.resolve(docs);
+                }
+            });
+            return deferred.promise;
+        }
     }
 
     function updateUser(userId, user) {
-
-        var deferred = q.defer();
-        UserModel.findById(userId, function (err, doc) {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                return doc;
-            }
-        }).then(function(doc) {
-            doc.username = updatedUser.username;
-            doc.password = updatedUser.password;
-            doc.firstName = updatedUser.firstName;
-            doc.lastName = updatedUser.lastName;
-            doc.emails = updatedUser.emails;
-            doc.phones = updatedUser.phones;
-            doc.save(function(err, resp) {
-                if(err) {
-                    console.log(err);
-                    deferred.reject(err);
-                } else {
-                    deferred.resolve(resp);
-                }
-            });
-        });
-
-        return deferred.promise;
-
+        return UserModel.update({_id: userId}, {$set: user});
     }
 
     function deleteUser(userId){
-        var deferred = q.defer();
-        UserModel.remove({_id: userId}, function (err, resp) {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                deferred.resolve(resp);
-            }
-        });
-
-        return deferred.promise;
+        return UserModel.remove({_id: userId});
     }
+
+    function findUserById(userId) {
+        if(userId) {
+            var deferred = q.defer();
+            UserModel.findById(userId, function (err, doc) {
+                if (err) {
+                    // reject promise if error
+                    deferred.reject(err);
+                } else {
+                    // resolve promise
+                    deferred.resolve(doc);
+                }
+            });
+            return deferred.promise;
+        }
+    }
+
+    function getMongooseModel() {
+        return UserModel;
+    }
+
 }

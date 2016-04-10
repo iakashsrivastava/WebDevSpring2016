@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var q = require('q');
 var cookieParser = require ('cookie-parser');
 var session = require('express-session');
+var passport = require('passport');
 
 var connectionString = 'mongodb://127.0.0.1:27017/formMaker';
 
