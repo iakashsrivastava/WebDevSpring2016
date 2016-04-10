@@ -5,33 +5,41 @@
 module.exports = function (app,trendsCron) {
 
     var api = {
-        getTrendsData: getTrendsData,
-        getTopicTweets:getTopicTweets
+        getLocationTrends: getLocationTrends,
+        getTopicTweets:getTopicTweets,
+        getTopLocationTrends :getTopLocationTrends
     };
 
     return api;
 
-    function getTrendsData(location,counter){
+    function getTopLocationTrends(location){
 
         trends_data = trendsCron.getLocationTrendingData(location);
-        //content =[]
-        //var limit = parseInt(counter) + 4;
-        //for( var i=counter; i < limit ; i++) {
-        //    console.log(i);
-        //    content.push(trends_data[i]);
-        //}
-        return trends_data;
+        content =[]
+        var limit = 12;
+        for( var i=0; i < limit ; i++)
+            content.push(trends_data[0][i]);
+        return content;
+
     }
 
-    function getTopicTweets(topic){
-        client.get('search/tweets', {q: topic,result_type:'popular'}, function (error, tweets, response) {
-            for(var i=0; i<tweet.statuses.length;i++) {
-                console.log("=================================================");
-                console.log(tweets.statuses[i].id_str);
-                console.log(tweets.statuses[i].retweet_count);
-                console.log(tweets.statuses[i].favorite_count);
-            }
-        });
+    function getLocationTrends(location){
+
+        trends_data = trendsCron.getLocationTrendingData(location);
+        content =[]
+        var limit = 4;
+        for( var i=0; i < limit ; i++) {
+
+            content.push(trends_data[0]);
+        }
+        return content;
+    }
+
+    function getTopicTweets(topic, location){
+        console.log('model getTopicTweets '+ location + topic);
+        data = trendsCron.getTopicTweets(location, topic);
+        console.log("data: model" + data);
+        return data;
     }
 
 }

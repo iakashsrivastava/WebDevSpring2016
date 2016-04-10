@@ -10,7 +10,9 @@
     function TrendsService($http , $q){
 
         var api = {
-            getTrendsData: getTrendsData
+            getTrendsData: getTrendsData,
+            getTopLocationTrends:getTopLocationTrends,
+            getTopicTweets:getTopicTweets
         };
 
         return api;
@@ -30,5 +32,42 @@
             return deferred.promise;
         }
 
+        function getTopLocationTrends(location,counter){
+            var deferred = $q.defer();
+            console.log('Inside getTopLocationTrends service');
+            $http.get('/api/content/trends/top/'+location)
+                .success(function(response){
+                    var obj = {
+                        content :response,
+                        counter : counter
+                    }
+                    console.log('getTopLocationTrends' + response.length);
+                    deferred.resolve(obj);
+                });
+
+            return deferred.promise;
+        }
+
+        function getTopicTweets(location , topic){
+
+            var deferred = $q.defer();
+            console.log('Inside getTopLocationTrends service');
+            hash ='#';
+            url ='';
+            if (topic.indexOf(hash) > -1){
+                topic = topic.replace('#','');
+                url = '/api/content/location/' + location + '/topicwithhash/' +topic;
+            }
+            else
+                url = '/api/content/location/' + location + '/topic/' +topic;
+
+            $http.get(url)
+                .success(function(response){
+                    for(var i=0;i<response.length;i++){}
+                    deferred.resolve(response);
+            });
+
+        return deferred.promise;
+    }
     }
 })();

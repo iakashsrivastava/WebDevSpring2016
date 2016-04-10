@@ -20,9 +20,17 @@ module.exports = function (app,categoryModel,trendModel) {
 
     app.get("/api/content/category/:category/page/:page", getCategoryContent);
     app.get("/api/detail/category/:category/page/:page", getCategoryDetails);
-    app.get("/api/content/trends/:trending", getLocationTrends);
-    app.get("/api/content/topic/:topic", getTopicTweets);
+    app.get("/api/content/trends/:location", getLocationTrends);
+    app.get("/api/content/trends/top/:location", getTopLocationTrends);
+    app.get("/api/content/location/:location/topic/:topic", getTopicTweets);
+    app.get("/api/content/location/:location/topicwithhash/:topic", getTopicHashTweets);
     app.get("/api/all/trends/:trending", getLocationTrends1);
+
+    function getTopLocationTrends(req, res) {
+        var location = req.params.location;
+        var data  = trendModel.getTopLocationTrends(location);
+        res.send(data);
+    }
 
     function getCategoryContent(req, res) {
         var category = req.params.category;
@@ -40,13 +48,21 @@ module.exports = function (app,categoryModel,trendModel) {
 
     function getLocationTrends(req, res) {
         var location = req.params.location;
-        var data  = trendModel.getTrendsData(location,0);
+        var data  = trendModel.getLocationTrends(location,0);
         res.send(data);
     }
 
     function getTopicTweets(req,res){
         var topic = req.params.topic;
-        var data  = trendModel.getTopicTweets(topic);
+        var location = req.params.location;
+        var data  = trendModel.getTopicTweets(topic, location);
+        res.send(data);
+    }
+
+    function getTopicHashTweets(req,res){
+        var topic = '#' + req.params.topic;
+        var location = req.params.location;
+        var data  = trendModel.getTopicTweets(topic, location);
         res.send(data);
     }
 
@@ -62,11 +78,5 @@ module.exports = function (app,categoryModel,trendModel) {
             res.send(embed);
         });
     }
-    //718148816025858000
-    //718148816025858048
-    //3419
-    //839
-
-
 
 };

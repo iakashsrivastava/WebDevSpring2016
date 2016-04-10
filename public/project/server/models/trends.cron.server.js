@@ -10,8 +10,8 @@ module.exports = function (app) {
     console.log("Inside Twitter Model");
 
     var topics=[
-        { "Location" : "Worldwide" , id : 1, content :[]}
-        //{ "Location" : "India" , id : 23424848, content :[]},
+        { "Location" : "Worldwide" , id : 1, content :[]},
+        { "Location" : "India" , id : 23424848, content :[]}
         //{ "Location" : "Delhi" , id : 20070458, content :[]},
         //{ "Location" : "Mumbai" , id : 2295411, content :[]},
         //{ "Location" : "Chennai" , id : 2295424, content :[]},
@@ -28,8 +28,8 @@ module.exports = function (app) {
     ];
 
     var alltrendTweets=[
-        { "Location" : "Worldwide" ,content :[]}
-        //{ "Location" : "India" , id : 23424848, content :[]},
+        { "Location" : "Worldwide" ,content :[]},
+        { "Location" : "India" , content :[]},
         //{ "Location" : "Delhi" , id : 20070458, content :[]},
         //{ "Location" : "Mumbai" , id : 2295411, content :[]},
         //{ "Location" : "Chennai" , id : 2295424, content :[]},
@@ -45,8 +45,10 @@ module.exports = function (app) {
         //{ "Location" : "Amritsar" , id : 2295388, content :[]}
     ];
 
+
     var api ={
-        getLocationTrendingData: getLocationTrendingData
+        getLocationTrendingData: getLocationTrendingData,
+        getTopicTweets: getTopicTweets
     }
 
     loadTrendingDataForAllLocations();
@@ -54,7 +56,7 @@ module.exports = function (app) {
     return api;
 
     function loadTrendingDataForAllLocations(){
-        console.log("loading Trending Data For Al lLocations.....")
+        console.log("loading Trending Data For Al Locations.....")
         for(var i=0; i<topics.length; i++){
             loadLocationData(topics[i].id , i);
         }
@@ -80,7 +82,7 @@ module.exports = function (app) {
         var trends = resultsArray[0].trends;
         for(var i=0; i < trends.length; i++){
             content.push(trends[i]);
-            if(i<2)
+            if(i<12)
                 trendsName.push(trends[i].name)
         }
 
@@ -89,14 +91,7 @@ module.exports = function (app) {
         if(topics[position].content.length > 20){
             topics[position].content.splice(topics[position].content.length-1,1);
         }
-        console.log(topics[position].content[0].length);
-        //loadTrendingTweetsforalltrends(trendsName,position);
-
-        //topics[position].content.push(content);
-        //
-        //topics[position].content.push(content);
-        //topics[position].content.push(content);
-        //topics[position].content.push(content);
+        loadTrendingTweetsforalltrends(trendsName,position);
     }
 
     function loadTrendingTweetsforalltrends(trendsName,position){
@@ -105,52 +100,76 @@ module.exports = function (app) {
         for(var counter =0; counter<trendsName.length; counter++){
             loadTweetsfortrend(trendsName[counter], position);
         }
-
     }
 
     function loadTweetsfortrend(topic,position){
-
         client.get('search/tweets', {q: topic}, function (error, tweets, response) {
-            ids=[];
+            ids = [];
             for(var i=0; i<tweets.statuses.length;i++) {
-                ids.push(tweets.statuses[i].id_str);
+                ids.push(tweets.statuses[i].id_str)
             }
-            getOmbedJson(topic,ids,position);
-        });
-    }
 
-    function getOmbedJson(topic,ids,position){
-        var objects =[];
-
-        Promise.map(ids, function(id) {
-            // Promise.map awaits for returned promises as well.
-            client.get('statuses/oembed.json', {id: id}, function (error, embed) {
-                console.log("from :" + embed.html);
-                return embed.html;
+            alltrendTweets[position].content.push({
+                name:topic,
+                ids: ids,
+                objects: []
             });
-        }).then(function(res) {
-            objects.push(res);
+
+            getombedObjects(position, alltrendTweets[position].content.length-1,ids,topic);
         });
 
-        alltrendTweets[position].content.push({
-            topic: topic,
-            objects : objects
-        });
 
-        console.log(topic );
-        console.log("===========================")
-        console.log(objects);
     }
+
+    //function getOmbedJson(ids){
+    //    return Promise.map(ids, function(id) {
+    //        client.get('statuses/oembed.json', {id: id}, function (error, embed) {
+    //            //console.log(embed.html);
+    //            return embed.html;
+    //        });
+    //    }).then(function(res) {
+    //        return res ;
+    //    });
+    //
+    //}
 
     function getLocationTrendingData(Location){
         console.log("Get Trending Data")
         for(var i=0; i< topics.length; i++){
             console.log(topics[i].Location);
+            console.log(Location);
             if(topics[i].Location === Location) {
                 console.log("Matched");
                 return topics[i].content;
             }
         }
     }
+
+    function getTopicTweets(location, topic){
+        console.log('CRON getLocationTrendingData '+location + topic);
+        for(var i=0; i<alltrendTweets.length;i++){
+            if(alltrendTweets[i].Location === location){
+                console.log('CRON Location Matched');
+                console.log(JSON.stringify(alltrendTweets[i].content));
+
+                for(var j=0; j<alltrendTweets[i].content.length; j++){
+                    if(topic === alltrendTweets[i].content[j].name){
+                        console.log('CRON topic Matched');
+                        return alltrendTweets[i].content[j].objects;
+                    }
+                }
+            }
+        }
+    }
+
+    function getombedObjects(posParent, posChild, ids,topic){
+        for(var i=0;i<ids.length;i++) {
+            client.get('statuses/oembed.json', {id: ids[i]}, function (error, embed) {
+                console.log(topic +'\n '+embed.html);
+                alltrendTweets[posParent].content[posChild].objects.push(embed.html)
+            });
+        }
+    }
+
 
 }

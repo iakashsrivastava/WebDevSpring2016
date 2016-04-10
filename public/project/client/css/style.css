@@ -107,3 +107,18 @@ h6 {
     margin-bottom:0px;
     text-align: center
 }
+
+video {
+    width:100%;
+    height:auto;
+}
+
+.fixed-content {
+    top: 0;
+    bottom:0;
+    position:fixed;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    /*width: 73%;*/
+    margin-top: 154px;
+}

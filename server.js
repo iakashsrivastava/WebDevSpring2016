@@ -25,14 +25,14 @@ var db = mongoose.connect(connectionString);
 
 app.use(bodyParser.json());
 
-app.use(session({
-    secret: 'this is the secret',
-    resave: true,
-    saveUninitialized: true
-}));
-app.use(cookieParser());
-app.use(passport.initialize());
-app.use(passport.session());
+//app.use(session({
+//    secret: 'this is the secret',
+//    resave: true,
+//    saveUninitialized: true
+//}));
+//app.use(cookieParser());
+//app.use(passport.initialize());
+//app.use(passport.session());
 
 app.use(express.static(__dirname + '/public'));
 

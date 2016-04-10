@@ -2,6 +2,10 @@
  * Created by akash on 3/17/16.
  */
 
+var passport         = require('passport');
+var LocalStrategy    = require('passport-local').Strategy;
+var mongoose         = require("mongoose");
+
 module.exports = function(app, userModel) {
 
     app.get("/api/assignment/user",getUsers);

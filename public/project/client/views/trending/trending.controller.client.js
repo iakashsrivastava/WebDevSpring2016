@@ -2,66 +2,52 @@
  * Created by akash on 4/6/16.
  */
 
-/**
- * Created by akash on 4/6/16.
- */
-
 (function(){
     angular
         .module("SocialMashup")
         .controller("TrendingController",TrendingController);
 
-    function TrendingController(TrendsService,$scope,$rootScope,$location,$window){
-
+    function TrendingController(TrendsService,$scope,$rootScope,$location,$window,$sce){
+        $scope.popularTweets ='';
         $scope.loadTrends = loadTrends;
-        $scope.changeColor = changeColor;
-        $scope.noBackground = noBackground;
-        $scope.gotoURL =gotoURL;
+        $scope.getTopicTweets =getTopicTweets;
         var count =0;
 
         $scope.locationsList =
             [{location :'Worldwide', content: [], prev:-6,next:0},
                 {location :'India', content: [], prev:-6,next:0},
-                {location :'Delhi', content: [], prev:-6,next:0},
-                {location :'Mumbai', content: [], prev:-6,next:0},
-                {location :'Chennai', content: [], prev:-6,next:0},
-                {location :'Pune', content: [], prev:-6,next:0}];
+                {location :'Worldwide', content: [], prev:-6,next:0},
+                {location :'India', content: [], prev:-6,next:0},
+                {location :'Worldwide', content: [], prev:-6,next:0},
+                {location :'India', content: [], prev:-6,next:0}
+                //{location :'Delhi', content: [], prev:-6,next:0},
+                //{location :'Mumbai', content: [], prev:-6,next:0},
+                //{location :'Chennai', content: [], prev:-6,next:0},
+                //{location :'Pune', content: [], prev:-6,next:0}
+                ];
 
         $scope.timeStamps = ['Trending Now'];
 
         loadTrends();
 
         function loadTrends() {
+            console.log('loadTrends');
             for (var i = count; i < count+2; i++) {
-                TrendsService.getTrendsData($scope.locationsList[i].location,0,i).then(
+                TrendsService.getTopLocationTrends($scope.locationsList[i].location,i).then(
                     function (response) {
                         var counter = response.counter;
                         $scope.locationsList[counter].content = response.content;
+                        console.log('loadTrends ' + response.content.length);
                     });
             }
             count = count+2;
         }
 
-        function changeColor(name,index){
-            var content = $scope.locationsList[index].content;
-            for(var i=0 ;i<content.length; i++){
-                //console.log(content[i])
-                for(var j=0; j< content[i].length;j++){
-                    if (content[i][j].name == name)
-                        $scope.locationsList[index].content[i][j].promoted_content = {"color":"black"};
-                }
-            }
-        }
-
-        function noBackground(name,index){
-            var content = $scope.locationsList[index].content;
-            for(var i=0 ;i<content.length; i++){
-                //console.log(content[i])
-                for(var j=0; j< content[i].length;j++){
-                    if (content[i][j].name == name)
-                        $scope.locationsList[index].content[i][j].promoted_content = {};
-                }
-            }
+        function getTopicTweets(location, topic){
+            TrendsService.getTopicTweets(location,topic).then(
+                function (response) {
+                    $scope.popularTweets = response;
+                });
         }
 
         angular.element($window).bind("scroll", function() {
@@ -78,6 +64,12 @@
 
             $location.url(url, '_blank');
         }
+
+        $scope.trustSrc = function(src) {
+            return $sce.trustAsHtml(src);
+        }
+
+
 
 
 
