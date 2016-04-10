@@ -63,7 +63,9 @@
 
             $http.get(url)
                 .success(function(response){
-                    for(var i=0;i<response.length;i++){}
+                    for(var i=0;i<response.length;i++){
+
+                    }
                     deferred.resolve(response);
             });
 

@@ -104,21 +104,35 @@ module.exports = function (app) {
 
     function loadTweetsfortrend(topic,position){
         client.get('search/tweets', {q: topic}, function (error, tweets, response) {
-            ids = [];
+            //ids = [];
+            //users =[];
+            //retweet_count =[];
+            //favorite_count =[];
+            details = [];
             for(var i=0; i<tweets.statuses.length;i++) {
-                ids.push(tweets.statuses[i].id_str)
+                //ids.push(tweets.statuses[i].id_str)
+                //users.push(tweets.statuses[i].user.screen_name);
+                //retweet_count.push(tweets.statuses[i].retweet_count);
+                //favorite_count.push(tweets.statuses[i].favorite_count);
+                var obj = {
+                    id : tweets.statuses[i].id_str,
+                    name: tweets.statuses[i].user.screen_name,
+                    rt: tweets.statuses[i].retweet_count,
+                    fc:tweets.statuses[i].favorite_count
+                }
+                details.push(obj);
             }
 
+            details = details.sort(function(a, b){
+                    return b.rt - a.rt
+            })
+
             alltrendTweets[position].content.push({
-                name:topic,
-                ids: ids,
-                objects: []
+                name: topic,
+                content: details
             });
 
-            getombedObjects(position, alltrendTweets[position].content.length-1,ids,topic);
         });
-
-
     }
 
     //function getOmbedJson(ids){
@@ -155,21 +169,24 @@ module.exports = function (app) {
                 for(var j=0; j<alltrendTweets[i].content.length; j++){
                     if(topic === alltrendTweets[i].content[j].name){
                         console.log('CRON topic Matched');
-                        return alltrendTweets[i].content[j].objects;
+                        //return {
+                        //    ids : alltrendTweets[i].content[j].ids,
+                        //    users : alltrendTweets[i].content[j].users
+                        //};
+                        return alltrendTweets[i].content[j];
                     }
                 }
             }
         }
     }
 
-    function getombedObjects(posParent, posChild, ids,topic){
-        for(var i=0;i<ids.length;i++) {
-            client.get('statuses/oembed.json', {id: ids[i]}, function (error, embed) {
-                console.log(topic +'\n '+embed.html);
-                alltrendTweets[posParent].content[posChild].objects.push(embed.html)
-            });
-        }
-    }
-
+    //function getombedObjects(posParent, posChild, ids,topic){
+    //    for(var i=0;i<ids.length;i++) {
+    //        client.get('statuses/oembed.json', {id: ids[i]}, function (error, embed) {
+    //            console.log(topic +'\n '+embed.html);
+    //            alltrendTweets[posParent].content[posChild].objects.push(embed.html)
+    //        });
+    //    }
+    //}
 
 }

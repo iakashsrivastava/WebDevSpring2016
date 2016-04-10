@@ -67,16 +67,16 @@ module.exports = function (app,categoryModel,trendModel) {
     }
 
     function getLocationTrends1(req, res) {
-        //var topic = req.params.trending;
-        //client.get('search/tweets', {q: topic,result_type:'popular'}, function (error, tweets, response) {
-        //    console.log(tweets.statuses[0].id_str);
-        //    console.log(tweets.statuses[0].retweet_count);
-        //    console.log(tweets.statuses[0].favorite_count);
-        //    res.send(tweets);
-        //});
-        client.get('statuses/oembed.json', {id: '718148816025858048'}, function (error, embed) {
-            res.send(embed);
+        var topic = req.params.trending;
+        client.get('search/tweets', {q: topic,result_type:'popular'}, function (error, tweets, response) {
+            console.log(tweets.statuses[0].id_str);
+            console.log(tweets.statuses[0].retweet_count);
+            console.log(tweets.statuses[0].favorite_count);
+            res.send(tweets);
         });
+        //client.get('statuses/oembed.json', {id: '718148816025858048'}, function (error, embed) {
+        //    res.send(embed);
+        //});
     }
 
 };

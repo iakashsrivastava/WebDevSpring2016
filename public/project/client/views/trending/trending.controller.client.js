@@ -46,7 +46,7 @@
         function getTopicTweets(location, topic){
             TrendsService.getTopicTweets(location,topic).then(
                 function (response) {
-                    $scope.popularTweets = response;
+                    $scope.popularTweets = response.content;
                 });
         }
 
