@@ -5,6 +5,7 @@
 var passport         = require('passport');
 var LocalStrategy    = require('passport-local').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var mongoose         = require("mongoose");
 
 module.exports = function(app, userModel) {
@@ -21,29 +22,35 @@ module.exports = function(app, userModel) {
 
     var googleConfig = {
         clientID        : process.env.GOOGLE_CLIENT_ID,
-        clientSecret    : 'PRYTg6QhsK3dMjZ_DXv4HfXW',
-        callbackURL     : 'http://127.0.0.1:3000/auth/google/callback'
+        clientSecret    : process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL     : process.env.GOOGLE_CALLBACK_URL
     };
 
     var facebookConfig = {
-        clientID        : process.env.FACEBOOK_CLIENT_ID,
-        clientSecret    : process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL     : process.env.FACEBOOK_CALLBACK_URL
+        clientID        : process.env.FACEBOOK_CLIENT_ID_AUTH,
+        clientSecret    : process.env.FACEBOOK__CLIENT_SECRET_AUTH,
+        callbackURL     : process.env.FACEBOOK_CALLBACK_URL_AUTH
     };
 
-    //process.env.GOOGLE_CLIENT_ID='1847880346-d5nrpdsbptrb8pkbvjfncqo6pssrejjn.apps.googleusercontent.com'
     // passport functionalities - start
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-    //passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
     app.get   ('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
     app.get   ('/auth/google/callback',
         passport.authenticate('google', {
+            successRedirect: 'project/client/index.html#/profile',
+            failureRedirect: '/#/login'
+        }));
+
+    app.get   ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
             successRedirect: 'project/client/index.html#/profile',
             failureRedirect: '/#/login'
         }));
@@ -136,7 +143,7 @@ module.exports = function(app, userModel) {
     }
 
     function deserializeUser(user, done) {
-        console.log("Deserialized User: "+ JSON.stringify(user));
+        //console.log("Deserialized User: "+ JSON.stringify(user));
         userModel
             .findUserById(user._id)
             .then(
