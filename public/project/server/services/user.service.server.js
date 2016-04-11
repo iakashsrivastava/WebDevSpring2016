@@ -6,6 +6,7 @@ var passport         = require('passport');
 var LocalStrategy    = require('passport-local').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 var mongoose         = require("mongoose");
 
 module.exports = function(app, userModel) {
@@ -32,6 +33,12 @@ module.exports = function(app, userModel) {
         callbackURL     : process.env.FACEBOOK_CALLBACK_URL_AUTH
     };
 
+    var twitterConfig = {
+        consumerKey        : 'TrRpgogee94ZD9ymJSLHuWKqA',
+        consumerSecret    : 'I7gT9Bqsw1RwUGESr8BEfjyAWfK8l3fgePHOH0qvuJ5lkJZSoa',
+        callbackURL     : 'http://127.0.0.1:3000/auth/twitter/callback'
+    };
+
     // passport functionalities - start
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
@@ -39,6 +46,7 @@ module.exports = function(app, userModel) {
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+    passport.use(new TwitterStrategy(twitterConfig, twitterStrategy));
 
     app.get   ('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
@@ -51,6 +59,14 @@ module.exports = function(app, userModel) {
     app.get   ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
+            successRedirect: 'project/client/index.html#/profile',
+            failureRedirect: '/#/login'
+        }));
+
+    app.get   ('/auth/twitter', passport.authenticate('twitter', { scope : 'email' }));
+
+    app.get('/auth/twitter/callback',
+        passport.authenticate('twitter', {
             successRedirect: 'project/client/index.html#/profile',
             failureRedirect: '/#/login'
         }));
@@ -122,6 +138,42 @@ module.exports = function(app, userModel) {
                             }
                         };
                         return userModel.createUser(newGoogleUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+    function twitterStrategy(token, refreshToken, profile, done) {
+        console.log("Inside Strategey")
+        userModel
+            .findUserByTwitterId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        console.log(profile)
+                        var newTwitterUser = {
+                            lastName: profile.name,
+                            firstName: profile.displayName,
+                            email: '',
+                            twitter: {
+                                id:          profile.id,
+                                token:       token
+                            }
+                        };
+                        return userModel.createUser(newTwitterUser);
                     }
                 },
                 function(err) {

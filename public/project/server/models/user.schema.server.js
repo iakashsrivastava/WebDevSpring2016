@@ -22,6 +22,10 @@ module.exports = function(mongoose) {
         facebook:   {
             id:    String,
             token: String
+        },
+        twitter:   {
+            id:    String,
+            token: String
         }
 
     }, {collection: 'MashupUsers'});

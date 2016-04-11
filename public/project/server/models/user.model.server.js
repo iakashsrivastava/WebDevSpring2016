@@ -24,7 +24,8 @@ module.exports = function(db,mongoose) {
         findUserById:findUserById,
         findUserByFacebookId:findUserByFacebookId,
         findUserByGoogleId:findUserByGoogleId,
-        getMongooseModel: getMongooseModel
+        getMongooseModel: getMongooseModel,
+        findUserByTwitterId:findUserByTwitterId
 
     };
 
@@ -138,6 +139,10 @@ module.exports = function(db,mongoose) {
 
     function findUserByGoogleId(googleId) {
         return UserModel.findOne({'google.id': googleId});
+    }
+
+    function findUserByTwitterId(twitterId) {
+        return UserModel.findOne({'twitter.id': twitterId});
     }
 
     function getMongooseModel() {
