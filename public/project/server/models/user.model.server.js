@@ -132,6 +132,14 @@ module.exports = function(db,mongoose) {
         }
     }
 
+    function findUserByFacebookId(facebookId) {
+        return UserModel.findOne({'facebook.id': facebookId});
+    }
+
+    function findUserByGoogleId(googleId) {
+        return UserModel.findOne({'google.id': googleId});
+    }
+
     function getMongooseModel() {
         return UserModel;
     }

@@ -14,7 +14,15 @@ module.exports = function(mongoose) {
         firstName: String,
         lastName: String,
         emails: [String],
-        phones: [String]
+        phones: [String],
+        google:   {
+            id:    String,
+            token: String
+        },
+        facebook:   {
+            id:    String,
+            token: String
+        }
 
     }, {collection: 'MashupUsers'});
     return UserSchema;

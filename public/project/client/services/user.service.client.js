@@ -46,7 +46,7 @@
         function updateUser(userId, user){
 
             var deferred = $q.defer();
-            var endpoint = "/api/assignment/user/"+userId;
+            var endpoint = "/api/project/user/"+userId;
             console.log(user);
             var req = {
                 method: 'PUT',
@@ -66,7 +66,7 @@
         function findUserByUsername(username){
             var deferred = $q.defer();
 
-            $http.get("/api/assignment/user?username="+username)
+            $http.get("/api/project/user?username="+username)
                 .success(function(response){
                     deferred.resolve(response);
                 });
@@ -96,7 +96,7 @@
         function findAllUsers(){
             var deferred = $q.defer();
 
-            $http.get("/api/assignment/user")
+            $http.get("/api/project/user")
                 .success(function(response){
                     deferred.resolve(response);
                 });
@@ -107,7 +107,7 @@
         function deleteUserById(id){
             var deferred = $q.defer();
 
-            $http.delete("/api/assignment/user/:"+id)
+            $http.delete("/api/project/user/:"+id)
                 .success(function(response){
                     deferred.resolve(response);
                 });

@@ -37,7 +37,10 @@
 
             .when("/profile",{
                 templateUrl: "./views/users/profile.view.html",
-                controller: "ProfileController"
+                controller: "ProfileController",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             })
 
             .when("/register",{
@@ -77,13 +80,13 @@
     {
         var deferred = $q.defer();
 
-        $http.get('/api/loggedin').success(function(user)
+        $http.get('/api/project/loggedin').success(function(user)
         {
             $rootScope.errorMessage = null;
             // User is Authenticated
             if (user !== '0')
             {
-                $rootScope.currentUser = user;
+                $rootScope.loggedUser = user;
                 deferred.resolve();
             }
             // User is Not Authenticated
