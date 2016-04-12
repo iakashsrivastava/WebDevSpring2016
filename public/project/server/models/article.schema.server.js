@@ -15,7 +15,8 @@ module.exports = function(mongoose) {
         // list of users that like this movie
         comments:[{
             id: String,
-            comments: String
+            comments: String,
+            name: String
         }],
         userLikes: [
             {username: String}

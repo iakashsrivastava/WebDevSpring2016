@@ -22,6 +22,8 @@
                 .then(function(response){
                     if(response.data)
                         $scope.comments = response.data.comments;
+                    else
+                        $scope.comments = [];
                 });
         }
 
@@ -97,14 +99,19 @@
         }
 
         function addComment(comment) {
+            console.log(loggedUser.firstName);
             if(loggedUser) {
                 var article ={};
                 $scope.comments.push({id :loggedUser._id,
-                                        comments: comment})
+                                        comments: comment,
+                                        name:loggedUser.firstName})
+
+
                 article.comments = [];
                 article.comments.push(
                                         {id :loggedUser._id,
-                                            comments: comment});
+                                            comments: comment,
+                                        name:loggedUser.firstName});
                 article.likes=[];
                 article.articleId = postId;
                 article.title= $scope.data.title;
