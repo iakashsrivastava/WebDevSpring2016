@@ -15,6 +15,9 @@ module.exports = function(app, db, mongoose) {
 
     var contentData = require("./services/category_backup.service.server.js")(app,categoryModel,trendModel);
 
+    var articleModel   = require("./models/article.model.server.js")(db, mongoose);
+    var articleService = require("./services/article.service.server.js")(app, articleModel, userModel);
+
 
 
 };

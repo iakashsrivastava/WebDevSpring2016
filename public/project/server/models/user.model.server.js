@@ -25,7 +25,8 @@ module.exports = function(db,mongoose) {
         findUserByFacebookId:findUserByFacebookId,
         findUserByGoogleId:findUserByGoogleId,
         getMongooseModel: getMongooseModel,
-        findUserByTwitterId:findUserByTwitterId
+        findUserByTwitterId:findUserByTwitterId,
+        userLikesArticle:userLikesArticle
 
     };
 
@@ -133,20 +134,44 @@ module.exports = function(db,mongoose) {
         }
     }
 
-    function findUserByFacebookId(facebookId) {
-        return UserModel.findOne({'facebook.id': facebookId});
-    }
-
-    function findUserByGoogleId(googleId) {
-        return UserModel.findOne({'google.id': googleId});
-    }
-
     function findUserByTwitterId(twitterId) {
         return UserModel.findOne({'twitter.id': twitterId});
     }
 
     function getMongooseModel() {
         return UserModel;
+    }
+
+    function userLikesArticle (userId, article) {
+
+        var deferred = q.defer();
+
+        // find the user
+        UserModel.findById(userId, function (err, doc) {
+
+            // reject promise if error
+            if (err) {
+                deferred.reject(err);
+            } else {
+
+                // add movie id to user likes
+                doc.likes.push (article.articleID);
+
+                // save user
+                doc.save (function (err, doc) {
+
+                    if (err) {
+                        deferred.reject(err);
+                    } else {
+
+                        // resolve promise with user
+                        deferred.resolve (doc);
+                    }
+                });
+            }
+        });
+
+        return deferred;
     }
 
 }

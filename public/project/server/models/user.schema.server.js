@@ -8,6 +8,8 @@
 
 module.exports = function(mongoose) {
 
+    var ArticleSchema = require("./article.schema.server.js")(mongoose);
+
     var UserSchema = mongoose.Schema({
         username:String,
         password:String,
@@ -26,7 +28,13 @@ module.exports = function(mongoose) {
         twitter:   {
             id:    String,
             token: String
-        }
+        },
+
+        likes: [String],
+        // movies this user likes
+        likesMovies: [ArticleSchema]
+        // collection property sets
+        // collection name to 'user'
 
     }, {collection: 'MashupUsers'});
     return UserSchema;

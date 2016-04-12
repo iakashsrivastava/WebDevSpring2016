@@ -81,7 +81,7 @@ module.exports = function (app) {
     }
 
     function formatJson(resultsArray , position){
-        //console.log(JSON.stringify(resultsArray));
+        console.log(JSON.stringify(resultsArray));
         var content =[];
         var trendsName =[];
         var trends = resultsArray[0].trends;

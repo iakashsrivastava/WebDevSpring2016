@@ -34,6 +34,8 @@
 <div class="col-md-9 col-lg-9" >
         <span class="well fixed-content photos">
                 <div  ng-repeat="content in popularTweets track by $index">
+                    {{content.name}}
+                    {{content.id}}
                     <!--<div ng-bind-html="trustSrc(tweet)"></div>-->
                     <!--https://twitter.com/{{ content.name}}/status/{{content.id}}"-->
                     <blockquote class="twitter-tweet">

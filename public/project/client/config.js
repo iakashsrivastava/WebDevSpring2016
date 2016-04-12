@@ -21,10 +21,7 @@
             })
             .when("/details/:Id/:Source",{
                 templateUrl: "./views/detail/detail.view.html",
-                controller:"DetailsController",
-                resolve: {
-                    loggedin: checkLoggedin
-                }
+                controller:"DetailsController"
             })
             .when("/search/:query",{
                 templateUrl: "./views/Search/search.view.html",
@@ -68,6 +65,11 @@
             .when("/trending",{
                 templateUrl: "views/trending/trending.view.client.html",
                 controller:"TrendingController"
+            })
+
+            .when("/admin",{
+                templateUrl: "views/admin/admin.view.client.html",
+                controller:"AdminController"
             })
 
             .otherwise({
