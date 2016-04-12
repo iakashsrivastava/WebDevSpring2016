@@ -27,7 +27,8 @@ module.exports = function(db,mongoose) {
         getMongooseModel: getMongooseModel,
         findUserByTwitterId:findUserByTwitterId,
         userLikesArticle:userLikesArticle,
-        findUsersByIds:findUsersByIds
+        findUsersByIds:findUsersByIds,
+        userCommentsOnArticle:userCommentsOnArticle
 
     };
 
@@ -190,6 +191,38 @@ module.exports = function(db,mongoose) {
         });
 
         return deferred.promise;
+    }
+
+    function userCommentsOnArticle (userId, article) {
+
+        var deferred = q.defer();
+
+        // find the user
+        UserModel.findById(userId, function (err, doc) {
+
+            // reject promise if error
+            if (err) {
+                deferred.reject(err);
+            } else {
+
+                // add movie id to user likes
+                doc.comments.push (article.articleId);
+
+                // save user
+                doc.save (function (err, doc) {
+
+                    if (err) {
+                        deferred.reject(err);
+                    } else {
+
+                        // resolve promise with user
+                        deferred.resolve (doc);
+                    }
+                });
+            }
+        });
+
+        return deferred;
     }
 
 }

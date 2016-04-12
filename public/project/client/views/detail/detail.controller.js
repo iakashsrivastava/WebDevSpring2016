@@ -16,6 +16,16 @@
         $scope.favorite=favorite;
         $scope.addComment =addComment;
 
+        function getComments(){
+            ArticleService
+                .findArticleById(postId)
+                .then(function(response){
+                    if(response.data)
+                        $scope.comments = response.data.comments;
+                });
+        }
+
+        getComments();
         function HomeDataContent() {
 
             DetailService.getDetailedData(postId,render);
@@ -54,6 +64,7 @@
                 .findUserLikes (postId)
                 .then(function(response){
                     console.log(response);
+                    $scope.article = response.data;
                 });
 
 
@@ -88,19 +99,21 @@
         function addComment(comment) {
             if(loggedUser) {
                 var article ={};
-                $scope.article = {};
-                $scope.article.likes = [];
-                $scope.article.likes.push(loggedUser._id);
+                $scope.comments.push({id :loggedUser._id,
+                                        comments: comment})
+                article.comments = [];
+                article.comments.push(
+                                        {id :loggedUser._id,
+                                            comments: comment});
                 article.likes=[];
-                article.likes.push(loggedUser._id);
                 article.articleId = postId;
                 article.title= $scope.data.title;
                 article.description=$scope.data.description;
                 article.thumbnail_url='';
-                console.log($scope.data.title);
-                console.log($scope.data.description);
                 ArticleService
-                    .userLikesArticle(loggedUser._id, article);
+                    .userCommentsOnArticle(loggedUser._id, article);
+
+                //getComments();
             } else {
                 $location.url("/login");
             }

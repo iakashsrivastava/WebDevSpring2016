@@ -13,6 +13,10 @@ module.exports = function(mongoose) {
         // ids of users that like this movie
         likes: [String],
         // list of users that like this movie
+        comments:[{
+            id: String,
+            comments: String
+        }],
         userLikes: [
             {username: String}
         ],

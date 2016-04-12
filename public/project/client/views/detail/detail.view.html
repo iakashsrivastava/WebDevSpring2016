@@ -25,4 +25,11 @@
 
     <textarea name="Text1" cols="40" rows="5" placeholder='Add Comments' ng-model="comment"></textarea>
     <input type="submit" value="Submit" ng-click="addComment(comment)">
+
+    <div ng-repeat="comment in comments">
+        {{comment.comments}}
+    </div>
+
+
 </div>
+

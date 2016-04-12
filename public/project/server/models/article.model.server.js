@@ -18,9 +18,64 @@ module.exports = function(db, mongoose) {
         findArticleByarticleID: findArticleByarticleID,
         findArticlesByarticleIDs: findArticlesByarticleIDs,
         createArticle: createArticle,
-        userLikesArticle: userLikesArticle
+        userLikesArticle: userLikesArticle,
+        userCommentsOnArticle: userCommentsOnArticle
     };
     return api;
+
+    function userCommentsOnArticle(userId, article){
+        console.log(JSON.stringify(article));
+        var com = article.comments[0];
+        var deferred = q.defer();
+
+        // find the movie by imdb ID
+        Article.findOne({articleId: article.articleId},
+
+            function (err, doc) {
+
+                // reject promise if error
+                if (err) {
+                    deferred.reject(err);
+                }
+
+                // if there's a movie
+                if (doc) {
+                    // add user to likes
+                    doc.comments.push (article.comments[0]);
+                    // save changes
+                    doc.save(function(err, doc){
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(doc);
+                        }
+                    });
+                } else {
+                    // if there's no movie
+                    // create a new instance
+                    article = new Article({
+                        articleId: article.articleId,
+                        title: article.title,
+                        thumbnail_url: article.thumbnail_url,
+                        description: article.description,
+                        likes: [],
+                        comments:[]
+                    });
+                    // add user to likes
+                    article.comments.push (com);
+                    // save new instance
+                    article.save(function(err, doc) {
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(doc);
+                        }
+                    });
+                }
+            });
+
+        return deferred.promise;
+    }
 
     function userLikesArticle (userId, article) {
 
@@ -56,7 +111,8 @@ module.exports = function(db, mongoose) {
                         title: article.title,
                         thumbnail_url: article.thumbnail_url,
                         description: article.description,
-                        likes: []
+                        likes: [],
+                        comments:[]
                     });
                     // add user to likes
                     article.likes.push (userId);
@@ -101,7 +157,8 @@ module.exports = function(db, mongoose) {
             title: article.title,
             thumbnail_url: article.thumbnail_url,
             description: article.description,
-            likes: []
+            likes: [],
+            comments:[]
         });
 
         var deferred = q.defer();

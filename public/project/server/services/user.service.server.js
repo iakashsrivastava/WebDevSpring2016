@@ -34,9 +34,9 @@ module.exports = function(app, userModel) {
     };
 
     var twitterConfig = {
-        consumerKey        : '',
-        consumerSecret    : '',
-        callbackURL     : ''
+        consumerKey        : 'gyigigig',
+        consumerSecret    : 'lllm;lhn',
+        callbackURL     : 'bhbckew/diqbcu/biucq'
     };
 
     // passport functionalities - start

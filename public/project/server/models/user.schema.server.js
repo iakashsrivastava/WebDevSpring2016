@@ -31,6 +31,7 @@ module.exports = function(mongoose) {
         },
 
         likes: [String],
+        comments: [String],
         // movies this user likes
         likesMovies: [ArticleSchema]
         // collection property sets
