@@ -12,10 +12,17 @@
 
     <button class="btn btn-primary"
             ng-click="favorite(data)">
+    <span ng-show="article.likes.indexOf(loggedUser._id) > -1"
+          class="glyphicon glyphicon-star"></span>
+    <span ng-show="!article || !article.likes || article.likes.indexOf(loggedUser._id) == -1"
+          class="glyphicon glyphicon-star-empty"></span>
     </button>
 
     <h4 class="detailText">
         {{trustSrc(data.description)}}
 
     </h4>
+
+    <textarea name="Text1" cols="40" rows="5" placeholder='Add Comments' ng-model="comment"></textarea>
+    <input type="submit" value="Submit" ng-click="addComment(comment)">
 </div>

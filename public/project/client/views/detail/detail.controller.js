@@ -14,6 +14,7 @@
         var source = $routeParams.Source;
 
         $scope.favorite=favorite;
+        $scope.addComment =addComment;
 
         function HomeDataContent() {
 
@@ -31,7 +32,8 @@
             ArticleService
                 .findUserLikes (postId)
                 .then(function(response){
-                    console.log(response);
+                    console.log(response.data);
+                    $scope.article = response.data;
                 });
         }
 
@@ -62,10 +64,41 @@
         else
             SearchDataContent();
 
-        function favorite(article) {
+        function favorite(article1) {
             if(loggedUser) {
-                //vm.movie.likes = [];
-                //vm.movie.likes.push(loggedUser._id);
+                var article ={};
+                $scope.article = {};
+                $scope.article.likes = [];
+                $scope.article.likes.push(loggedUser._id);
+                article.likes=[];
+                article.likes.push(loggedUser._id);
+                article.articleId = postId;
+                article.title= $scope.data.title;
+                article.description=$scope.data.description;
+                article.thumbnail_url='';
+                console.log($scope.data.title);
+                console.log($scope.data.description);
+                ArticleService
+                    .userLikesArticle(loggedUser._id, article);
+            } else {
+                $location.url("/login");
+            }
+        }
+
+        function addComment(comment) {
+            if(loggedUser) {
+                var article ={};
+                $scope.article = {};
+                $scope.article.likes = [];
+                $scope.article.likes.push(loggedUser._id);
+                article.likes=[];
+                article.likes.push(loggedUser._id);
+                article.articleId = postId;
+                article.title= $scope.data.title;
+                article.description=$scope.data.description;
+                article.thumbnail_url='';
+                console.log($scope.data.title);
+                console.log($scope.data.description);
                 ArticleService
                     .userLikesArticle(loggedUser._id, article);
             } else {

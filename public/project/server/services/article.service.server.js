@@ -4,7 +4,7 @@
 
 module.exports = function(app, articleModel, userModel) {
     app.post("/api/project/user/:userId/article/:articleId", userLikesArticle);
-    app.get("/api/project/article/:articleID/user", findUserLikes);
+    app.get("/api/project/article/:articleId/user", findUserLikes);
 
     function findUserLikes (req, res) {
         var articleId = req.params.articleId;
@@ -22,6 +22,7 @@ module.exports = function(app, articleModel, userModel) {
                     }
                 },
                 function (err) {
+                    console.log('reste');
                     res.status(400).send(err);
                 }
             )
@@ -31,6 +32,7 @@ module.exports = function(app, articleModel, userModel) {
                     res.json(article);
                 },
                 function (err) {
+                    console.log('yfqbei');
                     res.status(400).send(err);
                 }
             );
@@ -38,10 +40,10 @@ module.exports = function(app, articleModel, userModel) {
 
     function userLikesArticle(req, res) {
         var articleDB  = req.body;
+        console.log(articleDB);
         var userId = req.params.userId;
         var articleId = req.params.articleId;
-        var article;
-
+        console.log(articleId);
         articleModel
             .userLikesArticle(userId, articleDB)
             // add user to movie likes

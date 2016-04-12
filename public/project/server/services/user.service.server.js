@@ -6,7 +6,7 @@ var passport         = require('passport');
 var LocalStrategy    = require('passport-local').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-//var TwitterStrategy = require('passport-twitter').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 var mongoose         = require("mongoose");
 
 module.exports = function(app, userModel) {
@@ -46,7 +46,7 @@ module.exports = function(app, userModel) {
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
-//    passport.use(new TwitterStrategy(twitterConfig, twitterStrategy));
+    passport.use(new TwitterStrategy(twitterConfig, twitterStrategy));
 
     app.get   ('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 

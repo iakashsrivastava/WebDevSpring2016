@@ -15,6 +15,7 @@
         return api;
 
         function findUserLikes (articleId) {
+            console.log('ddefefew');
             return $http.get("/api/project/article/"+articleId+"/user");
         }
 

@@ -21,7 +21,10 @@
             })
             .when("/details/:Id/:Source",{
                 templateUrl: "./views/detail/detail.view.html",
-                controller:"DetailsController"
+                controller:"DetailsController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
             })
             .when("/search/:query",{
                 templateUrl: "./views/Search/search.view.html",

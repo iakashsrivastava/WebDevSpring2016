@@ -26,7 +26,8 @@ module.exports = function(db,mongoose) {
         findUserByGoogleId:findUserByGoogleId,
         getMongooseModel: getMongooseModel,
         findUserByTwitterId:findUserByTwitterId,
-        userLikesArticle:userLikesArticle
+        userLikesArticle:userLikesArticle,
+        findUsersByIds:findUsersByIds
 
     };
 
@@ -155,7 +156,7 @@ module.exports = function(db,mongoose) {
             } else {
 
                 // add movie id to user likes
-                doc.likes.push (article.articleID);
+                doc.likes.push (article.articleId);
 
                 // save user
                 doc.save (function (err, doc) {
@@ -172,6 +173,23 @@ module.exports = function(db,mongoose) {
         });
 
         return deferred;
+    }
+
+    function findUsersByIds (userIds) {
+        var deferred = q.defer();
+
+        // find all users in array of user IDs
+        UserModel.find({
+            _id: {$in: userIds}
+        }, function (err, users) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(users);
+            }
+        });
+
+        return deferred.promise;
     }
 
 }
