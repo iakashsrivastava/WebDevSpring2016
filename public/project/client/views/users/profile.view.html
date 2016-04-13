@@ -40,3 +40,19 @@
         </div>
     </div>
     </form>
+
+    <h1 class="page-header">Categories</h1>
+
+    <label ng-repeat="category in categories">
+
+        <input
+                type="checkbox"
+                name="selectedCategories[]"
+                value="{{category.name}}"
+                ng-model="category.selected"
+        > {{category.name}}
+    </label>
+
+    <button type="submit" class="btn btn-block btn-primary" ng-click="updateCategory()">Update</button>
+
+    {{selection}}

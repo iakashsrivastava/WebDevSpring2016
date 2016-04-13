@@ -29,13 +29,13 @@ module.exports = function(mongoose) {
             id:    String,
             token: String
         },
-
         likes: [String],
         comments: [String],
         // movies this user likes
-        likesMovies: [ArticleSchema]
+        likesMovies: [ArticleSchema],
         // collection property sets
         // collection name to 'user'
+        categories:[String]
 
     }, {collection: 'MashupUsers'});
     return UserSchema;
