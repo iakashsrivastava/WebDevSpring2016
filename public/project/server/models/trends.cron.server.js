@@ -56,7 +56,7 @@ module.exports = function (app) {
         getTopicTweets: getTopicTweets
     }
 
-    //loadTrendingDataForAllLocations();
+    loadTrendingDataForAllLocations();
 
     return api;
 

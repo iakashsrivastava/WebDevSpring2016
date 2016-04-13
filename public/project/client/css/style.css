@@ -138,10 +138,15 @@ video {
     -webkit-column-gap: 2px;
 }
 
-.photos img {
-    /* Just in case there are inline attributes */
-    width: 100% !important;
-    height: auto !important;
+
+.searchBoxTopMargin{
+    margin-top: 9px;
 }
+
+/*.photos img {*/
+    /*!* Just in case there are inline attributes *!*/
+    /*width: 100% !important;*/
+    /*height: auto !important;*/
+/*}*/
 
 

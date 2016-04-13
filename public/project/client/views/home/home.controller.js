@@ -17,42 +17,41 @@
         $scope.getUserCategories = getUserCategories
 
 
-        function getUserCategories1(){
-            console.log($rootScope.loggedUser.categories)
-            if ($rootScope.categoriesList === undefined){
-                $rootScope.categoriesList =
-                    [{name :'Science', content: [], prev:-6,next:0},
-                    {name :'News', content: [], prev:-6,next:0},
-                    {name :'Entertainment', content: [], prev:-6,next:0},
-                    {name :'Sports', content: [], prev:-6,next:0}];
-            }
-
-            categoriesList1 =[];
-            categories = $rootScope.loggedUser.categories;
-            for (var i=0; i<categories.length;i++){
-                var obj = {name : categories[i], content: [], prev:-6,next:0}
-                categoriesList1.push(obj);
-            }
-            $rootScope.categoriesList = categoriesList1;
-
-
-        }
+        //function getUserCategories1(){
+        //    if($rootScope.loggedUser){
+        //
+        //    if ($rootScope.categoriesList === undefined){
+        //        $rootScope.categoriesList =
+        //            [{name :'Science', content: [], prev:-6,next:0},
+        //            {name :'News', content: [], prev:-6,next:0},
+        //            {name :'Entertainment', content: [], prev:-6,next:0},
+        //            {name :'Sports', content: [], prev:-6,next:0}];
+        //    }
+        //
+        //
+        //
+        //}}
 
         function getUserCategories(){
-            console.log($rootScope.loggedUser.categories);
-            if ($rootScope.categoriesList === undefined){
-                categoriesList1 =[];
-                categories = $rootScope.loggedUser.categories;
-                for (var i=0; i<categories.length;i++){
-                    var obj = {name : categories[i], content: [], prev:-6,next:0}
-                    categoriesList1.push(obj);
+            if($rootScope.loggedUser) {
+                if ($rootScope.categoriesList === undefined) {
+                    categoriesList1 = [];
+                    categories = $rootScope.loggedUser.categories;
+                    for (var i = 0; i < categories.length; i++) {
+                        var obj = {name: categories[i], content: [], prev: -6, next: 0}
+                        categoriesList1.push(obj);
+                    }
+                    $rootScope.categoriesList = categoriesList1;
                 }
-                $rootScope.categoriesList = categoriesList1;
             }
-
+            else{
+                $rootScope.categoriesList =
+                    [{name :'Science', content: [], prev:-6,next:0},
+                        {name :'News', content: [], prev:-6,next:0},
+                        {name :'Entertainment', content: [], prev:-6,next:0},
+                        {name :'Sports', content: [], prev:-6,next:0}];
+            }
         }
-
-
 
 
         function getCategoryDetails(category){
