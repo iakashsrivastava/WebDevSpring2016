@@ -53,6 +53,9 @@
         > {{category.name}}
     </label>
 
+    <input type="text" placeholder="Add New Category" ng-model="newCategory">
+    <button type="submit" class="btn btn-primary" ng-click="addNewCategory(newCategory)">Add</button>
+
     <button type="submit" class="btn btn-block btn-primary" ng-click="updateCategory()">Update</button>
 
     {{selection}}

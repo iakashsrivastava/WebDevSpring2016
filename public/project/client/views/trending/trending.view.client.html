@@ -16,8 +16,8 @@
             </h3>
             <br>
             <!--<h4><label>{{timeStamps[0]}}</label></h4>-->
-
-            <table class="table  table-hover table-condensed well">
+            <div class="panel panel-default">
+            <table class="table  table-hover table-striped">
                 <tbody>
                 <tr ng-repeat="t in location.content track by $index"
                     ng-click="getTopicTweets(location.location , t.name)">
@@ -32,6 +32,7 @@
                 </tbody>
             </table>
         </div>
+            </div>
 
 
     </div></div>
@@ -42,7 +43,9 @@
                     <blockquote class="twitter-tweet">
                         <a href=" https://twitter.com/{{ content.name}}/status/{{ content.id}}"/>
                     </blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <br>
                 </div>
+
 
         </span>
 </div>

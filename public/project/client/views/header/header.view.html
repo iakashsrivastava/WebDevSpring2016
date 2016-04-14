@@ -9,7 +9,8 @@
             </button>
             <span ng-class=" {'active':$location.url() =='/home'} " ><a class="navbar-brand" href="#/home">Mashup</a></span>
 
-            <form class="visible-xs" role="search">
+
+            <form class="visible-xs" role="searc ">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search... " ng-model="searchText">
                     <div class="input-group-btn">
@@ -23,9 +24,11 @@
         <div id="navbar" class="navbar-collapse collapse">
 
             <ul class="nav navbar-nav navbar-right">
-
+                <li><i class="fa fa-line-chart fa-1x" aria-hidden="true"></i></li>
                 <li class="visible-xs"  ng-if="loggedUser.roles.indexOf('admin')> - 1" ng-class=" {'active':$location.url() =='/admin'}" ><a href="#/admin">Admin</a></li>
 
+
+                <li ng-class=" {'active':$location.url() =='/trending'}" ><a data-toggle="collapse" data-target=".navbar-collapse" href="#/trending">Trending</a></li>
                 <li ng-if = "!loggedUser" ng-class=" {'active':$location.url() =='/register'}" ><a data-toggle="collapse" data-target=".navbar-collapse" href="#/register">Register</a></li>
                 <li ng-if = "!loggedUser" ng-class=" {'active':$location.url() =='/login'}" ><a data-toggle="collapse" data-target=".navbar-collapse" href="#/login">Login</a></li>
                 <li ng-if = "loggedUser" ng-click="user()" ng-class=" {'active':$location.url() =='/username'}" ><a data-toggle="collapse" data-target=".navbar-collapse" href="#/profile">{{ loggedUser.firstName}}</a></li>

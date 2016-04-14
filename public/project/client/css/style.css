@@ -111,6 +111,7 @@ h6 {
 video {
     width:100%;
     height:auto;
+
 }
 
 .fixed-content {
@@ -162,6 +163,14 @@ video {
     .fixed-positionPopularTweets{
         margin-left: -16px; !important;
         margin-right: 14px; !important;
-        padding: 1px; !important
+        padding: 1px; !important;
+        min-width: 74%
     }
 }
+
+/*.navbar {*/
+    /*background-color: rgb(252, 63, 73);*/
+    /*color: #0e0f11;*/
+    /*!*background-color: rgba(0, 0, 0, 0.5);*!*/
+    /*border-width: 0px;*/
+/*}*/

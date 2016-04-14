@@ -13,6 +13,7 @@
         $scope.profile = $rootScope.loggedUser;
         $scope.update = update;
         $scope.updateCategory = updateCategory;
+        $scope.addNewCategory =addNewCategory;
 
         function update(loggedUser) {
 
@@ -28,6 +29,27 @@
                     }
                 );
         }
+
+        function loadUserCategories(){
+            if($rootScope.loggedUser){
+
+                $scope.categories = [
+                    { name: 'News',    selected: true },
+                    { name: 'Science',   selected: true },
+                    { name: 'Entertainment',     selected: true },
+                    { name: 'Sports', selected: true }
+                ];
+            }
+            else{
+                $scope.categories = [
+                    { name: 'News',    selected: true },
+                    { name: 'Science',   selected: true },
+                    { name: 'Entertainment',     selected: true },
+                    { name: 'Sports', selected: true }
+                ];
+            }
+        }
+        loadUserCategories();
 
         $scope.categories = [
             { name: 'News',    selected: true },
@@ -63,6 +85,14 @@
                     $scope.error = err;
                 }
             );
+        }
+
+        function addNewCategory(newUserCategory){
+            var newCategory ={
+                name: newUserCategory,
+                selected: true
+            }
+            $scope.categories.push(newCategory);
         }
 
 

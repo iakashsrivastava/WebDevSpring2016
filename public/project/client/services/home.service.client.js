@@ -6,7 +6,7 @@
         .module('SocialMashup')
         .factory('HomeService',HomeService);
 
-    function HomeService($http,$q){
+    function HomeService($http,$q,SearchService){
 
         var api = {
             getCategoryDetails:getCategoryDetails,
@@ -19,11 +19,43 @@
             var deferred = $q.defer();
             $http.get('/api/content/category/'+category +'/page/'+page)
                 .success(function(response){
-                    var content = {items :response,
-                                    category: category,
-                                    counter: counter};
+                    var content={};
+                    if(response.length ==0){
+                        console.log(category);
+                        SearchService.getSearchDataforHomeContent(category,page,render);
 
-                    deferred.resolve(content);
+                        function render(response) {
+                            //$scope.data = response.list;
+                            console.log(response.list);
+                            items =[]
+                            for(var k=0; k<6;k++){
+                                var obj ={
+                                    id: response.list[k].id,
+                                    picture: response.list[k].thumbnail_url,
+                                    title: response.list[k].title
+                                }
+                                items.push(obj);
+                            }
+
+                            content ={
+                                items: items,
+                                category: category,
+                                counter:counter
+                            }
+                            deferred.resolve(content);
+                        }
+                    }
+                    else {
+                        console.log(response);
+                        content = {
+
+                            items: response,
+                            category: category,
+                            counter: counter
+                        };
+                        deferred.resolve(content);
+                    }
+                    //deferred.resolve(content);
                 });
 
             return deferred.promise;
