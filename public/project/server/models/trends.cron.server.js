@@ -16,7 +16,10 @@ module.exports = function (app) {
 
     var topics=[
         { "Location" : "Worldwide" , id : 1, content :[]},
-        { "Location" : "India" , id : 23424848, content :[]}
+        //{ "Location" : "India" , id : 23424848, content :[]},
+        { "Location" : "US" , id : 	23424977, content :[]},
+        { "Location" : "Massachusetts" , id : 	2347580, content :[]},
+        { "Location" : "Boston" , id : 	2367105, content :[]}
         //{ "Location" : "Delhi" , id : 20070458, content :[]},
         //{ "Location" : "Mumbai" , id : 2295411, content :[]},
         //{ "Location" : "Chennai" , id : 2295424, content :[]},
@@ -34,7 +37,10 @@ module.exports = function (app) {
 
     var alltrendTweets=[
         { "Location" : "Worldwide" ,content :[]},
-        { "Location" : "India" , content :[]},
+        { "Location" : "US" , content :[]},
+        { "Location" : "Massachusetts" , content :[]},
+        { "Location" : "Boston" , content :[]},
+        //{ "Location" : "India" , content :[]}
         //{ "Location" : "Delhi" , id : 20070458, content :[]},
         //{ "Location" : "Mumbai" , id : 2295411, content :[]},
         //{ "Location" : "Chennai" , id : 2295424, content :[]},

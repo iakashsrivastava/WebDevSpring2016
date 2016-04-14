@@ -22,7 +22,7 @@
 
                         $rootScope.loggedUser = response.data;
                         console.log(response.data);
-                        $location.url("/profile");
+                        $location.url("/home");
                     },
                     function(err) {
                         $scope.error = err;

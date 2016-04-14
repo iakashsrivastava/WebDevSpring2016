@@ -14,12 +14,14 @@
         var count =0;
 
         $scope.locationsList =
-            [{location :'Worldwide', content: [], prev:-6,next:0},
-                {location :'India', content: [], prev:-6,next:0},
+            [
                 {location :'Worldwide', content: [], prev:-6,next:0},
-                {location :'India', content: [], prev:-6,next:0},
-                {location :'Worldwide', content: [], prev:-6,next:0},
-                {location :'India', content: [], prev:-6,next:0}
+                {location :'US', content: [], prev:-6,next:0},
+               // {location :'Massachusetts', content: [], prev:-6,next:0},
+                {location :'Boston', content: [], prev:-6,next:0}
+                //{location :'India', content: [], prev:-6,next:0},
+                //{location :'Worldwide', content: [], prev:-6,next:0},
+                //{location :'India', content: [], prev:-6,next:0}
                 //{location :'Delhi', content: [], prev:-6,next:0},
                 //{location :'Mumbai', content: [], prev:-6,next:0},
                 //{location :'Chennai', content: [], prev:-6,next:0},
@@ -31,19 +33,20 @@
         loadTrends();
 
         function loadTrends() {
+
             console.log('loadTrends');
-            for (var i = count; i < count+2; i++) {
+            for (var i = count; i < count+3; i++) {
                 TrendsService.getTopLocationTrends($scope.locationsList[i].location,i).then(
                     function (response) {
                         var counter = response.counter;
                         $scope.locationsList[counter].content = response.content;
-                        console.log('loadTrends ' + response.content.length);
                     });
             }
-            count = count+2;
+            count = count+4;
         }
 
         function getTopicTweets(location, topic){
+            $scope.popularTweets =''
             TrendsService.getTopicTweets(location,topic).then(
                 function (response) {
                     $scope.popularTweets = response.content;

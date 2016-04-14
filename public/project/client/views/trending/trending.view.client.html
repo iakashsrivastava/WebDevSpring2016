@@ -1,17 +1,21 @@
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 fixed-position" style ='text-align: center;'>
+    <h1>
+        <img src="./views/trends/TwitterLogo.png" alt="logo" width="120px"/>
+        <label>Popular Tweets</label>
+    </h1>
+</div>
 
-<div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
+<div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
     <div class="fixed-content-row ">
         <div ng-repeat="location in locationsList track by $index" >
 
             <h3 style="margin-bottom: -15px;">
                 <label>
-                    <img src="./views/trends/TwitterLogo.png" alt="logo" width="50px"/>
                     {{location.location}}
                 </label>
             </h3>
-
-            <h4><label>{{timeStamps[0]}}</label></h4>
-
+            <br>
+            <!--<h4><label>{{timeStamps[0]}}</label></h4>-->
 
             <table class="table  table-hover table-condensed well">
                 <tbody>
@@ -31,46 +35,38 @@
 
 
     </div></div>
-<div class="col-md-9 col-lg-9 col-sm-6 col-xs-6" >
-        <span class="well fixed-content photos photos">
+<div class="col-md-9 col-lg-9" >
+        <span class="well fixed-content photos fixed-positionPopularTweets">
+
                 <div  ng-repeat="content in popularTweets track by $index">
-                    {{content.name}}
-                    {{content.id}}
-                    <!--<div ng-bind-html="trustSrc(tweet)"></div>-->
-                    <!--https://twitter.com/{{ content.name}}/status/{{content.id}}"-->
                     <blockquote class="twitter-tweet">
-
-                         <a ng-href="https://twitter.com/{{ content.name}}/status/{{content.id}}"></a>
-
+                        <a href=" https://twitter.com/{{ content.name}}/status/{{ content.id}}"/>
                     </blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
                 </div>
+
         </span>
-    </div>
+</div>
+<!--<blockquote class="twitter-tweet">-->
 
 
+<!--<p lang="es" dir="ltr">-->
+<!--Sin piedad; América golea a Xolos y apunta al liderato-->
+<!--<a href="https://t.co/ejuuszMCx5">pic.twitter.com/ejuuszMCx5</a>-->
+<!--</p>-->
+<!--&mdash; Diego Yamel (@Die_Yamel)-->
 
- <!--<blockquote class="twitter-tweet">-->
-
-
-     <!--<p lang="es" dir="ltr">-->
-         <!--Sin piedad; América golea a Xolos y apunta al liderato-->
-         <!--<a href="https://t.co/ejuuszMCx5">pic.twitter.com/ejuuszMCx5</a>-->
-     <!--</p>-->
-     <!--&mdash; Diego Yamel (@Die_Yamel)-->
-
-     <!--<a href="https://twitter.com/Die_Yamel/status/718961226307530752">April 10, 2016</a>-->
+<!--<a href="https://twitter.com/Die_Yamel/status/718961226307530752">April 10, 2016</a>-->
 
 
- <!--</blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
+<!--</blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
 
 
- <!--<blockquote class="twitter-tweet">-->
-     <!--&lt;!&ndash;<a href="https://twitter.com/DaltonRapattoni/status/717719236752371712"></a>&ndash;&gt;-->
-     <!--<a href="https://twitter.com/AashishKhetan/status/718712575320428544"></a>-->
- <!--</blockquote>-->
- <!---->
- <!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
+<!--<blockquote class="twitter-tweet">-->
+<!--&lt;!&ndash;<a href="https://twitter.com/DaltonRapattoni/status/717719236752371712"></a>&ndash;&gt;-->
+<!--<a href="https://twitter.com/AashishKhetan/status/718712575320428544"></a>-->
+<!--</blockquote>-->
+<!---->
+<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
 
 
 
@@ -94,8 +90,8 @@
 <!--<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Sin piedad; América golea a Xolos y apunta al liderato <a href="https://t.co/q8VZA9lNMN">https://t.co/q8VZA9lNMN</a></p>&mdash; Baltazar Aguilar (@BaltazarAglr) <a href="https://twitter.com/BaltazarAglr/status/718961228148772865">April 10, 2016</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
 
 
- <!--<blockquote class="twitter-tweet">
- <p lang="es" dir="ltr">Sin piedad; América golea a Xolos y apunta al liderato <a href="https://t.co/ejuuszMCx5">pic.twitter.com/ejuuszMCx5</a></p>&mdash; Diego Yamel (@Die_Yamel) <a href="https://twitter.com/Die_Yamel/status/718961226307530752">April 10, 2016</a>
+<!--<blockquote class="twitter-tweet">
+<p lang="es" dir="ltr">Sin piedad; América golea a Xolos y apunta al liderato <a href="https://t.co/ejuuszMCx5">pic.twitter.com/ejuuszMCx5</a></p>&mdash; Diego Yamel (@Die_Yamel) <a href="https://twitter.com/Die_Yamel/status/718961226307530752">April 10, 2016</a>
 </blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
 <!--<div>-->
 <!--<video autoplay loop muted>-->

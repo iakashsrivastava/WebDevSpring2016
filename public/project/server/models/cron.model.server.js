@@ -87,6 +87,7 @@ module.exports = function () {
             if(topics[i].category === category)
                 return topics[i].content;
         }
+        return [];
     }
 
 }

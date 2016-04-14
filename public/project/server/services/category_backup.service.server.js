@@ -35,7 +35,7 @@ module.exports = function (app,categoryModel,trendModel) {
     function getCategoryContent(req, res) {
         var category = req.params.category;
         var page = req.params.page;
-        var data  = categoryModel.getCategoryData(category,page)
+        var data  = categoryModel.getCategoryData(category,page);
         res.send(data);
     }
 

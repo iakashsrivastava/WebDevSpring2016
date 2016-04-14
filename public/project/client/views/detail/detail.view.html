@@ -24,13 +24,23 @@
     </h4>
 
     <textarea name="Text1" cols="40" rows="5" placeholder='Add Comments' ng-model="comment"></textarea>
-    <input type="submit" value="Submit" ng-click="addComment(comment)">
+    <input class="btn btn-default" type="submit" value="Post Comment" ng-click="addComment(comment)">
 
-    <div ng-repeat="comment in comments">
-        <label>{{comment.name}}</label>
-        {{comment.comments}}
+    <h3>
+        <label>
+            Comments:
+        </label>
+    </h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+                <tr ng-repeat="comment in comments">
+                    <td>
+                         <label>{{comment.name}}</label>
+                        <br>
+                                 {{comment.comments}}
+                    </td>
+                </tr>
+        </table>
     </div>
-
-
 </div>
 

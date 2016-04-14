@@ -3,7 +3,8 @@
         <!--<source src="http://demosthenes.info/assets/videos/polina.webm" type="video/webm">-->
         <!--<source src="http://demosthenes.info/assets/videos/polina.mp4" type="video/mp4">-->
     <!--</video>-->
-
+    <!--<i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>-->
+    <!--<i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>-->
 <div ng-init="getUserCategories()"></div>
 <div ng-init="getHomeContent()"></div>
 <!--<div ng-if="!data && !entertaintmentdata">-->
@@ -15,8 +16,12 @@
     <h4><label ng-click="getCategoryDetails(category.name)" class="class-pointer highlight-text ">
         {{category.name}}
     </label>
-        <button type="button" class="btn btn-primary pull-right" ng-click="categoryPrevious(category.name)" ng-show="category.prev >= 0">Previous</button>
-        <button type="button" class="btn btn-primary button-next-right" ng-click="categoryNext(category.name)">Next</button>
+        <!--<i class="fa fa-arrow-right pull-right fa-2x" ng-click="categoryNext(category.name)"></i>-->
+        <!--<i class="fa fa-arrow-left pull-right fa-2x" ng-click="categoryPrevious(category.name)" ng-show="category.prev >= 0"></i>-->
+
+
+        <button type="button" class="fa fa-arrow-right pull-right fa-1x" ng-click="categoryNext(category.name)">Next</button>
+        <button type="button" class="fa fa-arrow-left pull-right fa-1x" ng-click="categoryPrevious(category.name)" ng-show="category.prev >= 0">Previous</button>
 
         <!--<button type="button" class="btn btn-primary button-prev-right" ng-click="categoryPrevious(category.name)" ng-show="category.prev >= 0">Previous</button>-->
         <!--<button type="button" class="btn btn-primary button-next-right" ng-click="categoryNext(category.name)">Next</button>-->

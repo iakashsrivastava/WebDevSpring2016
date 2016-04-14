@@ -18,8 +18,9 @@
 
             UserService.updateUser(loggedUser._id,loggedUser).then(
                 function(response){
+                    console.log(response);
                     //$rootScope.loggedUser = response;
-                        $scope.loggedUser = response;
+                      //  $scope.loggedUser = loggedUser;
 
                     },
                     function(err) {
@@ -51,13 +52,12 @@
         }, true);
 
         function updateCategory() {
-            console.log($rootScope.loggedUser);
+            //console.log($rootScope.loggedUser);
             $rootScope.loggedUser.categories = $scope.selection;
             UserService.updateUser($rootScope.loggedUser._id,$rootScope.loggedUser).then(
                 function(response){
                     //$rootScope.loggedUser = response;
-                    $scope.loggedUser = response;
-
+                    //$scope.loggedUser = response;
                 },
                 function(err) {
                     $scope.error = err;

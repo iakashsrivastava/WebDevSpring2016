@@ -119,18 +119,20 @@ video {
     position:fixed;
     overflow-y:scroll;
     overflow-x:hidden;
-    width: 73%;
+    /*width: 73%;*/
     margin-top: 154px;
+    margin-left: 23px
 }
 
 .fixed-content-row {
     top: 0;
     bottom:0;
-    position:fixed;
+    position:static;
     overflow-y:scroll;
     overflow-x:hidden;
     /*width: 73%;*/
     margin-top: 51px;
+    text-align: center;
 }
 
 .photos {
@@ -149,4 +151,17 @@ video {
     /*height: auto !important;*/
 /*}*/
 
+@media only screen and (min-width : 990px){
+    .fixed-position{
+        position: fixed;
+        margin-top: -20px; !important;
+    }
+}
 
+@media only screen and (min-width : 990px){
+    .fixed-positionPopularTweets{
+        margin-left: -16px; !important;
+        margin-right: 14px; !important;
+        padding: 1px; !important
+    }
+}

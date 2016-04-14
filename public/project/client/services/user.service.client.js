@@ -47,7 +47,7 @@
 
             var deferred = $q.defer();
             var endpoint = "/api/project/user/"+userId;
-            console.log(user);
+            //console.log(user);
             var req = {
                 method: 'PUT',
                 url: endpoint,

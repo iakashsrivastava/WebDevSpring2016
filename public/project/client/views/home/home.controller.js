@@ -14,27 +14,11 @@
         $scope.getHomeContent=getHomeContent;
         $scope.categoryNext = categoryNext;
         $scope.categoryPrevious = categoryPrevious;
-        $scope.getUserCategories = getUserCategories
+        $scope.getUserCategories = getUserCategories;
 
-
-        //function getUserCategories1(){
-        //    if($rootScope.loggedUser){
-        //
-        //    if ($rootScope.categoriesList === undefined){
-        //        $rootScope.categoriesList =
-        //            [{name :'Science', content: [], prev:-6,next:0},
-        //            {name :'News', content: [], prev:-6,next:0},
-        //            {name :'Entertainment', content: [], prev:-6,next:0},
-        //            {name :'Sports', content: [], prev:-6,next:0}];
-        //    }
-        //
-        //
-        //
-        //}}
 
         function getUserCategories(){
             if($rootScope.loggedUser) {
-                if ($rootScope.categoriesList === undefined) {
                     categoriesList1 = [];
                     categories = $rootScope.loggedUser.categories;
                     for (var i = 0; i < categories.length; i++) {
@@ -42,7 +26,6 @@
                         categoriesList1.push(obj);
                     }
                     $rootScope.categoriesList = categoriesList1;
-                }
             }
             else{
                 $rootScope.categoriesList =
