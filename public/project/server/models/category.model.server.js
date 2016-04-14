@@ -31,6 +31,8 @@ module.exports = function (app,contentModel) {
     function getCategoryDetails(category,counter){
 
         category_data = contentModel.getCategoryData(category);
+        if (category_data.length == 0)
+            return [];
         content =[]
         var limit = parseInt(counter) + 30;
         for( var i=counter; i < limit ; i++) {

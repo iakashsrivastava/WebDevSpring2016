@@ -18,7 +18,8 @@
 
 
         function getUserCategories(){
-            if($rootScope.loggedUser) {
+            console.log('Hello');
+            if($rootScope.loggedUser && $rootScope.loggedUser.categories.length>0) {
                     categoriesList1 = [];
                     categories = $rootScope.loggedUser.categories;
                     for (var i = 0; i < categories.length; i++) {
@@ -34,6 +35,7 @@
                         {name :'Entertainment', content: [], prev:-6,next:0},
                         {name :'Sports', content: [], prev:-6,next:0}];
             }
+            console.log($rootScope.categoriesList);
         }
 
 

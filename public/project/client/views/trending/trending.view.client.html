@@ -1,3 +1,4 @@
+<!--Header-->
 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 fixed-position" style ='text-align: center;'>
     <h1>
         <img src="./views/trends/TwitterLogo.png" alt="logo" width="120px"/>
@@ -5,7 +6,8 @@
     </h1>
 </div>
 
-<div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+<!--Trends Bigger Device-->
+<div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
     <div class="fixed-content-row ">
         <div ng-repeat="location in locationsList track by $index" >
 
@@ -17,10 +19,10 @@
             <br>
             <!--<h4><label>{{timeStamps[0]}}</label></h4>-->
             <div class="panel panel-default">
-            <table class="table  table-hover table-striped">
+            <table class="table  table-hover table-condensed ">
                 <tbody>
                 <tr ng-repeat="t in location.content track by $index"
-                    ng-click="getTopicTweets(location.location , t.name)">
+                    ng-click="getTopicTweets(location.location , t.name,false)">
 
                     <th class="trend-name-color class-pointer">{{t.name}}</th>
                     <th class="trend-count-color class-pointer" ng-if=" t.tweet_volume != null ">{{t.tweet_volume}}
@@ -36,6 +38,40 @@
 
 
     </div></div>
+
+<!--Trends Smaller Device-->
+<div ng-if="!onlyTrends" class="col-sm-12 col-xs-12 visible-xs visible-sm">
+    <div class="fixed-content-row ">
+        <div ng-repeat="location in locationsList track by $index" >
+
+            <h3 style="margin-bottom: -15px;">
+                <label>
+                    {{location.location}}
+                </label>
+            </h3>
+            <br>
+            <!--<h4><label>{{timeStamps[0]}}</label></h4>-->
+            <div class="panel panel-default">
+                <table class="table  table-hover table-condensed ">
+                    <tbody>
+                    <tr ng-repeat="t in location.content track by $index"
+                        ng-click="getTopicTweets(location.location , t.name, true)">
+
+                        <th class="trend-name-color class-pointer">{{t.name}}</th>
+                        <th class="trend-count-color class-pointer" ng-if=" t.tweet_volume != null ">{{t.tweet_volume}}
+                            Tweets
+                        </th>
+                        <th class="trend-count-color class-pointer" ng-if=" t.tweet_volume == null "> New</th>
+                        <!--<th class="trend-count-color" >{{t.promoted_content}}</th>-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Tweets-->
 <div class="col-md-9 col-lg-9" >
         <span class="well fixed-content photos fixed-positionPopularTweets">
 
@@ -43,95 +79,19 @@
                     <blockquote class="twitter-tweet">
                         <a href=" https://twitter.com/{{ content.name}}/status/{{ content.id}}"/>
                     </blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    <br>
                 </div>
-
 
         </span>
 </div>
-<!--<blockquote class="twitter-tweet">-->
 
+<!--Tweets-->
+<div ng-if="onlyTrends" class="col-sm-12 col-xs-12 visible-xs visible-sm">
 
-<!--<p lang="es" dir="ltr">-->
-<!--Sin piedad; América golea a Xolos y apunta al liderato-->
-<!--<a href="https://t.co/ejuuszMCx5">pic.twitter.com/ejuuszMCx5</a>-->
-<!--</p>-->
-<!--&mdash; Diego Yamel (@Die_Yamel)-->
+        <div   ng-repeat="content in popularTweets track by $index">
+            <blockquote class="twitter-tweet">
+                <a href=" https://twitter.com/{{ content.name}}/status/{{ content.id}}"/>
+            </blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
 
-<!--<a href="https://twitter.com/Die_Yamel/status/718961226307530752">April 10, 2016</a>-->
-
-
-<!--</blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-
-
-<!--<blockquote class="twitter-tweet">-->
-<!--&lt;!&ndash;<a href="https://twitter.com/DaltonRapattoni/status/717719236752371712"></a>&ndash;&gt;-->
-<!--<a href="https://twitter.com/AashishKhetan/status/718712575320428544"></a>-->
-<!--</blockquote>-->
-<!---->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--</div>-->
-<!--<blockquote class="twitter-tweet"><p lang="es" dir="ltr">55&#39; Disparo de Paul Aguilar que el arquero rival detiene correctamente <a href="https://twitter.com/ClubAmerica">@ClubAmerica</a> 2-1 <a href="https://twitter.com/Xolos">@Xolos</a> <a href="https://twitter.com/hashtag/VamosAm%C3%A9rica?src=hash">#VamosAmérica</a></p>&mdash; Club América (@ClubAmerica) <a href="https://twitter.com/ClubAmerica/status/718940804757135360">April 9, 2016</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Sin piedad; América golea a Xolos y apunta al liderato</p>&mdash; Eduardo Camacho (@EduardoCmch) <a href="https://twitter.com/EduardoCmch/status/718961240593276928">April 10, 2016</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Club América 6-1 Xolos Tijuana <a href="https://t.co/32cFWopAZ8">pic.twitter.com/32cFWopAZ8</a></p>&mdash; Resultados Fútbol (@ScoresFutbol) <a href="https://twitter.com/ScoresFutbol/status/718949613860814848">April 9, 2016</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Sin piedad; América golea a Xolos y apunta al liderato <a href="https://t.co/b2ZV1Da2CU">https://t.co/b2ZV1Da2CU</a></p>&mdash; Eladio Rojas (@EladioRjs) <a href="https://twitter.com/EladioRjs/status/718961200181166080">April 10, 2016</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="es" dir="ltr">América goleó a Xolos en el regreso de Miguel Herrera al Azteca. Vaya recibimiento y agradecimiento le dio su ex equipo: 6-1</p>&mdash; Andre Marín (@andremarinpuig) <a href="https://twitter.com/andremarinpuig/status/718949892039675904">April 9, 2016</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Sin piedad; América golea a Xolos y apunta al liderato <a href="https://t.co/q8VZA9lNMN">https://t.co/q8VZA9lNMN</a></p>&mdash; Baltazar Aguilar (@BaltazarAglr) <a href="https://twitter.com/BaltazarAglr/status/718961228148772865">April 10, 2016</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-
-
-<!--<blockquote class="twitter-tweet">
-<p lang="es" dir="ltr">Sin piedad; América golea a Xolos y apunta al liderato <a href="https://t.co/ejuuszMCx5">pic.twitter.com/ejuuszMCx5</a></p>&mdash; Diego Yamel (@Die_Yamel) <a href="https://twitter.com/Die_Yamel/status/718961226307530752">April 10, 2016</a>
-</blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<div>-->
-<!--<video autoplay loop muted>-->
-<!--<source src="http://demosthenes.info/assets/videos/polina.webm" type="video/webm">-->
-<!--<source src="http://demosthenes.info/assets/videos/polina.mp4" type="video/mp4">-->
-<!--</video>-->
-<!--</div>-->
-<!--<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Not done yet! In his 2nd-to-last home game, Kobe leads all scorers with 17 Pts. Lakers lose to Clippers, 91-81. <a href="https://t.co/TFejjmbTnJ">pic.twitter.com/TFejjmbTnJ</a></p>&mdash; SportsCenter (@SportsCenter) <a href="https://twitter.com/SportsCenter/status/717936957985263616">April 7, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">No matter what happens over the next couple days; my heart is full and I thank you all from the bottom of it ❤️ <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a> Let&#39;s do this.</p>&mdash; Dalton Rapattoni (@DaltonRapattoni) <a href="https://twitter.com/DaltonRapattoni/status/717719236752371712">April 6, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Congratulations on an incredible show! Thank you for bringing us so much talent. <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a></p>&mdash; Ellen DeGeneres (@TheEllenShow) <a href="https://twitter.com/TheEllenShow/status/718259114162434050">April 8, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">We’re going to miss <a href="https://twitter.com/DaltonRapattoni">@DaltonRapattoni</a>’s performances on the Idol stage! <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a> 💔 <a href="https://t.co/OG0rnpYhEb">pic.twitter.com/OG0rnpYhEb</a></p>&mdash; American Idol (@AmericanIdol) <a href="https://twitter.com/AmericanIdol/status/717873096875638784">April 7, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">RETWEET if you&#39;re voting for <a href="https://twitter.com/laporsharenae">@laporsharenae</a> to win it all! <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a> <a href="https://t.co/TiVPtPG35j">pic.twitter.com/TiVPtPG35j</a></p>&mdash; American Idol (@AmericanIdol) <a href="https://twitter.com/AmericanIdol/status/717924348049301505">April 7, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">RETWEET if you could listen to <a href="https://twitter.com/laporsharenae">@laporsharenae</a> sing “Diamonds”  every second of every day! <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a> <a href="https://t.co/P8REMfWUs0">pic.twitter.com/P8REMfWUs0</a></p>&mdash; American Idol (@AmericanIdol) <a href="https://twitter.com/AmericanIdol/status/717878567766335490">April 7, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Watch <a href="https://twitter.com/DaltonRapattoni">@DaltonRapattoni</a> light the stage on fire with his performance of &quot;Strike A Match&quot;! 🔥 <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a><a href="https://t.co/WfqQKkYHbN">https://t.co/WfqQKkYHbN</a></p>&mdash; American Idol (@AmericanIdol) <a href="https://twitter.com/AmericanIdol/status/717883703746166784">April 7, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">We&#39;re so sad to see <a href="https://twitter.com/DaltonRapattoni">@DaltonRapattoni</a> go, but his talent will live on in Idol history! <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a> <a href="https://t.co/5tuTePLnBX">pic.twitter.com/5tuTePLnBX</a></p>&mdash; American Idol (@AmericanIdol) <a href="https://twitter.com/AmericanIdol/status/717917014593904640">April 7, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Don&#39;t miss the final crowning of the last American Idol! RETWEET if you&#39;ll be watching the <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a> with us. <a href="https://t.co/F0tTifi127">pic.twitter.com/F0tTifi127</a></p>&mdash; American Idol (@AmericanIdol) <a href="https://twitter.com/AmericanIdol/status/718075999653527552">April 7, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">And the final winner of American Idol is.... <a href="https://twitter.com/TrentWHarmon">@TrentWHarmon</a>! 🎉💙👏 <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a> <a href="https://t.co/ed2A2Dm8JZ">pic.twitter.com/ed2A2Dm8JZ</a></p>&mdash; American Idol (@AmericanIdol) <a href="https://twitter.com/AmericanIdol/status/718257530544267269">April 8, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">RETWEET if you&#39;re watching the <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a> right now on <a href="https://twitter.com/FOXTV">@FOXTV</a>! <a href="https://t.co/Lwx3SuEO3u">pic.twitter.com/Lwx3SuEO3u</a></p>&mdash; American Idol (@AmericanIdol) <a href="https://twitter.com/AmericanIdol/status/717864455967612928">April 6, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Hey <a href="https://twitter.com/JustinGuarini">@JustinGuarini</a> remember when they told us we were gonna sing this duet right before the show started 14 years ago hahaha!! <a href="https://twitter.com/hashtag/idolfinale?src=hash">#idolfinale</a></p>&mdash; Kelly Clarkson (@kelly_clarkson) <a href="https://twitter.com/kelly_clarkson/status/718229052981669889">April 8, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Tomorrow night it is ALL over. Get readyIdolTop2 <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a></p>&mdash; Jennifer Lopez (@JLo) <a href="https://twitter.com/JLo/status/717879603302244355">April 7, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Seeing so many folks at this season finale. Brings back a lot of memories with this good man here. <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a> <a href="https://t.co/z21RFAR6lf">pic.twitter.com/z21RFAR6lf</a></p>&mdash; David Archuleta (@DavidArchie) <a href="https://twitter.com/DavidArchie/status/718240073293152257">April 8, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">standing in the same spot 11 years ago watching <a href="https://twitter.com/carrieunderwood">@carrieunderwood</a> win <a href="https://twitter.com/AmericanIdol">@AmericanIdol</a> <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a> <a href="https://t.co/idihUefFQe">pic.twitter.com/idihUefFQe</a></p>&mdash; Ryan Seacrest (@RyanSeacrest) <a href="https://twitter.com/RyanSeacrest/status/718256161699586048">April 8, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<blockquote class="twitter-tweet"><p lang="en" dir="ltr">RETWEET if you&#39;re voting for <a href="https://twitter.com/TrentWHarmon">@TrentWHarmon</a> to win it all! <a href="https://twitter.com/hashtag/IdolFinale?src=hash">#IdolFinale</a> <a href="https://t.co/t1LbLTrOAx">pic.twitter.com/t1LbLTrOAx</a></p>&mdash; American Idol (@AmericanIdol) <a href="https://twitter.com/AmericanIdol/status/717923334520852481">April 7, 2016</a></blockquote>-->
-<!--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
+    <i class="fa fa-arrow-left" aria-hidden="true" ng-click="backToTrends()"></i>
+</div>

@@ -46,7 +46,6 @@
                         }
                     }
                     else {
-                        console.log(response);
                         content = {
 
                             items: response,
@@ -65,8 +64,28 @@
             var deferred = $q.defer();
             $http.get('/api/detail/category/'+category +'/page/'+page)
                 .success(function(response){
+                    if(response.length ==0){
+                        console.log(category);
+                        SearchService.getSearchDataforDetailContent(category,page,render);
 
-                    deferred.resolve(response);
+                        function render(response) {
+                            //$scope.data = response.list;
+                            console.log(response.list);
+                            items =[]
+                            for(var k=0; k<30;k++){
+                                var obj ={
+                                    id: response.list[k].id,
+                                    picture: response.list[k].thumbnail_url,
+                                    title: response.list[k].title
+                                }
+                                items.push(obj);
+                            }
+                            deferred.resolve(items);
+                        }
+                    }
+                    else
+                        deferred.resolve(response);
+                    //deferred.resolve(content);
                 });
 
             return deferred.promise;

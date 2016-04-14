@@ -11,6 +11,8 @@
         $scope.popularTweets ='';
         $scope.loadTrends = loadTrends;
         $scope.getTopicTweets =getTopicTweets;
+        $scope.onlyTrends = false;
+        $scope.backToTrends = backToTrends;
         var count =0;
 
         $scope.locationsList =
@@ -35,7 +37,8 @@
         function loadTrends() {
 
             console.log('loadTrends');
-            for (var i = count; i < count+3; i++) {
+            for (var i = 0; i < $scope.locationsList.length; i++) {
+                console.log()
                 TrendsService.getTopLocationTrends($scope.locationsList[i].location,i).then(
                     function (response) {
                         var counter = response.counter;
@@ -45,8 +48,11 @@
             count = count+4;
         }
 
-        function getTopicTweets(location, topic){
-            $scope.popularTweets =''
+        function getTopicTweets(location, topic, smallerDevice){
+            if(smallerDevice)
+                $scope.onlyTrends = true;
+
+            $scope.popularTweets =[];
             TrendsService.getTopicTweets(location,topic).then(
                 function (response) {
                     $scope.popularTweets = response.content;
@@ -72,10 +78,9 @@
             return $sce.trustAsHtml(src);
         }
 
-
-
-
-
+        function backToTrends(){
+            $scope.onlyTrends = false;
+        }
     }
 
 

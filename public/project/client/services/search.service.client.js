@@ -12,10 +12,12 @@
         var url ='https://api.dailymotion.com/videos?fields=id,thumbnail_url,title,&search=';
         var limit = '&limit=50';
         var limitforHomeContent = '&limit=6';
+        var limitforDetailContent = '&limit=30';
         var page = '&page='
         var api = {
             getSearchData: getSearchData,
-            getSearchDataforHomeContent:getSearchDataforHomeContent
+            getSearchDataforHomeContent:getSearchDataforHomeContent,
+            getSearchDataforDetailContent:getSearchDataforDetailContent
         };
         var userCategory=[];
 
@@ -31,6 +33,13 @@
             counter = counter/6 +1;
             console.log(url + category + page + limitforHomeContent);
             $http.get(url + category + page + counter+limitforHomeContent)
+                .success(callback);
+        }
+
+        function getSearchDataforDetailContent(category,counter,callback){
+            counter = counter/30 +1;
+            console.log(url + category + page + limitforDetailContent);
+            $http.get(url + category + page + counter+limitforDetailContent)
                 .success(callback);
         }
 

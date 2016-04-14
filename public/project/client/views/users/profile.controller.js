@@ -15,6 +15,17 @@
         $scope.updateCategory = updateCategory;
         $scope.addNewCategory =addNewCategory;
 
+        //==========
+
+        $scope.items = ["One", "Two", "Three"];
+        $scope.print = print;
+
+
+
+
+
+
+        //================
         function update(loggedUser) {
 
             UserService.updateUser(loggedUser._id,loggedUser).then(
@@ -31,35 +42,34 @@
         }
 
         function loadUserCategories(){
-            if($rootScope.loggedUser){
+            var categoryList = $rootScope.loggedUser.categories;
 
-                $scope.categories = [
-                    { name: 'News',    selected: true },
-                    { name: 'Science',   selected: true },
-                    { name: 'Entertainment',     selected: true },
-                    { name: 'Sports', selected: true }
-                ];
+            if(categoryList.length>0){
+                var userCategories =[];
+                for( var j=0; j<categoryList.length ;j++){
+                    var obj = {
+                        name: categoryList[j],
+                        selected: true
+                    }
+                    console.log(obj);
+                    userCategories.push(obj);
+                }
+                $scope.categories = userCategories;
             }
             else{
                 $scope.categories = [
-                    { name: 'News',    selected: true },
-                    { name: 'Science',   selected: true },
-                    { name: 'Entertainment',     selected: true },
-                    { name: 'Sports', selected: true }
+                    { name: 'News',    selected: true, position: 1 },
+                    { name: 'Science',   selected: true, position: 2 },
+                    { name: 'Entertainment',     selected: true,position: 3 },
+                    { name: 'Sports', selected: true, position: 4 }
                 ];
             }
         }
         loadUserCategories();
 
-        $scope.categories = [
-            { name: 'News',    selected: true },
-            { name: 'Science',   selected: true },
-            { name: 'Entertainment',     selected: true },
-            { name: 'Sports', selected: false }
-        ];
-
         // selected fruits
         $scope.selection = [];
+
 
         // helper method to get selected fruits
         $scope.selectedCategories = function selectedCategories() {
@@ -76,6 +86,7 @@
         function updateCategory() {
             //console.log($rootScope.loggedUser);
             $rootScope.loggedUser.categories = $scope.selection;
+            console.log($scope.selection);
             UserService.updateUser($rootScope.loggedUser._id,$rootScope.loggedUser).then(
                 function(response){
                     //$rootScope.loggedUser = response;
@@ -94,10 +105,6 @@
             }
             $scope.categories.push(newCategory);
         }
-
-
-
-
 
     }
 
