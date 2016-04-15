@@ -50,16 +50,16 @@ module.exports = function(app, userModel) {
 
     app.get   ('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
-    app.get   ('/auth/google/callback',
+    app.get   ('/project/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: 'project/client/index.html#/profile',
+            successRedirect: '/project/client/index.html#/profile',
             failureRedirect: '/#/login'
         }));
 
     app.get   ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-    app.get('/auth/facebook/callback',
+    app.get('/project/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: 'project/client/index.html#/profile',
+            successRedirect: '/project/client/index.html#/profile',
             failureRedirect: '/#/login'
         }));
 
