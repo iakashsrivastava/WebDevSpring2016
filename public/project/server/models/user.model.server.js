@@ -46,7 +46,7 @@ module.exports = function(db,mongoose) {
 
         // use q to defer the response
         var deferred = q.defer();
-
+        console.log(user);
         // insert new user with mongoose user model's create()
         UserModel.create(user, function (err, doc) {
 

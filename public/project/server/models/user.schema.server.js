@@ -15,8 +15,7 @@ module.exports = function(mongoose) {
         password:String,
         firstName: String,
         lastName: String,
-        emails: [String],
-        phones: [String],
+        emails: String,
         google:   {
             id:    String,
             token: String

@@ -206,7 +206,21 @@ video {
 }
 
 .allignGlyphicons{
-    margin-top: -5px;
+    margin-top: -10px;
+    padding-right: 12px; !important;
+}
+
+.categoryLeftpadding{
+    padding-left: 20px;
+}
+
+.newCategoryGlyphicon{
+    pointer-events: auto;
+    cursor: pointer;
+    font-size: 32px;
+    margin-left: -20px;
+    margin-top: 11px;
+    margin-right: 12px;
 }
 
 

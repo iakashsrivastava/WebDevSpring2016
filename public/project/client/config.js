@@ -19,6 +19,7 @@
                     loggedin: checkCurrentUser
                 }
             })
+
             .when("/details/:Id/:Source",{
                 templateUrl: "./views/detail/detail.view.html",
                 controller:"DetailsController",
@@ -26,13 +27,21 @@
                     loggedin: checkCurrentUser
                 }
             })
+
             .when("/search/:query",{
                 templateUrl: "./views/Search/search.view.html",
-                controller:"SearchController"
+                controller:"SearchController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
             })
+
             .when("/category/:category",{
                 templateUrl: "./views/category/category.view.html",
-                controller:"CategoryController"
+                controller:"CategoryController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
             })
 
             .when("/profile",{
@@ -56,18 +65,27 @@
 
             .when("/personalise",{
                 templateUrl: "./views/personalise/personalise.view.html",
-                controller: "PersonaliseController"
+                controller: "PersonaliseController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
 
             })
 
             .when("/trends",{
                 templateUrl: "./views/trends/trends.view.client.html",
-                controller:"TrendsController"
+                controller:"TrendsController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
             })
 
             .when("/trending",{
                 templateUrl: "views/trending/trending.view.client.html",
-                controller:"TrendingController"
+                controller:"TrendingController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
             })
 
             .when("/admin",{

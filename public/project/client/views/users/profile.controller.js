@@ -18,6 +18,8 @@
         $scope.print = print;
         $scope.undoCategory = undoCategory;
 
+        $scope.showProfile =
+
         function update(loggedUser) {
 
             UserService.updateUser(loggedUser._id,loggedUser).then(
@@ -92,12 +94,19 @@
             );
         }
 
+
         function addNewCategory(newUserCategory){
-            var newCategory ={
-                name: newUserCategory,
-                selected: true
+            $scope.hasError='has-error';
+            if(newUserCategory){
+                var newCategory ={
+                    name: newUserCategory,
+                    selected: true,
+                    position: $scope.categories.length +1,
+                    color:{}
+                }
+                $scope.categories.push(newCategory);
+                $scope.newCategory='';
             }
-            $scope.categories.push(newCategory);
         }
 
         function removeCategory(category){
