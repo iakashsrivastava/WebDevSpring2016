@@ -1,5 +1,15 @@
 <div ng-init="searchData()"></div>
 
+<h1 class="categoryLabeltoContent">
+    <label class="alignCategoriesWithContentName">
+        {{searchItem}}
+    </label>
+</h1>
+
+<div ng-show="showSpinner">
+    <span us-spinner></span>
+</div>
+
 <div ng-repeat="d in data">
     <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
         <div class="thumbnail" ng-click="gotoDetailPage(d.id)"><a style="cursor: pointer">

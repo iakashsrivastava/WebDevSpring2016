@@ -23,24 +23,46 @@
 
     </h4>
 
-    <textarea name="Text1" cols="40" rows="5" placeholder='Add Comments' ng-model="comment"></textarea>
-    <input class="btn btn-default" type="submit" value="Post Comment" ng-click="addComment(comment)">
-
     <h3>
         <label>
-            Comments:
+            Comments ( {{ commentsLength }} )
         </label>
     </h3>
+
+
     <div class="table-responsive">
         <table class="table table-striped">
                 <tr ng-repeat="comment in comments">
                     <td>
                          <label>{{comment.name}}</label>
                         <br>
-                                 {{comment.comments}}
+                        {{comment.comments}}
                     </td>
                 </tr>
         </table>
     </div>
+
+    <div ng-show="noComment && !loggedUser">
+        <h4>
+            <label>
+                <i>No comments to display, login to post comments</i>
+            </label>
+        </h4>
+    </div>
+
+    <div ng-show="noComment && loggedUser">
+        <h4>
+            <label>
+                <i>No comments to display</i>
+            </label>
+        </h4>
+    </div>
+
+    <div ng-show="loggedUser">
+        <textarea name="Text1" class="form-control" placeholder='Add Comments' ng-model="comment"></textarea>
+        <br>
+        <input class="btn btn-primary pull-right" type="submit" value="Post Comment" ng-click="addComment(comment)">
+    </div>
+
 </div>
 

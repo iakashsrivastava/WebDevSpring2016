@@ -8,28 +8,32 @@
     <!--<i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>-->
 <div ng-init="getUserCategories()"></div>
 <div ng-init="getHomeContent()"></div>
-<!--<div ng-if="!data && !entertaintmentdata">-->
-<!--<span us-spinner></span>-->
-<!--</div>-->
+
+
+<div ng-show="showSpinner">
+<span us-spinner></span>
+</div>
 
 <div ng-repeat="category in categoriesList">
-
-    <h4><label ng-click="getCategoryDetails(category.name)" class="class-pointer highlight-text ">
+    <h1 class="categoryLabeltoContent"><label ng-click="getCategoryDetails(category.name)" class="class-pointer highlight-text alignCategoriesWithContentName">
         {{category.name}}
     </label>
-        <!--<i class="fa fa-arrow-right pull-right fa-2x" ng-click="categoryNext(category.name)"></i>-->
-        <!--<i class="fa fa-arrow-left pull-right fa-2x" ng-click="categoryPrevious(category.name)" ng-show="category.prev >= 0"></i>-->
+
+        <i class="fa fa-arrow-right pull-right fa-1x navigationalNext highlight-text-fonts class-pointer" ng-click="categoryNext(category.name)" ng-show="category.next <= 48"></i>
+        <i class="fa fa-arrow-left pull-right fa-1x navigationalPrevious highlight-text-fonts class-pointer" ng-click="categoryPrevious(category.name)" ng-show="category.prev >= 0"></i>
 
 
-        <button type="button" class="fa fa-arrow-right pull-right fa-1x" ng-click="categoryNext(category.name)">Next</button>
-        <button type="button" class="fa fa-arrow-left pull-right fa-1x" ng-click="categoryPrevious(category.name)" ng-show="category.prev >= 0">Previous</button>
+        <!--<button type="button" class="fa fa-arrow-right pull-right fa-1x" ng-click="categoryNext(category.name)">Next</button>-->
+        <!--<button type="button" class="fa fa-arrow-left pull-right fa-1x" ng-click="categoryPrevious(category.name)" ng-show="category.prev >= 0">Previous</button>-->
 
         <!--<button type="button" class="btn btn-primary button-prev-right" ng-click="categoryPrevious(category.name)" ng-show="category.prev >= 0">Previous</button>-->
         <!--<button type="button" class="btn btn-primary button-next-right" ng-click="categoryNext(category.name)">Next</button>-->
-    </h4>
+    </h1>
 
     <!--<span ng-class=" {'active':$location.url() =='/home'} " ><a class="navbar-brand" href="#/home">Mashup</a></span>-->
+
     <div  ng-repeat="d in category.content track by $index">
+
         <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
             <div class="thumbnail" ng-click="gotoDetailPage(d.id)">
                 <a class="class-pointer">
@@ -39,6 +43,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 
 <!--</li>-->

@@ -16,6 +16,8 @@
         $scope.categoryPrevious = categoryPrevious;
         $scope.getUserCategories = getUserCategories;
 
+        $scope.showSpinner = true;
+
 
         function getUserCategories(){
             console.log('Hello');
@@ -54,9 +56,12 @@
                     function(response){
                         var counter = response.counter;
                         $rootScope.categoriesList[counter].content = response.items;
+                        $scope.showSpinner = false;
                     });
                 //$rootScope.categoriesList[i].next = $rootScope.categoriesList[i].next + 6;
             }
+
+
         }
 
         function categoryNext(category){

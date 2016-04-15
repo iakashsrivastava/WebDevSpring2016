@@ -1,80 +1,86 @@
-    <!--<h1 class="page-header">Profile</h1>-->
+    <h1 class="page-header">Profile</h1>
 
-    <!--<form class="form-horizontal admin-table-nowrap">-->
-    <!--<div class="form-group">-->
-        <!--<label for="inputUserName" class="col-sm-2 control-label ">Username</label>-->
-        <!--<div class="col-sm-10">-->
-            <!--<input type="text" class="form-control" id="inputUserName" placeholder="Username" ng-model='loggedUser.username'>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-        <!--<label for="inputPassword" class="col-sm-2 control-label ">Password</label>-->
-        <!--<div class="col-sm-10">-->
-            <!--<input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model='loggedUser.password'>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-        <!--<label for="inputFirstName" class="col-sm-2 control-label nowrap">First Name</label>-->
-        <!--<div class="col-sm-10">-->
-            <!--<input type="text" class="form-control" id="inputFirstName" placeholder="First Name" ng-model='loggedUser.firstName'>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-        <!--<label for="inputlastName" class="col-sm-2 control-label nowrap">Last Name</label>-->
-        <!--<div class="col-sm-10">-->
-            <!--<input type="text" class="form-control" id="inputlastName" placeholder="Last Name" ng-model='loggedUser.lastName'>-->
-        <!--</div>-->
-    <!--</div>-->
+    <form class="form-horizontal admin-table-nowrap">
+    <div class="form-group">
+        <label for="inputUserName" class="col-sm-2 control-label ">Username</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputUserName" placeholder="Username" ng-model='loggedUser.username'>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label ">Password</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model='loggedUser.password'>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputFirstName" class="col-sm-2 control-label nowrap">First Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" ng-model='loggedUser.firstName'>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputlastName" class="col-sm-2 control-label nowrap">Last Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputlastName" placeholder="Last Name" ng-model='loggedUser.lastName'>
+        </div>
+    </div>
 
-    <!--<div class="form-group">-->
-        <!--<label for="inputEmail" class="col-sm-2 control-label ">Email</label>-->
-        <!--<div class="col-sm-10">-->
-            <!--<input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model='loggedUser.emails'>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="form-group">
+        <label for="inputEmail" class="col-sm-2 control-label ">Email</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model='loggedUser.emails'>
+        </div>
+    </div>
 
 
-    <!--<div class="form-group">-->
-        <!--<div class="col-sm-offset-2 col-sm-10">-->
-            <!--<button type="submit" class="btn btn-block btn-primary" ng-click="update(loggedUser)">Update</button>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--</form>-->
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-block btn-primary" ng-click="update(loggedUser)">Update</button>
+        </div>
+    </div>
+    </form>
 
     <h1 class="page-header">Categories</h1>
 
-    <label ng-repeat="category in categories">
+    <!--<ul ui-sortable class="well" ng-model="categories">-->
 
-        <input
-                type="checkbox"
-                name="selectedCategories[]"
-                value="{{category.name}}"
-                ng-model="category.selected"
-        > {{category.name}}
-    </label>
+        <!--<li ui-sortable="sortableOptions" class= "well personalisecCategories draggable-sign" ng-repeat="category in categories">-->
+            <!--<input-->
+                    <!--type="checkbox"-->
+                    <!--name="selectedCategories[]"-->
+                    <!--value="{{category.name}}"-->
+                    <!--ng-model="category.selected"-->
+            <!--&gt;-->
+            <!--<h4><label>{{category.name}}</label></h4>-->
+            <!--<i class="fa fa-trash-o fa-2x" aria-hidden="true" ng-click="removeCategory(category.name)"></i>-->
+        <!--</li>-->
 
-    <input type="text" placeholder="Add New Category" ng-model="newCategory">
-    <button type="submit" class="btn btn-primary" ng-click="addNewCategory(newCategory)">Add</button>
+        <!--<input type="text" class="" placeholder="Add New Category" ng-model="newCategory">-->
+        <!--<button type="submit" class="btn btn-primary fa fa-plus  " ng-click="addNewCategory(newCategory)"></button>-->
+    <!--</ul>-->
 
-    <button type="submit" class="btn btn-block btn-primary" ng-click="updateCategory()">Update</button>
+    <!--<button type="submit" class="btn btn-block btn-primary" ng-click="updateCategory()">Update</button>-->
 
-    {{selection}}
+    <ul ui-sortable class="well removeBullets" ng-model="categories" >
 
-    <ul ui-sortable class="well" ng-model="categories">
-
-        <li ui-sortable="sortableOptions" class= "well" ng-repeat="category in categories">
-            <input
-                    type="checkbox"
-                    name="selectedCategories[]"
-                    value="{{category.name}}"
-                    ng-model="category.selected"
-            > {{category.name}}
+        <li ui-sortable="sortableOptions" class= "well personalisecCategories draggable-sign categoriesWell" ng-repeat="category in categories">
+            <h4 >
+                <i class="fa fa-ellipsis-v fa-1x" aria-hidden="true"></i>
+                <i class="fa fa-ellipsis-v fa-1x" aria-hidden="true"></i>
+                <label ng-style="category.color" >{{category.name}}</label>
+                <i ng-show= "category.selected" class="fa fa-trash-o fa-2x pull-right highlight-text-fonts class-pointer" aria-hidden="true" ng-click="removeCategory(category.name)"></i>
+                <i ng-show= "!category.selected" class="fa fa-undo fa-2x pull-right highlight-text-fonts class-pointer" aria-hidden="true" ng-click="undoCategory(category.name)"></i>
+            </h4>
         </li>
 
-        <input type="text" placeholder="Add New Category" ng-model="newCategory">
+        <input type="text" class="form-control " placeholder="Add New Category" ng-model="newCategory">
+        <button type="submit" class="btn btn-primary fa fa-plus  " ng-click="addNewCategory(newCategory)"></button>
     </ul>
 
-    <button type="submit" class="btn btn-block btn-primary" ng-click="print()">Update</button>
+    <button type="submit" class="btn btn-block btn-primary" ng-click="updateCategory()">Update</button>
+    <!--<button type="submit" class="btn btn-block btn-primary" ng-click="print()">Update</button>-->
+
 
 
 

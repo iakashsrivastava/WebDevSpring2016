@@ -14,18 +14,10 @@
         $scope.update = update;
         $scope.updateCategory = updateCategory;
         $scope.addNewCategory =addNewCategory;
-
-        //==========
-
-        $scope.items = ["One", "Two", "Three"];
+        $scope.removeCategory =removeCategory;
         $scope.print = print;
+        $scope.undoCategory = undoCategory;
 
-
-
-
-
-
-        //================
         function update(loggedUser) {
 
             UserService.updateUser(loggedUser._id,loggedUser).then(
@@ -35,10 +27,10 @@
                       //  $scope.loggedUser = loggedUser;
 
                     },
-                    function(err) {
-                        $scope.error = err;
-                    }
-                );
+                function(err) {
+                    $scope.error = err;
+                }
+            );
         }
 
         function loadUserCategories(){
@@ -49,7 +41,9 @@
                 for( var j=0; j<categoryList.length ;j++){
                     var obj = {
                         name: categoryList[j],
-                        selected: true
+                        selected: true,
+                        position: j+1,
+                        color:{}
                     }
                     console.log(obj);
                     userCategories.push(obj);
@@ -58,10 +52,10 @@
             }
             else{
                 $scope.categories = [
-                    { name: 'News',    selected: true, position: 1 },
-                    { name: 'Science',   selected: true, position: 2 },
-                    { name: 'Entertainment',     selected: true,position: 3 },
-                    { name: 'Sports', selected: true, position: 4 }
+                    { name: 'News',    selected: true, position: 1, color:{} },
+                    { name: 'Science',   selected: true, position: 2, color:{} },
+                    { name: 'Entertainment',     selected: true,position: 3, color:{} },
+                    { name: 'Sports', selected: true, position: 4, color:{} }
                 ];
             }
         }
@@ -105,6 +99,31 @@
             }
             $scope.categories.push(newCategory);
         }
+
+        function removeCategory(category){
+            for(var j=0; j<$scope.categories.length; j++){
+                if(category === $scope.categories[j].name) {
+                    $scope.categories[j].selected = false;
+                    $scope.categories[j].color = {"color": "red"};
+                }
+            }
+        }
+
+        function undoCategory(category){
+            for(var j=0; j<$scope.categories.length; j++){
+                if(category === $scope.categories[j].name) {
+                    $scope.categories[j].selected = true;
+                    $scope.categories[j].color = {};
+                }
+            }
+        }
+
+        function print(){
+            console.log(JSON.stringify($scope.categories));
+            console.log(JSON.stringify($scope.selection));
+        }
+
+
 
     }
 

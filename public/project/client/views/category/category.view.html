@@ -1,7 +1,12 @@
 <div ng-init="getCategoryDetails()"></div>
 <div ng-init="getDocHeight()"></div>
 
-<h4><label>{{detailedContent.name}}</label></h4>
+<h1 class="categoryLabeltoContent">
+    <label class="class-pointer highlight-text alignCategoriesWithContentName">
+    {{detailedContent.name}}
+</label>
+</h1>
+
 <div ng-repeat="content in detailedContent.content">
     <div ng-repeat="d in content">
         <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
@@ -14,5 +19,9 @@
     </div>
 </div>
 
+<div ng-show="showSpinnerBottom">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+    <span class="sr-only">Loading...</span>
+</div>
 
 

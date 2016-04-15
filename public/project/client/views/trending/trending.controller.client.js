@@ -13,6 +13,7 @@
         $scope.getTopicTweets =getTopicTweets;
         $scope.onlyTrends = false;
         $scope.backToTrends = backToTrends;
+        $scope.showSpinner = true;
         var count =0;
 
         $scope.locationsList =
@@ -49,6 +50,7 @@
         }
 
         function getTopicTweets(location, topic, smallerDevice){
+            $scope.showSpinner = true;
             if(smallerDevice)
                 $scope.onlyTrends = true;
 
@@ -57,7 +59,16 @@
                 function (response) {
                     $scope.popularTweets = response.content;
                 });
+
+            setTimeout(function () {
+                $scope.$apply(function(){
+                    $scope.showSpinner = false;
+                });
+            }, 2000);
+
         }
+
+
 
         angular.element($window).bind("scroll", function() {
             var windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;

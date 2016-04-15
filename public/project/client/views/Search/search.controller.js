@@ -11,6 +11,8 @@
 
         $scope.searchData = searchData;
         $scope.gotoDetailPage =gotoDetailPage;
+        $scope.searchItem = $routeParams.query;
+        $scope.showSpinner = true;
 
         var query = $routeParams.query;
 
@@ -24,7 +26,9 @@
 
             function render(response) {
                 $scope.data = response.list;
+                $scope.showSpinner =false;
             }
+
 
         }
     }

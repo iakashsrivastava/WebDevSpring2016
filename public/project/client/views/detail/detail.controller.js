@@ -13,6 +13,11 @@
         var postId = $routeParams.Id;
         var source = $routeParams.Source;
 
+        if(loggedUser)
+            $scope.userLoggedIn = true;
+        else
+            $scope.userLoggedIn = false;
+
         $scope.favorite=favorite;
         $scope.addComment =addComment;
 
@@ -22,9 +27,17 @@
                 .then(function(response){
                     if(response.data)
                         $scope.comments = response.data.comments;
-                    else
+                    else {
                         $scope.comments = [];
+                    }
+                    $scope.commentsLength = $scope.comments.length;
+
+                    if($scope.commentsLength === 0)
+                        $scope.noComment = true
+                    else
+                        $scope.noComment = false;
                 });
+
         }
 
         getComments();
@@ -99,7 +112,6 @@
         }
 
         function addComment(comment) {
-            console.log(loggedUser.firstName);
             if(loggedUser) {
                 var article ={};
                 $scope.comments.push({id :loggedUser._id,
