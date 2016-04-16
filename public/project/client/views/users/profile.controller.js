@@ -18,7 +18,36 @@
         $scope.print = print;
         $scope.undoCategory = undoCategory;
 
-        $scope.showProfile =
+        $scope.showProfile = false;
+        $scope.showProfileDiv = showProfileDiv;
+
+        $scope.showCategories =false;
+        $scope.showCategoriesDiv = showCategoriesDiv;
+
+        function showProfileDiv(){
+            if ($scope.showProfile == true){
+
+                $scope.showProfile = false;
+                $scope.showCategories =false;
+            }
+            else{
+                $scope.showProfile = true;
+                $scope.showCategories =false;
+            }
+        }
+
+        function showCategoriesDiv(){
+            if ($scope.showCategories == true){
+
+                $scope.showProfile = false;
+                $scope.showCategories =false;
+            }
+            else{
+                $scope.showProfile = false;
+                $scope.showCategories = true;
+            }
+        }
+
 
         function update(loggedUser) {
 

@@ -1,72 +1,60 @@
-    <h1 class="page-header">Profile</h1>
+<div ng-click="showProfileDiv()">
+    <h1 class="page-header" >Personal Information</h1>
+</div>
 
-    <form class="form-horizontal admin-table-nowrap" ng-show="showProfile">
-    <div class="form-group">
-        <label for="inputUserName" class="col-sm-2 control-label ">Username</label>
-        <div class="col-sm-10">
+<div ng-show="showProfile">
+    <div class="well">
+
+        <h4 style="margin-top: -8px;"><label>Username</label></h4>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-user"></span>
+            </span>
             <input type="text" class="form-control" id="inputUserName" placeholder="Username" ng-model='loggedUser.username'>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="inputPassword" class="col-sm-2 control-label ">Password</label>
-        <div class="col-sm-10">
+        <h4><label>Password</label></h4>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-lock"></span>
+            </span>
             <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model='loggedUser.password'>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="inputFirstName" class="col-sm-2 control-label nowrap">First Name</label>
-        <div class="col-sm-10">
+        <h4><label>First Name</label></h4>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-font"></span>
+            </span>
             <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" ng-model='loggedUser.firstName'>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="inputlastName" class="col-sm-2 control-label nowrap">Last Name</label>
-        <div class="col-sm-10">
+        <h4><label>Last Name</label></h4>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-font"></span>
+            </span>
             <input type="text" class="form-control" id="inputlastName" placeholder="Last Name" ng-model='loggedUser.lastName'>
         </div>
-    </div>
-
-    <div class="form-group">
-        <label for="inputEmail" class="col-sm-2 control-label ">Email</label>
-        <div class="col-sm-10">
+        <h4><label>Email</label></h4>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-envelope"></span>
+            </span>
             <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model='loggedUser.emails'>
         </div>
     </div>
 
+    <button type="submit" class="btn btn-block btn-primary" ng-click="update(loggedUser)">Update</button>
+</div>
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-block btn-primary" ng-click="update(loggedUser)">Update</button>
-        </div>
-    </div>
-    </form>
+<div ng-click="showCategoriesDiv()" >
+    <h1 class="page-header">Personalize Feed</h1>
+</div>
 
-    <h1 class="page-header">Categories</h1>
+<div ng-show="showCategories">
 
-    <!--<ul ui-sortable class="well" ng-model="categories">-->
-
-        <!--<li ui-sortable="sortableOptions" class= "well personalisecCategories draggable-sign" ng-repeat="category in categories">-->
-            <!--<input-->
-                    <!--type="checkbox"-->
-                    <!--name="selectedCategories[]"-->
-                    <!--value="{{category.name}}"-->
-                    <!--ng-model="category.selected"-->
-            <!--&gt;-->
-            <!--<h4><label>{{category.name}}</label></h4>-->
-            <!--<i class="fa fa-trash-o fa-2x" aria-hidden="true" ng-click="removeCategory(category.name)"></i>-->
-        <!--</li>-->
-
-        <!--<input type="text" class="" placeholder="Add New Category" ng-model="newCategory">-->
-        <!--<button type="submit" class="btn btn-primary fa fa-plus  " ng-click="addNewCategory(newCategory)"></button>-->
-    <!--</ul>-->
-
-    <!--<button type="submit" class="btn btn-block btn-primary" ng-click="updateCategory()">Update</button>-->
-    <div class="col-lg-2 col-md-2 col-sm-2"></div>
-
-    <ul ui-sortable class="well removeBullets col-lg-10 col-md-10 col-sm-10" ng-model="categories" >
+    <ul ui-sortable class="well removeBullets" ng-model="categories" >
 
         <li ui-sortable="sortableOptions" class= "well personalisecCategories draggable-sign categoriesWell" ng-repeat="category in categories">
-            <h3 >
+            <h3>
                 <i class="glyphicon glyphicon-tags categoryLeftpadding" aria-hidden="true"></i>
                 <label ng-style="category.color" >{{category.name}}</label>
                 <i ng-show= "category.selected" class="fa fa-trash-o fa-2x pull-right highlight-text-fonts class-pointer allignGlyphicons" aria-hidden="true" ng-click="removeCategory(category.name)"></i>
@@ -81,14 +69,12 @@
             <i class="glyphicon glyphicon-plus form-control-feedback highlight-text-fonts class-pointer newCategoryGlyphicon" ng-click="addNewCategory(newCategory)" ></i>
         </div>
 
-
-
-        <!--<button type="submit" class="btn btn-primary fa fa-plus  " ng-click="addNewCategory(newCategory)"></button>-->
     </ul>
 
     <button type="submit" class="btn btn-block btn-primary" ng-click="updateCategory()">Update</button>
     <!--<button type="submit" class="btn btn-block btn-primary" ng-click="print()">Update</button>-->
 
+</div>
 
 
 
