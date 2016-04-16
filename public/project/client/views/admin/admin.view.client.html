@@ -1,8 +1,4 @@
 <br>
 <br>
 
-<div ui-grid="gridallUsers" class="grid"></div>
-
-<p>Model: {{selectedNumber|json}}</p>
-<input class='typeahead' type="text" sf-typeahead options="exampleOptions" datasets="numbersDataset" ng-model="selectedNumber">
-<input class='typeahead' type="text" sf-typeahead options="exampleOptions" datasets="multiExample" ng-model="selectedNumber1">
+<div ui-grid="gridallUsers" ui-grid-pagination class="grid"></div>

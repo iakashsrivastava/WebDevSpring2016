@@ -9,6 +9,26 @@
         </iframe>
     </div>
 
+    <div>
+        <a twitter data-count='horizontal' data-url='{{url}}'  data-size="medium" data-text='{{text}}' ></a>
+        <br /><br />
+        <div class="linkedinShare" linkedin data-url='{{url}}' data-title='{{title}}' data-summary="{{text}}" data-shares='linkedinshares'>{{linkedinshares}}</div>
+        <br /><br />
+        <div gplus data-size="tall" data-annotation="bubble" data-href='{{url}}' data-action='share'></div>
+
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=1077257479013987";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+
+        <div class="fb-share-button" data-href='https://www.youtube.com/watch?v=wxkdilIURrU' data-layout="button_count" data-mobile-iframe="true"></div>
+    </div>
+
 
     <button class="btn btn-primary"
             ng-click="favorite(data)">

@@ -7,7 +7,7 @@
         .module("SocialMashup")
         .controller("DetailsController",DetailsController);
 
-    function DetailsController(DetailService,DMDetailService, $scope,$routeParams,$sce,ArticleService,$rootScope,$location) {
+    function DetailsController(DetailService,DMDetailService, $scope,$routeParams,$sce,ArticleService,$rootScope,$location,$timeout) {
 
         var loggedUser = $rootScope.loggedUser;
         var postId = $routeParams.Id;
@@ -137,6 +137,12 @@
                 $location.url("/login");
             }
         }
+
+        $timeout(function(){
+            $scope.url = 'https://www.youtube.com/watch?v=wxkdilIURrU';
+            $scope.text = 'testing second share';
+            $scope.title = 'title2';
+        },1000)
 
     }
 

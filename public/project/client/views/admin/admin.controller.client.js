@@ -7,48 +7,73 @@
         .module("SocialMashup")
         .controller("AdminController",AdminController);
 
-    function AdminController(UserService,$scope) {
+    function AdminController(UserService,$scope,$timeout) {
 
         $scope.gridallUsers = {
             enableFiltering: true,
+            paginationPageSizes: [10, 25, 50, 75, 100, 1000],
+            paginationPageSize: 10,
             columnDefs: [
                 {
                     name: 'Id',
                     field: '_id'
                 }, {
-                    name: 'username',
+                    name: 'UserName',
                     field: 'username'
                 }, {
-                    name: 'password',
+                    name: 'Password',
                     field: 'password'
                 }, {
-                    name: 'emails',
+                    name: 'Email',
                     field: 'emails'
+                },
+                {
+                    name: 'Account',
+                    field: 'account_type'
+                },
+                {
+                    name: 'Date Created',
+                    field: 'date'
+                },
+                {
+                    name: 'Delete User',
+                    cellTemplate: '<span class="glyphicon glyphicon-remove" ng-click="grid.appScope.deleteUser(row.entity._id)"></span>',
+                    enableFiltering: false
                 }
+
             ]
         };
 
-        //$scope.gridallUsers.data = [{
-        //        "firstName": "Cox",
-        //        "lastName": "Carney",
-        //        "company": "Enormo",
-        //        "employed": true
-        //    }, {
-        //        "firstName": "Lorraine",
-        //        "lastName": "Wise",
-        //        "company": "Comveyer",
-        //        "employed": false
-        //    }, {
-        //        "firstName": "Nancy",
-        //        "lastName": "Waters",
-        //        "company": "Fuelton",
-        //        "employed": false
-        //    }];
+        $scope.deleteUser = deleteUser;
 
+        function deleteUser(_id){
+            UserService.deleteUserById(_id).then(
+                function(response){
+                    findAllUsers();
+                },
+                function(err) {
+                    $scope.error = err;
+                }
+            );
+        }
 
         function findAllUsers(){
             UserService.findAllUsers().then(
                 function(response){
+                    for(var i=0; i<response.length; i++){
+                        if(response[i].facebook != undefined)
+                            response[i].account_type ='Facebook';
+
+                        else if(response[i].google != undefined)
+                        response[i].account_type ='Google';
+
+                        else if(response[i].twitter != undefined)
+                        response[i].account_type ='Twitter';
+
+                        else
+                            response[i].account_type ='Mashup';
+                    }
+
                     $scope.gridallUsers.data =response
                 },
                 function(err) {
@@ -59,71 +84,16 @@
 
         findAllUsers();
 
-        $scope.selectedNumber = null;
-        $scope.selectedNumber1 = null;
+        $scope.callback = function(response){
+            console.log(response);
+            alert('share callback');
+        }
 
-        // instantiate the bloodhound suggestion engine
-        var numbers = new Bloodhound({
-            datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.num); },
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            local: [
-                { num: 'one' },
-                { num: 'two' },
-                { num: 'three' },
-                { num: 'four' },
-                { num: 'five' },
-                { num: 'six' },
-                { num: 'seven' },
-                { num: 'eight' },
-                { num: 'nine' },
-                { num: 'ten' }
-            ]
-        });
-
-        var numbers1 = new Bloodhound({
-            datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.num); },
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            local: [
-                { num: 'one' },
-                { num: 'two' },
-                { num: 'three' },
-                { num: 'four' },
-                { num: 'five' },
-                { num: 'six' },
-                { num: 'seven' },
-                { num: 'eight' },
-                { num: 'nine' },
-                { num: 'ten' }
-            ]
-        });
-
-        // initialize the bloodhound suggestion engine
-        numbers.initialize();
-        numbers1.initialize();
-
-        // Typeahead options object
-        $scope.exampleOptions = {
-            highlight: true
-        };
-
-        $scope.multiExample = [
-            {
-                name: 'nba',
-                displayKey: 'num',
-                source: numbers1.ttAdapter()   // Note the nba Bloodhound engine isn't really defined here.
-            },
-            {
-                name: 'nhl',
-                displayKey: 'num',
-                source: numbers.ttAdapter()   // Note the nhl Bloodhound engine isn't really defined here.
-            }
-        ];
-
-        $scope.numbersDataset = {
-            displayKey: 'num',
-            source: numbers.ttAdapter()
-        };
-
+        $timeout(function(){
+            $scope.url = 'https://www.youtube.com/watch?v=wxkdilIURrU';
+            $scope.text = 'testing second share';
+            $scope.title = 'title2';
+        },1000)
 
     }
 

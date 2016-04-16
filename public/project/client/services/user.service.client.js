@@ -107,7 +107,7 @@
         function deleteUserById(id){
             var deferred = $q.defer();
 
-            $http.delete("/api/project/user/:"+id)
+            $http.delete("/api/project/user/"+id)
                 .success(function(response){
                     deferred.resolve(response);
                 });

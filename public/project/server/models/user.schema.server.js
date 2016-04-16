@@ -37,7 +37,8 @@ module.exports = function(mongoose) {
         likesMovies: [ArticleSchema],
         // collection property sets
         // collection name to 'user'
-        categories:[String]
+        categories:[String],
+        date: { type: Date, default: Date.now }
 
     }, {collection: 'MashupUsers'});
     return UserSchema;
