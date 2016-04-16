@@ -51,9 +51,9 @@
 
 <div ng-show="showCategories">
 
-    <ul ui-sortable class="well removeBullets" ng-model="categories" >
+    <ul ui-sortable="sortableOptions" class="well removeBullets" ng-model="categories" >
 
-        <li ui-sortable="sortableOptions" class= "well personalisecCategories draggable-sign categoriesWell" ng-repeat="category in categories">
+        <li class= "well personalisecCategories draggable-sign categoriesWell" ng-repeat="category in categories">
             <h3>
                 <i class="glyphicon glyphicon-tags categoryLeftpadding" aria-hidden="true"></i>
                 <label ng-style="category.color" >{{category.name}}</label>

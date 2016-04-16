@@ -30,6 +30,9 @@ module.exports = function(mongoose) {
         },
         likes: [String],
         comments: [String],
+        search: [{
+            text: String
+        }],
         // movies this user likes
         likesMovies: [ArticleSchema],
         // collection property sets
