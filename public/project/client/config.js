@@ -63,15 +63,6 @@
 
             })
 
-            .when("/personalise",{
-                templateUrl: "./views/personalise/personalise.view.html",
-                controller: "PersonaliseController",
-                resolve: {
-                    loggedin: checkCurrentUser
-                }
-
-            })
-
             .when("/trends",{
                 templateUrl: "./views/trends/trends.view.client.html",
                 controller:"TrendsController",
