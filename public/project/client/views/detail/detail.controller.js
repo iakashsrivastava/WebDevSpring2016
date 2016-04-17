@@ -13,13 +13,23 @@
         var postId = $routeParams.Id;
         var source = $routeParams.Source;
 
+        $scope.forWeb = {"height":"465px"};
+        $scope.showShare =false;
+
+
         if(loggedUser)
             $scope.userLoggedIn = true;
         else
             $scope.userLoggedIn = false;
 
+
         $scope.favorite=favorite;
         $scope.addComment =addComment;
+        $scope.displayshareIcons = displayshareIcons;
+
+        function displayshareIcons(){
+            $scope.showShare =true;
+        }
 
         function getComments(){
             ArticleService
@@ -81,8 +91,6 @@
                     console.log(response);
                     $scope.article = response.data;
                 });
-
-
         }
 
         if(source === 'F')
@@ -106,8 +114,7 @@
                     article.thumbnail_url = $scope.data.picture
                 else
                     article.thumbnail_url=$scope.data.thumbnail_url;
-                console.log($scope.data.title);
-                console.log($scope.data.description);
+
                 ArticleService
                     .userLikesArticle(loggedUser._id, article);
             } else {
@@ -121,7 +128,7 @@
                 $scope.comments.push({id :loggedUser._id,
                                         comments: comment,
                                         name:loggedUser.firstName})
-
+                $scope.noComment = false;
 
                 article.comments = [];
                 article.comments.push(
@@ -142,12 +149,6 @@
                 $location.url("/login");
             }
         }
-
-        $timeout(function(){
-            $scope.url = 'https://www.youtube.com/watch?v=wxkdilIURrU';
-            $scope.text = 'testing second share';
-            $scope.title = 'title2';
-        },1000)
 
     }
 

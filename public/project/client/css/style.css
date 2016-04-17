@@ -94,7 +94,7 @@ h6 {
 }
 
 .no-padding-detail-page{
-    margin-left: -8px; !important
+    /*margin-left: -8px; !important*/
 }
 
 .bkl{
@@ -352,4 +352,8 @@ span.twitter-typeahead {
     margin: 0 20px 5px 20px;
     padding: 3px 0;
     border-bottom: 1px solid #ccc;
+}
+
+.fb-like.fb_iframe_widget span{
+    vertical-align: top !important;
 }

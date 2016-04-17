@@ -1,83 +1,78 @@
-{{data}}
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=1077257479013987";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 <div class="no-padding-detail-page">
-    <h2 class="detailText">
+    <h2 class="detailText text-center">
         <label> {{trustSrc(data.title)}} </label>
     </h2>
 
-    <div class="akash">
+    <div class="akash hidden-xs">
         <iframe width='100%' height='465px' ng-src="{{trustSrc(data.source)}}" allowfullscreen frameborder="0">
-            <p>Your browser does not support iframes.</p>
+            <p> Sorry!! Your browser does not support iframes.</p>
         </iframe>
     </div>
 
-    <div>
-        <a twitter data-count='horizontal' data-url='{{url}}'  data-size="medium" data-text='{{text}}' ></a>
-        <br /><br />
-        <div class="linkedinShare" linkedin data-url='{{url}}' data-title='{{title}}' data-summary="{{text}}" data-shares='linkedinshares'>{{linkedinshares}}</div>
-        <br /><br />
-        <div gplus data-size="tall" data-annotation="bubble" data-href='{{url}}' data-action='share'></div>
-
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=1077257479013987";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-
-
-        <div class="fb-share-button" data-href='https://www.youtube.com/watch?v=wxkdilIURrU' data-layout="button_count" data-mobile-iframe="true"></div>
+    <div class="akash visible-xs">
+        <iframe width='100%' height='300px' ng-src="{{trustSrc(data.source)}}" allowfullscreen frameborder="0">
+            <p> Sorry!! Your browser does not support iframes.</p>
+        </iframe>
     </div>
-
-
-    <button class="btn btn-primary"
-            ng-click="favorite(data)">
-    <span ng-show="article.likes.indexOf(loggedUser._id) > -1"
-          class="glyphicon glyphicon-star"></span>
-    <span ng-show="!article || !article.likes || article.likes.indexOf(loggedUser._id) == -1"
-          class="glyphicon glyphicon-star-empty"></span>
-    </button>
 
     <h4 class="detailText">
         {{trustSrc(data.description)}}
-
     </h4>
+    <hr>
 
+        <span ng-click="favorite(data)">
+            <span ng-show="article.likes.indexOf(loggedUser._id) > -1" class="fa fa-thumbs-up fa-2x"></span>
+            <span ng-show="!article || !article.likes || article.likes.indexOf(loggedUser._id) == -1" class="fa fa-thumbs-o-up fa-2x"></span>
+        </span>
+
+        <span class="pull-right" ng-show="showShare">
+             <i class="fb-share-button" data-href='{{data.source}}' data-title="{{data.title}}" data-layout="button" data-mobile-iframe="true" style="vertical-align:top;zoom:1;*display:inline"></i>
+             <a href="https://twitter.com/share" class="twitter-share-button" data-url='{{data.source}}' data-text="{{data.title}}">Tweet</a>
+             <span class="g-plus" data-action="share" data-annotation="none" data-href='{{data.source}}'></span>
+            <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script><script type="IN/Share" data-url='{{data.source}}'></script>
+        </span>
+
+        <span class="pull-right class-pointer highlight-text-fonts" ng-show="!showShare" ng-click="displayshareIcons()" >
+            <i class="fa fa-share fa-2x" aria-hidden="true"></i>
+             <sup>Share</sup>
+        </span>
+
+    <div>
     <h3>
         <label>
             Comments ( {{ commentsLength }} )
         </label>
     </h3>
+        </div>
 
-
-    <div class="table-responsive">
-        <table class="table table-striped">
-                <tr ng-repeat="comment in comments">
-                    <td>
-                         <label>{{comment.name}}</label>
-                        <br>
-                        {{comment.comments}}
-                    </td>
-                </tr>
-        </table>
+    <div ng-repeat="comment in comments">
+        <blockquote>
+            <p>{{comment.comments}}</p>
+            <footer>Commented by <cite>{{comment.name}}</cite></footer>
+        </blockquote>
     </div>
 
-    <div ng-show="noComment && !loggedUser">
-        <h4>
-            <label>
-                <i>No comments to display, login to post comments</i>
-            </label>
-        </h4>
+
+    <div ng-show="noComment && !loggedUser" >
+        <blockquote>
+            <p>No comments to display, <u><strong class="highlight-text class-pointer" ng-click="favorite(data)">Login</strong></u> to post comments</p>
+        </blockquote>
     </div>
 
     <div ng-show="noComment && loggedUser">
-        <h4>
-            <label>
-                <i>No comments to display</i>
-            </label>
-        </h4>
+        <blockquote>
+            <p>No comments to display</p>
+        </blockquote>
     </div>
 
     <div ng-show="loggedUser">

@@ -12,7 +12,7 @@
     <div class="well">
 
         <h4><label>Username</label></h4>
-        <div class="input-group input-group-lg">
+        <div class="input-group input-group-lg" ng-class="usernamehasError">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-user"></span>
             </span>
@@ -20,7 +20,7 @@
         </div>
 
         <h4><label>Password</label></h4>
-        <div class="input-group input-group-lg">
+        <div class="input-group input-group-lg" ng-class="passwordError">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-lock"></span>
             </span>
@@ -28,6 +28,22 @@
         </div>
     </div>
 
+    <div ng-show="noInfo">
+        <label>Please enter Username and Password</label>
+        <label>Please Try Again</label>
+    </div>
+    <div ng-show="unauthorised">
+        <label>Either the username or password is Incorrect.</label>
+        <label>Please Try Again</label>
+    </div>
+    <div ng-show="usernameBlank">
+        <label>Username Field cannot be Empty.</label>
+        <label>Please Try Again</label>
+    </div>
+    <div ng-show="passwordBlank">
+        <label>Password cannot be empty</label>
+        <label>Please Try Again</label>
+    </div>
     <button type="submit" class="btn btn-block btn-primary" ng-click="login(existingUser)">Login</button>
 
     <br>

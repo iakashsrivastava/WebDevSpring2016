@@ -12,22 +12,41 @@
 
         $scope.login = login;
 
-        function login(existingUser){
-            UserService.findUserByCredentials(existingUser.username,existingUser.password).then(
-                function(response){
-                    //if(response !== null) {
-                    //    //$rootScope.loggedUser = response;
-                    //    //$location.url("/profile");
-                    //}
+        function login(existingUser) {
+            $scope.usernameBlank = false;
+            $scope.passwordBlank = false;
+            $scope.unauthorised = false;
+            $scope.noInfo = false;
+            $scope.usernamehasError = '';
+            $scope.passwordError= '';
 
+            if(existingUser === undefined){
+                $scope.noInfo = true
+                $scope.usernamehasError='has-error';
+                $scope.passwordError='has-error';
+            }
+            else if (existingUser.username === undefined || existingUser.username.length == 0) {
+                $scope.usernameBlank = true;
+                $scope.usernamehasError='has-error';
+            }
+            else if (existingUser.password === undefined ||  existingUser.password.length == 0) {
+                $scope.passwordBlank = true;
+                $scope.passwordError='has-error';
+            }
+            else {
+                console.log(existingUser.username +',' +existingUser.password)
+                UserService.findUserByCredentials(existingUser.username, existingUser.password).then(
+                    function (response) {
                         $rootScope.loggedUser = response.data;
                         console.log(response.data);
                         $location.url("/home");
                     },
-                    function(err) {
+                    function (err) {
+                        $scope.unauthorised = true;
                         $scope.error = err;
                     }
                 );
+            }
         }
 
     }

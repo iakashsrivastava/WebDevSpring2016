@@ -1,68 +1,31 @@
 
 <h1 class="page-header">Register</h1>
 
-<!--<form class="form-horizontal ">-->
-
-    <!--<div class="form-group">-->
-        <!--<label for="inputUserName" class="col-sm-2 control-label">Username</label>-->
-        <!--<div class="col-sm-10">-->
-            <!--<input type="text" class="form-control" id="inputUserName" placeholder="Username" ng-model='newuser.username'>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="form-group">-->
-        <!--<label for="inputPassword" class="col-sm-2 control-label">Password</label>-->
-        <!--<div class="col-sm-10">-->
-            <!--<input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model='newuser.password'>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="form-group">-->
-        <!--<label for="verifyPassword" class="col-sm-2 control-label">Verify Password</label>-->
-        <!--<div class="col-sm-10">-->
-            <!--<input type="password" class="form-control" id="verifyPassword" placeholder="Password" ng-model='newuser.verifypassword'>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="form-group">-->
-        <!--<label for="inputEmail" class="col-sm-2 control-label">Email</label>-->
-        <!--<div class="col-sm-10">-->
-            <!--<input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model='newuser.emails'>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="form-group">-->
-        <!--<div class="col-sm-offset-2 col-sm-10">-->
-            <!--<button type="submit" class="btn btn-block btn-primary" ng-click="register(newuser)" >Register</button>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</form>-->
-
 <div class="well">
 
-    <h4 style="margin-top: -8px;"><label>Username</label></h4>
-    <div class="input-group input-group-lg">
+    <h4 style="margin-top: -8px;"><label><sup>*</sup>Username</label></h4>
+    <div class="input-group input-group-lg" ng-class="usernamehasError">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-user"></span>
             </span>
         <input type="text" class="form-control" id="inputUserName" placeholder="Username" ng-model='newuser.username'>
     </div>
-    <h4><label>Password</label></h4>
-    <div class="input-group input-group-lg">
+    <h4><label><sup>*</sup>Password</label></h4>
+    <div class="input-group input-group-lg" ng-class="passwordhasError">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-lock"></span>
             </span>
         <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model='newuser.password'>
     </div>
-    <h4><label>Confirm Password</label></h4>
-    <div class="input-group input-group-lg">
+    <h4><label><sup>*</sup>Confirm Password</label></h4>
+    <div class="input-group input-group-lg" ng-class="vpasswordhasError">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-lock"></span>
             </span>
         <input type="password" class="form-control" id="verifyPassword" placeholder="Confirm Password" ng-model='newuser.verifypassword'>
     </div>
-    <h4><label>First Name</label></h4>
-    <div class="input-group input-group-lg">
+    <h4><label><sup>*</sup>First Name</label></h4>
+    <div class="input-group input-group-lg" ng-class="firstNamehasError">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-font"></span>
             </span>
@@ -75,17 +38,19 @@
             </span>
         <input type="text" class="form-control" id="inputlastName" placeholder="Last Name" ng-model='newuser.lastName'>
     </div>
-    <h4><label>Email</label></h4>
+    <h4><label><sup>*</sup>Email</label></h4>
     <div class="input-group input-group-lg">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-envelope"></span>
             </span>
         <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model='newuser.emails'>
     </div>
+    <h5><i>(Fields marked <strong><sup>*</sup></strong> are required)</i></h5>
 </div>
-
+<div ng-show="undefinedUser">
+    <p class="text-center text-danger"><em>Please fill out the form to Register</em></p>
+</div>
+<div ng-if="error.length>0">
+    <p class="text-center text-danger">{{error}}</p>
+</div>
 <button type="submit" class="btn btn-block btn-primary" ng-click="register(newuser)" >Register</button>
-
-
-
-<br>
