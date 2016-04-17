@@ -115,6 +115,40 @@ module.exports = function(db,mongoose) {
     function updateUser(userId, user) {
         return UserModel.update({_id: userId}, {$set: user});
     }
+    function updateUser1(userId, user) {
+
+        var deferred = q.defer();
+        UserModel.findById(userId, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                return doc;
+            }
+        }).then(function(doc) {
+            doc.username = user.username;
+            doc.password = user.password;
+            doc.firstName = user.firstName;
+            doc.lastName = user.lastName;
+            doc.emails = user.emails;
+            doc.roles = user.roles;
+            doc.likes = user.likes;
+            doc.comments = user.comments;
+            doc.search = user.search;
+            doc.likesMovies = user.likesMovies;
+            doc.categories = user.categories;
+            doc.save(function(err, resp) {
+                if(err) {
+                    console.log(err);
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(resp);
+                }
+            });
+        });
+
+        return deferred.promise;
+
+    }
 
     function deleteUser(userId){
         return UserModel.remove({_id: userId});

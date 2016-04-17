@@ -38,7 +38,8 @@ module.exports = function(mongoose) {
         // collection property sets
         // collection name to 'user'
         categories:[String],
-        date: { type: Date, default: Date.now }
+        date: { type: Date, default: Date.now },
+        roles: [String]
 
     }, {collection: 'MashupUsers'});
     return UserSchema;
