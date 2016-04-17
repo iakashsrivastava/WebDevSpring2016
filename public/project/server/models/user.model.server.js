@@ -113,9 +113,6 @@ module.exports = function(db,mongoose) {
     }
 
     function updateUser(userId, user) {
-        return UserModel.update({_id: userId}, {$set: user});
-    }
-    function updateUser1(userId, user) {
 
         var deferred = q.defer();
         UserModel.findById(userId, function (err, doc) {
