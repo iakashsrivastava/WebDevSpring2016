@@ -37,9 +37,14 @@
             $scope.detailedContent.page = $scope.detailedContent.page + 30;
         }
 
-        function gotoDetailPage(id){
-            $location.url("/details/"+id+"/F");
+        function gotoDetailPage(id,source){
+            if(source != undefined)
+                $location.url("/details/"+id+"/d");
+            else
+                $location.url("/details/"+id+"/F");
         }
+
+
 
         angular.element($window).bind("scroll", function() {
             var windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;

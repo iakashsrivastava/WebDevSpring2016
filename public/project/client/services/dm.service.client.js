@@ -9,7 +9,7 @@
 
     function DMDetailService($http){
         var url ='https://api.dailymotion.com/video/';
-        var options = '?fields=description,id,title,url';
+        var options = '?fields=description,id,title,url,thumbnail_url';
         var api = {
             getDetailedData: getDetailedData
         };
@@ -22,7 +22,8 @@
                     var data = {
                         source :"//www.dailymotion.com/embed/video/"+response.id,
                         title: response.title,
-                        description: response.description
+                        description: response.description,
+                        thumbnail_url: response.thumbnail_url
                         }
                     callback(data);
                 });

@@ -35,7 +35,7 @@
     <div  ng-repeat="d in category.content track by $index">
 
         <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
-            <div class="thumbnail" ng-click="gotoDetailPage(d.id)">
+            <div class="thumbnail" ng-click="gotoDetailPage(d.id,d.source)">
                 <a class="class-pointer">
                     <img class="img-responsive " ng-src={{d.picture}} alt="Picture Not Available">
                     <h6><label class="class-pointer">{{d.title}}</label></h6>
@@ -43,8 +43,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 
 <!--</li>-->

@@ -76,5 +76,45 @@
 
 </div>
 
+<div ng-click="showLikesDiv($event)" >
+    <h1 class="page-header">Your Likes
+        <i class="fa fa-arrow-right pull-right fa-1x navigationalNext highlight-text-fonts class-pointer" ng-click="categoryNext($event)" ng-show="showLikes && LikeNextButton"></i>
+        <i class="fa fa-arrow-left pull-right fa-1x navigationalPrevious highlight-text-fonts class-pointer" ng-click="categoryPrev($event)" ng-show="showLikes && LikePrevButton"></i>
+    </h1>
+</div>
 
+<div ng-show="showLikes">
+
+    <div ng-repeat="d in userLikesData track by $index">
+        <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
+            <div class="thumbnail" ng-click="gotoDetailPage(d.id,d.source)">
+                <a class="class-pointer" ng-if="!(d == undefined)">
+                    <img class="img-responsive " ng-src={{d.thumbnail_url}} alt="Picture Not Available">
+                    <h6><label class="class-pointer">{{d.title}}</label></h6>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-click="showCommentsDiv($event)" >
+    <h1 class="page-header">You Commented On
+        <i class="fa fa-arrow-right pull-right fa-1x navigationalNext highlight-text-fonts class-pointer" ng-click="commentNext($event)" ng-show="showComments && commentNextButton"></i>
+        <i class="fa fa-arrow-left pull-right fa-1x navigationalPrevious highlight-text-fonts class-pointer" ng-click="commentPrev($event)" ng-show="showComments && commentPrevButton"></i>
+    </h1>
+</div>
+
+<div ng-show="showComments">
+
+    <div ng-repeat="d in userCommentedData track by $index">
+        <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
+            <div class="thumbnail" ng-click="gotoDetailPage(d.articleId,d.source)">
+                <a class="class-pointer" ng-if="!(d == undefined)">
+                    <img class="img-responsive " ng-src={{d.thumbnail_url}} alt="Picture Not Available">
+                    <h6><label class="class-pointer">{{d.title}}</label></h6>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 

@@ -100,8 +100,12 @@
                 article.likes.push(loggedUser._id);
                 article.articleId = postId;
                 article.title= $scope.data.title;
+                article.source= source;
                 article.description=$scope.data.description;
-                article.thumbnail_url='';
+                if(source === 'F')
+                    article.thumbnail_url = $scope.data.picture
+                else
+                    article.thumbnail_url=$scope.data.thumbnail_url;
                 console.log($scope.data.title);
                 console.log($scope.data.description);
                 ArticleService
@@ -127,6 +131,7 @@
                 article.likes=[];
                 article.articleId = postId;
                 article.title= $scope.data.title;
+                article.source= source;
                 article.description=$scope.data.description;
                 article.thumbnail_url='';
                 ArticleService

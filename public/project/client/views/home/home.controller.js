@@ -18,7 +18,6 @@
 
         $scope.showSpinner = true;
 
-
         function getUserCategories(){
             console.log('Hello');
             if($rootScope.loggedUser && $rootScope.loggedUser.categories.length>0) {
@@ -40,13 +39,15 @@
             console.log($rootScope.categoriesList);
         }
 
-
         function getCategoryDetails(category){
             $location.url("/category/"+category);
         }
 
-        function gotoDetailPage(id){
-            $location.url("/details/"+id+"/F");
+        function gotoDetailPage(id,source){
+            if(source != undefined)
+                $location.url("/details/"+id+"/d");
+            else
+                $location.url("/details/"+id+"/F");
         }
 
         function getHomeContent(){
@@ -60,7 +61,6 @@
                     });
                 //$rootScope.categoriesList[i].next = $rootScope.categoriesList[i].next + 6;
             }
-
 
         }
 

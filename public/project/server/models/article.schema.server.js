@@ -10,6 +10,7 @@ module.exports = function(mongoose) {
         title: String,
         description: String,
         thumbnail_url: String,
+        source: String,
         // ids of users that like this movie
         likes: [String],
         // list of users that like this movie

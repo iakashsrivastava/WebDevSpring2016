@@ -57,6 +57,7 @@ module.exports = function(db, mongoose) {
                         articleId: article.articleId,
                         title: article.title,
                         thumbnail_url: article.thumbnail_url,
+                        source: article.source,
                         description: article.description,
                         likes: [],
                         comments:[]
@@ -109,6 +110,7 @@ module.exports = function(db, mongoose) {
                     article = new Article({
                         articleId: article.articleId,
                         title: article.title,
+                        source: article.source,
                         thumbnail_url: article.thumbnail_url,
                         description: article.description,
                         likes: [],
@@ -137,6 +139,7 @@ module.exports = function(db, mongoose) {
         // find all movies
         // whose imdb IDs
         // are in imdbIDs array
+        console.log('findArticlesByarticleIDs'+articleIds)
         Article.find({
             articleId: {$in: articleIds}
         }, function (err, articles) {
@@ -155,6 +158,7 @@ module.exports = function(db, mongoose) {
         var article = new Article({
             articleId: article.articleId,
             title: article.title,
+            source: article.source,
             thumbnail_url: article.thumbnail_url,
             description: article.description,
             likes: [],
@@ -178,6 +182,7 @@ module.exports = function(db, mongoose) {
 
         return deferred.promise;
     }
+
 
     function findArticleByarticleID(articleId) {
 

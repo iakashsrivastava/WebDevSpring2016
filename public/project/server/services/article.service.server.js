@@ -7,6 +7,7 @@ module.exports = function(app, articleModel, userModel) {
     app.post("/api/project/user/:userId/comment/article/:articleId", userCommentsOnArticle);
     app.get("/api/project/article/:articleId/user", findUserLikes);
     app.get("/api/project/article/details/:articleId", findArticleByarticleID);
+    app.get("/api/project/articles/details/:articleIds", findArticlesByarticleIDs);
 
     function findUserLikes (req, res) {
         var articleId = req.params.articleId;
@@ -104,6 +105,24 @@ module.exports = function(app, articleModel, userModel) {
                 // login user if promise resolved
                 function ( doc ) {
                     console.log('findArticleByarticleID'+doc);
+                    res.json(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
+
+    }
+
+    function findArticlesByarticleIDs (req, res) {
+        var articleIds = req.params.articleIds;
+        articleModel.findArticlesByarticleIDs(articleIds)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function ( doc ) {
+                    console.log('findArticlesByarticleIDs'+doc);
                     res.json(doc);
                 },
                 // send error if promise rejected

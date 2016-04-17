@@ -32,7 +32,8 @@
                                 var obj ={
                                     id: response.list[k].id,
                                     picture: response.list[k].thumbnail_url,
-                                    title: response.list[k].title
+                                    title: response.list[k].title,
+                                    source: 'd'
                                 }
                                 items.push(obj);
                             }
@@ -76,7 +77,8 @@
                                 var obj ={
                                     id: response.list[k].id,
                                     picture: response.list[k].thumbnail_url,
-                                    title: response.list[k].title
+                                    title: response.list[k].title,
+                                    source: 'd'
                                 }
                                 items.push(obj);
                             }
