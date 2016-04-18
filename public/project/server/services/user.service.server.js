@@ -65,7 +65,7 @@ module.exports = function(app, userModel) {
 
     app.get   ('/auth/twitter', passport.authenticate('twitter', { scope : ['profile', 'email'] }));
 
-    app.get('/auth/twitter/callback',
+    app.get('/project/auth/twitter/callback',
         passport.authenticate('twitter', {
             successRedirect: 'project/client/index.html#/profile',
             failureRedirect: '/#/login'
