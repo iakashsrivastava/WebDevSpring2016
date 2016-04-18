@@ -168,8 +168,8 @@
         }
 
         function addNewCategory(newUserCategory){
-            $scope.hasError='has-error';
             if(newUserCategory){
+                $scope.hasError='';
                 var newCategory ={
                     name: newUserCategory,
                     selected: true,
@@ -178,6 +178,9 @@
                 }
                 $scope.categories.push(newCategory);
                 $scope.newCategory='';
+            }
+            else{
+                $scope.hasError='has-error';
             }
         }
 

@@ -5,6 +5,7 @@
 //var mock = require("./user.mock.json");
 // load q promise library
 var q = require("q");
+var bcrypt = require('bcrypt-nodejs');
 
 
 module.exports = function(db,mongoose) {
@@ -46,7 +47,10 @@ module.exports = function(db,mongoose) {
 
         // use q to defer the response
         var deferred = q.defer();
-        console.log(user);
+        var decrytedPassword = user.password;
+        var encrytedPassword = bcrypt.hashSync(decrytedPassword);
+        user.password = encrytedPassword;
+
         // insert new user with mongoose user model's create()
         UserModel.create(user, function (err, doc) {
 
@@ -80,17 +84,29 @@ module.exports = function(db,mongoose) {
     }
 
     function findUserByCredentials(username, password){
+
         var deferred = q.defer();
         // find without first argument retrieves all documents
-        UserModel.findOne({ username: username ,password: password }, function(err, docs) {
+        UserModel.findOne({ username: username }, function(err, doc) {
             if (err) {
                 // reject promise if error
                 deferred.reject(err);
             } else {
                 // resolve promise
-                deferred.resolve(docs);
+                if(doc && doc.password) {
+                    if(bcrypt.compareSync(password, doc.password)) {
+                        deferred.resolve(doc);
+                    } else{
+                        deferred.resolve('');
+                    }
+                } else {
+                    deferred.resolve('');
+                }
+
             }
+
         });
+
         return deferred.promise;
 
     }
@@ -115,6 +131,7 @@ module.exports = function(db,mongoose) {
     function updateUser(userId, user) {
 
         var deferred = q.defer();
+
         UserModel.findById(userId, function (err, doc) {
             if (err) {
                 deferred.reject(err);
@@ -123,7 +140,7 @@ module.exports = function(db,mongoose) {
             }
         }).then(function(doc) {
             doc.username = user.username;
-            doc.password = user.password;
+            doc.password = bcrypt.hashSync(user.password);
             doc.firstName = user.firstName;
             doc.lastName = user.lastName;
             doc.emails = user.emails;
@@ -144,7 +161,6 @@ module.exports = function(db,mongoose) {
         });
 
         return deferred.promise;
-
     }
 
     function deleteUser(userId){
@@ -252,8 +268,6 @@ module.exports = function(db,mongoose) {
                 });
             }
         });
-
         return deferred;
     }
-
 }

@@ -81,7 +81,10 @@
 
             .when("/admin",{
                 templateUrl: "views/admin/admin.view.client.html",
-                controller:"AdminController"
+                controller:"AdminController",
+                resolve: {
+                    loggedin: checkAdmin
+                }
             })
 
             .otherwise({
@@ -128,6 +131,26 @@
                 $rootScope.loggedUser = user;
             }
             deferred.resolve();
+        });
+
+        return deferred.promise;
+    };
+
+    var checkAdmin = function($q, $timeout, $http, $location, $rootScope)
+    {
+        var deferred = $q.defer();
+
+        $http.get('/api/project/loggedin').success(function(user)
+        {
+            $rootScope.errorMessage = null;
+            // User is Authenticated
+            if (user !== '0' && user.roles.indexOf('admin') != -1)
+            {
+                $rootScope.loggedUser = user;
+                deferred.resolve();
+            } else {
+                $location.url('/login');
+            }
         });
 
         return deferred.promise;

@@ -44,12 +44,16 @@
                     function (response) {
                         var counter = response.counter;
                         $scope.locationsList[counter].content = response.content;
+
+                        if($scope.locationsList[counter].location === 'Worldwide'){
+                            getTopicTweets('Worldwide',response.content[0].name  ,false)
+                        }
                     });
             }
-            count = count+4;
         }
 
         function getTopicTweets(location, topic, smallerDevice){
+            console.log(location+','+topic+','+smallerDevice)
             $scope.showSpinner = true;
             if(smallerDevice)
                 $scope.onlyTrends = true;
@@ -67,8 +71,6 @@
             }, 2000);
 
         }
-
-
 
         angular.element($window).bind("scroll", function() {
             var windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;

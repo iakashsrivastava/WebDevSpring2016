@@ -34,9 +34,9 @@ module.exports = function(app, userModel) {
     };
 
     var twitterConfig = {
-        consumerKey        : 'gyigigig',
-        consumerSecret    : 'lllm;lhn',
-        callbackURL     : 'bhbckew/diqbcu/biucq'
+        consumerKey        : process.env.TWITTER_CLIENT_ID_AUTH,
+        consumerSecret    : process.env.TWITTER_CLIENT_SECRET_AUTH,
+        callbackURL     : 'http://webdev2016-srivastavaakash.rhcloud.com/project/auth/twitter/callback'
     };
 
     // passport functionalities - start
@@ -63,7 +63,7 @@ module.exports = function(app, userModel) {
             failureRedirect: '/#/login'
         }));
 
-    app.get   ('/auth/twitter', passport.authenticate('twitter', { scope : 'email' }));
+    app.get   ('/auth/twitter', passport.authenticate('twitter', { scope : ['profile', 'email'] }));
 
     app.get('/auth/twitter/callback',
         passport.authenticate('twitter', {

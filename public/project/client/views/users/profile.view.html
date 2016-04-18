@@ -62,14 +62,18 @@
             </h3>
         </li>
         <br>
-        <!--<input type="text" class="" placeholder="Add New Category" ng-model="newCategory">-->
+        <!--&lt;!&ndash;<input type="text" class="" placeholder="Add New Category" ng-model="newCategory">&ndash;&gt;-->
 
-        <div class="form-group has-feedback" ng-class="hasError">
-            <input type="text" class="form-control" placeholder="Add New Category" ng-model="newCategory" style="padding: 30px;margin-top: 11px;"/>
-            <i class="glyphicon glyphicon-plus form-control-feedback highlight-text-fonts class-pointer newCategoryGlyphicon" ng-click="addNewCategory(newCategory)" ></i>
-        </div>
+        <!--<i class="form-group has-feedback" ng-class="hasError">-->
+            <!--<input type="text" class="form-control" placeholder="Add New Category" ng-model="newCategory" style="padding: 30px;margin-top: 11px;"/>-->
+            <!--<i class="glyphicon glyphicon-plus form-control-feedback highlight-text-fonts class-pointer newCategoryGlyphicon" ng-click="addNewCategory(newCategory)" ></i>-->
+        <!--</i>-->
 
     </ul>
+    <div class="form-group has-feedback" ng-class="hasError">
+        <input type="text" class="form-control" placeholder="Add New Category" ng-model="newCategory" style="padding: 30px;margin-top: 11px;"/>
+        <i class="glyphicon glyphicon-plus form-control-feedback highlight-text-fonts class-pointer newCategoryGlyphicon" ng-click="addNewCategory(newCategory)" ></i>
+    </div>
 
     <button type="submit" class="btn btn-block btn-primary" ng-click="updateCategory()">Update</button>
     <!--<button type="submit" class="btn btn-block btn-primary" ng-click="print()">Update</button>-->

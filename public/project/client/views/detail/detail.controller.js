@@ -77,7 +77,6 @@
             DMDetailService.getDetailedData(postId,render);
 
             function render(response) {
-                console.log(source);
                 $scope.data = response;
             }
 
@@ -88,7 +87,6 @@
             ArticleService
                 .findUserLikes (postId)
                 .then(function(response){
-                    console.log(response);
                     $scope.article = response.data;
                 });
         }
@@ -123,27 +121,36 @@
         }
 
         function addComment(comment) {
+
             if(loggedUser) {
-                var article ={};
-                $scope.comments.push({id :loggedUser._id,
-                                        comments: comment,
-                                        name:loggedUser.firstName})
-                $scope.noComment = false;
+                if(comment != undefined && comment.length >1) {
 
-                article.comments = [];
-                article.comments.push(
-                                        {id :loggedUser._id,
-                                            comments: comment,
-                                        name:loggedUser.firstName});
-                article.likes=[];
-                article.articleId = postId;
-                article.title= $scope.data.title;
-                article.source= source;
-                article.description=$scope.data.description;
-                article.thumbnail_url='';
-                ArticleService
-                    .userCommentsOnArticle(loggedUser._id, article);
+                    var article = {};
+                    $scope.comments.push({
+                        id: loggedUser._id,
+                        comments: comment,
+                        name: loggedUser.firstName
+                    })
+                    $scope.noComment = false;
 
+                    article.comments = [];
+                    article.comments.push(
+                        {
+                            id: loggedUser._id,
+                            comments: comment,
+                            name: loggedUser.firstName
+                        });
+                    article.likes = [];
+                    article.articleId = postId;
+                    article.title = $scope.data.title;
+                    article.source = source;
+                    article.description = $scope.data.description;
+                    article.thumbnail_url = '';
+                    ArticleService
+                        .userCommentsOnArticle(loggedUser._id, article);
+
+                    $scope.comment = '';
+                }
                 //getComments();
             } else {
                 $location.url("/login");
