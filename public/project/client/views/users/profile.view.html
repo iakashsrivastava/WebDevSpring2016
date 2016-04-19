@@ -87,7 +87,7 @@
     </h1>
 </div>
 
-<div ng-show="showLikes">
+<div ng-show="showLikes && isLike">
 
     <div ng-repeat="d in userLikesData track by $index">
         <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
@@ -101,6 +101,10 @@
     </div>
 </div>
 
+<div ng-show="showLikes && !isLike">
+    <h4 style="text-align:center"><em><label>Nothing to display</label></em></h4>
+</div>
+
 <div ng-click="showCommentsDiv($event)" >
     <h1 class="page-header highlight-text-fonts class-pointer">Your Comments
         <i class="fa fa-arrow-right pull-right fa-1x navigationalNext highlight-text-fonts class-pointer" ng-click="commentNext($event)" ng-show="showComments && commentNextButton"></i>
@@ -108,7 +112,7 @@
     </h1>
 </div>
 
-<div ng-show="showComments">
+<div ng-show="showComments && isComment">
 
     <div ng-repeat="d in userCommentedData track by $index">
         <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
@@ -122,10 +126,18 @@
     </div>
 </div>
 
+<div ng-show="showComments && !isComment">
+    <h4 style="text-align:center"><em><label>Nothing to display</label></em></h4>
+</div>
+
 <div ng-click="showFollowingDiv()">
     <h1 class="page-header highlight-text-fonts class-pointer" >Following</h1>
 </div>
 
-<div ng-show="showFollowing" ng-repeat="users in following" style="display:inline-block;padding-right: 26px;">
+<div ng-show="showFollowing && isFollowing" ng-repeat="users in following" style="display:inline-block;padding-right: 26px;">
     <h3><em><label ng-click="gotoLikedUserpage(users.id)" class="highlight-text-fonts class-pointer">{{users.name}}     </label></em></h3>
+</div>
+
+<div ng-show="showFollowing && !isFollowing">
+    <h4 style="text-align:center"><em><label>Nothing to display</label></em></h4>
 </div>

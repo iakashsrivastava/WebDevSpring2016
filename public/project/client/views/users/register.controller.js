@@ -40,6 +40,7 @@
                 $scope.error = "Please fill out the required field, marked as red";
                 $scope.firstNamehasError = 'has-error';
             }else {
+                newuser.roles =['user'];
                 UserService.createUser(newuser).then(
                     function (response) {
                         console.log(response);

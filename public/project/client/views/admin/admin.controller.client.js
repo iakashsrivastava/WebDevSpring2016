@@ -9,6 +9,16 @@
 
     function AdminController(UserService,$scope,$timeout) {
 
+        $scope.showUsersDiv =showUsersDiv;
+        $scope.showGrid = false;
+
+        function showUsersDiv(){
+            if($scope.showGrid === true)
+                $scope.showGrid = false;
+            else
+                $scope.showGrid = true;
+        }
+
         var allUsers=[];
         $scope.gridallUsers = {
             enableCellEdit: false,
@@ -20,20 +30,20 @@
                 {
                     name: 'Id',
                     field: '_id'
-                    ,minWidth: 150
+                    ,minWidth: 100
                 }, {
                     name: 'UserName',
                     field: 'username'
-                    ,minWidth: 150
+                    ,minWidth: 100
                 }, {
                     name: 'Password',
                     field: 'password',
                     enableCellEdit: true
-                    ,minWidth: 150
+                    ,minWidth: 100
                 }, {
                     name: 'Email',
                     field: 'emails'
-                    ,minWidth: 150
+                    ,minWidth: 100
                 },
                 {
                     name: 'Account',
@@ -42,19 +52,20 @@
                 },
                 {
                     name: 'Roles',
-                    field: 'roles'
-                    ,minWidth: 100
+                    field: 'roles',
+                    enableCellEdit: true
+                    ,minWidth: 50
 
                 },
                 {
                     name: 'Date Created',
                     field: 'date'
-                    ,minWidth: 210
+                    ,minWidth: 150
                 },
                 {
-                    name: 'Delete User',
-                    cellTemplate: '<span class="glyphicon glyphicon-remove" ng-click="grid.appScope.deleteUser(row.entity._id)"></span>' +
-                                    '<span class="glyphicon glyphicon-ok" ng-click="grid.appScope.updateUserPassword(row.entity._id,row.entity.password)"></span>',
+                    name: 'Actions',
+                    cellTemplate: '<span class="glyphicon glyphicon-remove" ng-click="grid.appScope.deleteUser(row.entity._id,row.entity.roles)" style="color: red;padding:15px"></span>' +
+                                    '<span class="glyphicon glyphicon-ok" ng-click="grid.appScope.updateUserPassword(row.entity._id,row.entity.password,row.entity.roles)" style="color: green;padding:15px"></span>',
                     enableFiltering: false
                     ,minWidth: 100,
                     maxWidth: 100,
@@ -74,10 +85,13 @@
             console.log('get comments'+ id);
         }
 
-        function updateUserPassword(id, password){
+        function updateUserPassword(id, password, roles){
+            rol =['admin','user'];
             for(var i=0; i<allUsers.length; i++){
                 if(allUsers[i]._id === id){
                     allUsers[i].password = password;
+                    if(roles.indexOf('admin') > -1)
+                        allUsers[i].roles =rol;
                     UserService.updateUser(id,allUsers[i]).then(
                         function(response){
 
@@ -90,15 +104,18 @@
             }
         }
 
-        function deleteUser(_id){
-            UserService.deleteUserById(_id).then(
-                function(response){
-                    findAllUsers();
-                },
-                function(err) {
-                    $scope.error = err;
-                }
-            );
+        function deleteUser(_id, rl){
+            console.log(rl);
+            if(rl.indexOf('admin') > -1) {}
+            else
+                UserService.deleteUserById(_id).then(
+                    function(response){
+                        findAllUsers();
+                    },
+                    function(err) {
+                        $scope.error = err;
+                    }
+                );
         }
 
         function findAllUsers(){
@@ -118,7 +135,6 @@
                         else
                             response[i].account_type ='Mashup';
                     }
-                    console.log(response);
                     $scope.gridallUsers.data =response
                 },
                 function(err) {

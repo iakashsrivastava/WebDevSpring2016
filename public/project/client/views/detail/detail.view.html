@@ -30,15 +30,13 @@
     </h4>
     <hr>
 
-        <span ng-show="article.likes.indexOf(loggedUser._id) > -1" class="fa fa-thumbs-up fa-2x">
-            <i ng-repeat=" u in likedByUsers" ng-click="gotoLikedUserpage(u.id)">
-                {{u.name}}
-            </i>
-        </span>
-
+        <span ng-show="article.likes.indexOf(loggedUser._id) > -1" class="fa fa-thumbs-up fa-2x"></span>
         <span ng-click="favorite(data)">
             <span ng-show="!article || !article.likes || article.likes.indexOf(loggedUser._id) == -1" class="fa fa-thumbs-o-up fa-2x"></span>
         </span>
+        <i ng-repeat=" u in likedByUsers" ng-click="gotoLikedUserpage(u.id)">
+            {{u.name}}
+        </i>
 
         <span class="pull-right" ng-show="showShare">
              <i class="fb-share-button" data-href='{{data.source}}' data-title="{{data.title}}" data-layout="button" data-mobile-iframe="true" style="vertical-align:top;zoom:1;*display:inline"></i>

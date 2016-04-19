@@ -20,6 +20,9 @@
         $scope.gotoDetailPage=gotoDetailPage;
         $scope.following = $rootScope.loggedUser.following;
 
+        $scope.isComment =true;
+        $scope.isLike = true;
+
         $scope.showProfile = false;
         $scope.showProfileDiv = showProfileDiv;
 
@@ -35,6 +38,13 @@
         $scope.showFollowing =false;
         $scope.showFollowingDiv = showFollowingDiv;
 
+        function anyfollowing() {
+            if ($rootScope.loggedUser.following.length > 0)
+                $scope.isFollowing = true;
+            else
+                $scope.isFollowing = false;
+        }
+        anyfollowing();
         $scope.gotoLikedUserpage =gotoLikedUserpage;
 
         function gotoLikedUserpage(id){
@@ -268,7 +278,9 @@
         function showLikedvideos(){
             $scope.userLikesData =[];
             for(var i=likesCount; i<likesCount+6; i++){
-                console.log(userLikesArticles[i]);
+                if(userLikesArticles[0] === undefined){
+                    $scope.isLike = false;
+                }
                 $scope.userLikesData.push(userLikesArticles[i]);
             }
             showLikeNext();
@@ -324,6 +336,9 @@
         function showCommentedvideos(){
             $scope.userCommentedData =[];
             for(var i=commentsCount; i<commentsCount+6; i++){
+                if(userCommentedArticles[0] === undefined){
+                    $scope.isComment = false;
+                }
                 $scope.userCommentedData.push(userCommentedArticles[i]);
             }
             showCommentNext();

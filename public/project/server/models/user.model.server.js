@@ -142,7 +142,6 @@ module.exports = function(db,mongoose) {
             if(doc.password != user.password)
                 doc.password = bcrypt.hashSync(user.password);
             doc.username = user.username;
-            doc.password = bcrypt.hashSync(user.password);
             doc.firstName = user.firstName;
             doc.lastName = user.lastName;
             doc.emails = user.emails;

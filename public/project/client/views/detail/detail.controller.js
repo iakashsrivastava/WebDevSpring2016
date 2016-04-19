@@ -103,13 +103,11 @@
             );
         }
 
-
         function HomeDataContent() {
 
             DetailService.getDetailedData(postId,render);
 
             function render(response) {
-                console.log(response);
                 $scope.data = response;
             }
 
@@ -121,6 +119,7 @@
                 .findUserLikes (postId)
                 .then(function(response){
                     $scope.article = response.data;
+                    console.log(response.data)
                 });
         }
 
@@ -129,7 +128,6 @@
             DMDetailService.getDetailedData(postId,render);
 
             function render(response) {
-                //console.log(response);
                 $scope.data = response;
             }
 
@@ -140,8 +138,8 @@
             ArticleService
                 .findUserLikes (postId)
                 .then(function(response){
-
                     $scope.article = response.data;
+                    console.log($scope.article);
                 });
         }
 
@@ -152,11 +150,9 @@
 
         function favorite(article1) {
             if(loggedUser) {
-
-
                 $scope.likedByUsers.push({
                     id: '',
-                    name: 'you'});
+                    name: loggedUser.firstName});
 
                 var article ={};
                 $scope.article = {};
@@ -168,12 +164,10 @@
                 article.title= $scope.data.title;
                 article.source= source;
                 article.description=$scope.data.description;
-                console.log($scope.data);
                 if(source === 'F')
                     article.thumbnail_url = $scope.data.picture;
                 else
                     article.thumbnail_url=$scope.data.thumbnail_url;
-                console.log(article);
                 ArticleService
                     .userLikesArticle(loggedUser._id, article);
             } else {
