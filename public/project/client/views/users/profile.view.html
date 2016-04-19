@@ -1,5 +1,5 @@
 <div ng-click="showProfileDiv()">
-    <h1 class="page-header" >Personal Information</h1>
+    <h1 class="page-header highlight-text-fonts class-pointer" >Personal Information</h1>
 </div>
 
 <div ng-show="showProfile">
@@ -46,7 +46,7 @@
 </div>
 
 <div ng-click="showCategoriesDiv()" >
-    <h1 class="page-header">Personalize Feed</h1>
+    <h1 class="page-header highlight-text-fonts class-pointer">Personalize Feed</h1>
 </div>
 
 <div ng-show="showCategories">
@@ -81,7 +81,7 @@
 </div>
 
 <div ng-click="showLikesDiv($event)" >
-    <h1 class="page-header">Your Likes
+    <h1 class="page-header highlight-text-fonts class-pointer">Your Likes
         <i class="fa fa-arrow-right pull-right fa-1x navigationalNext highlight-text-fonts class-pointer" ng-click="categoryNext($event)" ng-show="showLikes && LikeNextButton"></i>
         <i class="fa fa-arrow-left pull-right fa-1x navigationalPrevious highlight-text-fonts class-pointer" ng-click="categoryPrev($event)" ng-show="showLikes && LikePrevButton"></i>
     </h1>
@@ -91,7 +91,7 @@
 
     <div ng-repeat="d in userLikesData track by $index">
         <div class="col-md-2 col-lg-2 col-sm-4 col-xs-6">
-            <div class="thumbnail" ng-click="gotoDetailPage(d.id,d.source)">
+            <div class="thumbnail" ng-click="gotoDetailPage(d.articleId,d.source)">
                 <a class="class-pointer" ng-if="!(d == undefined)">
                     <img class="img-responsive " ng-src={{d.thumbnail_url}} alt="Picture Not Available">
                     <h6><label class="class-pointer">{{d.title}}</label></h6>
@@ -102,7 +102,7 @@
 </div>
 
 <div ng-click="showCommentsDiv($event)" >
-    <h1 class="page-header">You Commented On
+    <h1 class="page-header highlight-text-fonts class-pointer">You Commented On
         <i class="fa fa-arrow-right pull-right fa-1x navigationalNext highlight-text-fonts class-pointer" ng-click="commentNext($event)" ng-show="showComments && commentNextButton"></i>
         <i class="fa fa-arrow-left pull-right fa-1x navigationalPrevious highlight-text-fonts class-pointer" ng-click="commentPrev($event)" ng-show="showComments && commentPrevButton"></i>
     </h1>

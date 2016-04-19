@@ -80,7 +80,6 @@
             if($rootScope.loggedUser){
             $scope.$apply(function(){
                 var q=$rootScope.loggedUser.search;
-
                 var numbers = new Bloodhound({
                     datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.text); },
                     queryTokenizer: Bloodhound.tokenizers.whitespace,

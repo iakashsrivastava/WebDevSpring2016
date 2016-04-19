@@ -17,6 +17,12 @@
         $scope.showShare =false;
         $scope.likedByUsers = [];
 
+        $scope.gotoLikedUserpage =gotoLikedUserpage;
+
+        function gotoLikedUserpage(id){
+            $location.url("/user/"+id);
+        }
+
 
         if(loggedUser)
             $scope.userLoggedIn = true;
@@ -63,7 +69,6 @@
                         ldata = ldata.reduce(function(a,b){if(a.indexOf(b)<0)a.push(b);return a;},[]);
                         for(var j=0; j<ldata.length; j++)
                             getUsersThatLikesArticle(ldata[j]);
-                        $scope.likedByUsers = ldata;
                     }
                     else {
                         $scope.likedByUsers = [];
@@ -86,7 +91,9 @@
                     allUsers=response;
                     for(var k=0; k<allUsers.length; k++){
                         if(allUsers[k]._id === id)
-                            $scope.likedByUsers.push(allUsers[k].firstName);
+                            $scope.likedByUsers.push({
+                                id: allUsers[k]._id,
+                                name: allUsers[k].firstName});
                         }
 
                 },
@@ -102,6 +109,7 @@
             DetailService.getDetailedData(postId,render);
 
             function render(response) {
+                console.log(response);
                 $scope.data = response;
             }
 
@@ -121,6 +129,7 @@
             DMDetailService.getDetailedData(postId,render);
 
             function render(response) {
+                //console.log(response);
                 $scope.data = response;
             }
 
@@ -131,6 +140,7 @@
             ArticleService
                 .findUserLikes (postId)
                 .then(function(response){
+
                     $scope.article = response.data;
                 });
         }
@@ -152,11 +162,12 @@
                 article.title= $scope.data.title;
                 article.source= source;
                 article.description=$scope.data.description;
+                console.log($scope.data);
                 if(source === 'F')
                     article.thumbnail_url = $scope.data.picture
                 else
                     article.thumbnail_url=$scope.data.thumbnail_url;
-
+                console.log(article);
                 ArticleService
                     .userLikesArticle(loggedUser._id, article);
             } else {
@@ -189,7 +200,10 @@
                     article.title = $scope.data.title;
                     article.source = source;
                     article.description = $scope.data.description;
-                    article.thumbnail_url = '';
+                    if(source === 'F')
+                        article.thumbnail_url = $scope.data.picture
+                    else
+                        article.thumbnail_url=$scope.data.thumbnail_url;
                     ArticleService
                         .userCommentsOnArticle(loggedUser._id, article);
 

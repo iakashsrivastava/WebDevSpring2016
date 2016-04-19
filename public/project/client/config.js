@@ -36,6 +36,14 @@
                 }
             })
 
+            .when("/user/:id",{
+                templateUrl: "./views/follower/follower.view.client.html",
+                controller:"FollowerController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
+            })
+
             .when("/category/:category",{
                 templateUrl: "./views/category/category.view.html",
                 controller:"CategoryController",
