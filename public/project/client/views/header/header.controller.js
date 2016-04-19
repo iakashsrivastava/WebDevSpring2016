@@ -48,7 +48,6 @@
         }
 
         function call(searchText) {
-            console.log(searchText);
 
             if($rootScope.loggedUser && searchText.text != undefined) {
                 searchText = searchText.text;
@@ -73,8 +72,10 @@
                     }
                 );
             }
-
-            $location.url("/search/" + searchText);
+                if(searchText.text === undefined)
+                    $location.url("/search/" + searchText);
+                else
+                    $location.url("/search/" + searchText.text);
         }
 
         setTimeout(function () {
