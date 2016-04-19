@@ -31,7 +31,9 @@
     <hr>
 
         <span ng-click="favorite(data)">
-            <span ng-show="article.likes.indexOf(loggedUser._id) > -1" class="fa fa-thumbs-up fa-2x"></span>
+            <span ng-show="article.likes.indexOf(loggedUser._id) > -1" class="fa fa-thumbs-up fa-2x">
+                {{likedByUsers}}
+            </span>
             <span ng-show="!article || !article.likes || article.likes.indexOf(loggedUser._id) == -1" class="fa fa-thumbs-o-up fa-2x"></span>
         </span>
 

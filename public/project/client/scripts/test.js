@@ -349,7 +349,7 @@ angular.module('djds4rce.angular-socialshare', [])
     }
 }]).directive('pintrest', ['$window', '$timeout', function($window, $timeout) {
     return {
-        template: '<a href="{{href}}" data-pin-do="{{pinDo}}" data-pin-config="{{pinConfig}}"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>',
+        template: '<a href="{{href}}" data-pin-do="{{pinDo}}" data-pin-config="{{pinConfig}}"><img src="//assets.pinterest.com/img/pidgets/pinit_fg_en_rect_gray_20.png" /></a>',
         link: function(scope, element, attr) {
             var pintrestButtonRenderer = debounce(function() {
                 var pin_button = document.createElement("a");

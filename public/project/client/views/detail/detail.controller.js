@@ -7,7 +7,7 @@
         .module("SocialMashup")
         .controller("DetailsController",DetailsController);
 
-    function DetailsController(DetailService,DMDetailService, $scope,$routeParams,$sce,ArticleService,$rootScope,$location,$timeout) {
+    function DetailsController(UserService,DetailService,DMDetailService, $scope,$routeParams,$sce,ArticleService,$rootScope,$location,$timeout) {
 
         var loggedUser = $rootScope.loggedUser;
         var postId = $routeParams.Id;
@@ -15,6 +15,7 @@
 
         $scope.forWeb = {"height":"465px"};
         $scope.showShare =false;
+        $scope.likedByUsers = [];
 
 
         if(loggedUser)
@@ -35,8 +36,9 @@
             ArticleService
                 .findArticleById(postId)
                 .then(function(response){
-                    if(response.data)
+                    if(response.data) {
                         $scope.comments = response.data.comments;
+                    }
                     else {
                         $scope.comments = [];
                     }
@@ -51,12 +53,55 @@
         }
 
         getComments();
+
+        function getLikes(){
+            ArticleService
+                .findArticleById(postId)
+                .then(function(response){
+                    if(response.data) {
+                        var ldata = response.data.likes;
+                        ldata = ldata.reduce(function(a,b){if(a.indexOf(b)<0)a.push(b);return a;},[]);
+                        for(var j=0; j<ldata.length; j++)
+                            getUsersThatLikesArticle(ldata[j]);
+                        $scope.likedByUsers = ldata;
+                    }
+                    else {
+                        $scope.likedByUsers = [];
+                    }
+                    $scope.likedByUsersLength = $scope.likedByUsers.length;
+
+                    if($scope.likedByUsersLength === 0)
+                        $scope.noLike = true
+                    else
+                        $scope.noLike = false;
+                });
+        }
+        getLikes();
+
+        getComments();
+
+        function getUsersThatLikesArticle(id){
+            UserService.findAllUsers().then(
+                function(response){
+                    allUsers=response;
+                    for(var k=0; k<allUsers.length; k++){
+                        if(allUsers[k]._id === id)
+                            $scope.likedByUsers.push(allUsers[k].firstName);
+                        }
+
+                },
+                function(err) {
+                    $scope.error = err;
+                }
+            );
+        }
+
+
         function HomeDataContent() {
 
             DetailService.getDetailedData(postId,render);
 
             function render(response) {
-                console.log(source);
                 $scope.data = response;
             }
 
@@ -67,7 +112,6 @@
             ArticleService
                 .findUserLikes (postId)
                 .then(function(response){
-                    console.log(response.data);
                     $scope.article = response.data;
                 });
         }
