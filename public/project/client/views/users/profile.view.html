@@ -102,7 +102,7 @@
 </div>
 
 <div ng-click="showCommentsDiv($event)" >
-    <h1 class="page-header highlight-text-fonts class-pointer">You Commented On
+    <h1 class="page-header highlight-text-fonts class-pointer">Your Comments
         <i class="fa fa-arrow-right pull-right fa-1x navigationalNext highlight-text-fonts class-pointer" ng-click="commentNext($event)" ng-show="showComments && commentNextButton"></i>
         <i class="fa fa-arrow-left pull-right fa-1x navigationalPrevious highlight-text-fonts class-pointer" ng-click="commentPrev($event)" ng-show="showComments && commentPrevButton"></i>
     </h1>
@@ -122,3 +122,10 @@
     </div>
 </div>
 
+<div ng-click="showFollowingDiv()">
+    <h1 class="page-header highlight-text-fonts class-pointer" >Following</h1>
+</div>
+
+<div ng-show="showFollowing" ng-repeat="users in following" style="display:inline-block;padding-right: 26px;">
+    <h3><em><label ng-click="gotoLikedUserpage(users.id)" class="highlight-text-fonts class-pointer">{{users.name}}     </label></em></h3>
+</div>

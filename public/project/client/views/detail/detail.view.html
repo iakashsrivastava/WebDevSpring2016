@@ -30,12 +30,13 @@
     </h4>
     <hr>
 
+        <span ng-show="article.likes.indexOf(loggedUser._id) > -1" class="fa fa-thumbs-up fa-2x">
+            <i ng-repeat=" u in likedByUsers" ng-click="gotoLikedUserpage(u.id)">
+                {{u.name}}
+            </i>
+        </span>
+
         <span ng-click="favorite(data)">
-            <span ng-show="article.likes.indexOf(loggedUser._id) > -1" class="fa fa-thumbs-up fa-2x">
-                <i ng-repeat=" u in likedByUsers" ng-click="gotoLikedUserpage(u.id)">
-                    {{u.name}}
-                </i>
-            </span>
             <span ng-show="!article || !article.likes || article.likes.indexOf(loggedUser._id) == -1" class="fa fa-thumbs-o-up fa-2x"></span>
         </span>
 
@@ -62,7 +63,7 @@
     <div ng-repeat="comment in comments">
         <blockquote>
             <p>{{comment.comments}}</p>
-            <footer>Commented by <cite>{{comment.name}}</cite></footer>
+            <footer>Commented by <cite class="class-pointer highlight-text-fonts" ng-click="gotoLikedUserpage(comment.id)">{{comment.name}}</cite></footer>
         </blockquote>
     </div>
 

@@ -18,6 +18,7 @@
         $scope.print = print;
         $scope.undoCategory = undoCategory;
         $scope.gotoDetailPage=gotoDetailPage;
+        $scope.following = $rootScope.loggedUser.following;
 
         $scope.showProfile = false;
         $scope.showProfileDiv = showProfileDiv;
@@ -31,18 +32,46 @@
         $scope.showComments =false;
         $scope.showCommentsDiv = showCommentsDiv;
 
+        $scope.showFollowing =false;
+        $scope.showFollowingDiv = showFollowingDiv;
+
+        $scope.gotoLikedUserpage =gotoLikedUserpage;
+
+        function gotoLikedUserpage(id){
+            $location.url("/user/"+id);
+        }
+
+        function showFollowingDiv(){
+            if ($scope.showFollowing == true){
+                $scope.showComments =false;
+                $scope.showLikes =false;
+                $scope.showProfile = false;
+                $scope.showCategories =false;
+                $scope.showFollowing = false;
+            }
+            else{
+                $scope.showComments =false;
+                $scope.showLikes =false;
+                $scope.showProfile = false;
+                $scope.showCategories =false;
+                $scope.showFollowing = true;
+            }
+        }
+
         function showProfileDiv(){
             if ($scope.showProfile == true){
                 $scope.showComments =false;
                 $scope.showLikes =false;
                 $scope.showProfile = false;
                 $scope.showCategories =false;
+                $scope.showFollowing = false;
             }
             else{
                 $scope.showComments =false;
                 $scope.showLikes =false;
                 $scope.showProfile = true;
                 $scope.showCategories =false;
+                $scope.showFollowing = false;
             }
         }
 
@@ -52,12 +81,14 @@
                 $scope.showLikes =false;
                 $scope.showProfile = false;
                 $scope.showCategories =false;
+                $scope.showFollowing = false;
             }
             else{
                 $scope.showComments =false;
                 $scope.showLikes =false;
                 $scope.showProfile = false;
                 $scope.showCategories =true;
+                $scope.showFollowing = false;
             }
         }
 
@@ -67,6 +98,7 @@
                 $scope.showLikes =false;
                 $scope.showProfile = false;
                 $scope.showCategories =false;
+                $scope.showFollowing = false;
             }
             else{
                 showLikedvideos();
@@ -74,6 +106,7 @@
                 $scope.showLikes =true;
                 $scope.showProfile = false;
                 $scope.showCategories =false;
+                $scope.showFollowing = false;
             }
         }
 
@@ -83,6 +116,7 @@
                 $scope.showLikes =false;
                 $scope.showProfile = false;
                 $scope.showCategories =false;
+                $scope.showFollowing = false;
             }
             else{
                 showCommentedvideos();
@@ -90,6 +124,7 @@
                 $scope.showLikes =false;
                 $scope.showProfile = false;
                 $scope.showCategories =false;
+                $scope.showFollowing = false;
             }
         }
 
@@ -326,8 +361,5 @@
             commentsCount = commentsCount-6;
             showCommentedvideos();
         }
-
     }
-
-
 })();

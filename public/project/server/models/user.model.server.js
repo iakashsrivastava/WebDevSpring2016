@@ -139,6 +139,8 @@ module.exports = function(db,mongoose) {
                 return doc;
             }
         }).then(function(doc) {
+            if(doc.password != user.password)
+                doc.password = bcrypt.hashSync(user.password);
             doc.username = user.username;
             doc.password = bcrypt.hashSync(user.password);
             doc.firstName = user.firstName;
@@ -150,6 +152,7 @@ module.exports = function(db,mongoose) {
             doc.search = user.search;
             doc.likesMovies = user.likesMovies;
             doc.categories = user.categories;
+            doc.following = user.following;
             doc.save(function(err, resp) {
                 if(err) {
                     console.log(err);

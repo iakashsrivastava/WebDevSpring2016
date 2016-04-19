@@ -7,8 +7,35 @@
         .module("SocialMashup")
         .controller("FollowerController",FollowerController);
 
-    function FollowerController($routeParams,$scope,UserService,ArticleService,$location) {
+    function FollowerController($routeParams,$scope,UserService,ArticleService,$location,$rootScope) {
         var id = $routeParams.id;
+
+        $scope.followUser =followUser;
+        var loggedUser = $rootScope.loggedUser;
+
+        $scope.following = false;
+        function isFollowing(){
+
+            for(var k=0; k<loggedUser.following.length; k++) {
+                if (loggedUser.following[k].id === id)
+                    $scope.following = true;
+                }
+        }
+        isFollowing();
+
+        function followUser(){
+            $scope.following =true;
+            loggedUser.following.push({id:id,name:$scope.user.firstName});
+            UserService.updateUser(loggedUser._id,loggedUser).then(
+                function(response){
+                    console.log(response);
+                },
+                function(err) {
+                    $scope.error = err;
+                }
+            );
+        }
+
 
         $scope.showComments  = false;
         $scope.showCommentsDiv = showCommentsDiv;

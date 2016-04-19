@@ -152,6 +152,12 @@
 
         function favorite(article1) {
             if(loggedUser) {
+
+
+                $scope.likedByUsers.push({
+                    id: '',
+                    name: 'you'});
+
                 var article ={};
                 $scope.article = {};
                 $scope.article.likes = [];
@@ -164,7 +170,7 @@
                 article.description=$scope.data.description;
                 console.log($scope.data);
                 if(source === 'F')
-                    article.thumbnail_url = $scope.data.picture
+                    article.thumbnail_url = $scope.data.picture;
                 else
                     article.thumbnail_url=$scope.data.thumbnail_url;
                 console.log(article);
