@@ -20,7 +20,10 @@
         $scope.gotoLikedUserpage =gotoLikedUserpage;
 
         function gotoLikedUserpage(id){
-            $location.url("/user/"+id);
+            if(loggedUser)
+                $location.url("/user/"+id);
+            else
+                $location.url("/login");
         }
 
 

@@ -32,9 +32,9 @@
 
         <span ng-show="article.likes.indexOf(loggedUser._id) > -1" class="fa fa-thumbs-up fa-2x"></span>
         <span ng-click="favorite(data)">
-            <span ng-show="!article || !article.likes || article.likes.indexOf(loggedUser._id) == -1" class="fa fa-thumbs-o-up fa-2x"></span>
+            <span ng-show="!article || !article.likes || article.likes.indexOf(loggedUser._id) == -1" class="fa fa-thumbs-o-up fa-2x class-pointer highlight-text-fonts"></span>
         </span>
-        <i ng-repeat=" u in likedByUsers" ng-click="gotoLikedUserpage(u.id)">
+        <i ng-repeat=" u in likedByUsers" ng-click="gotoLikedUserpage(u.id)" class="class-pointer highlight-text-fonts">
             {{u.name}}
         </i>
 

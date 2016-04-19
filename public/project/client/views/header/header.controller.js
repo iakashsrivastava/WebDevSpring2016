@@ -49,9 +49,10 @@
 
         function call(searchText) {
             console.log(searchText);
+
             if($rootScope.loggedUser && searchText.text != undefined) {
                 searchText = searchText.text;
-
+                $rootScope.loggedUser.search.push({text: searchText});
                 UserService.updateUser($rootScope.loggedUser._id,$rootScope.loggedUser).then(
                     function(response){
                         //console.log(response);
@@ -79,7 +80,9 @@
         setTimeout(function () {
             if($rootScope.loggedUser){
             $scope.$apply(function(){
+
                 var q=$rootScope.loggedUser.search;
+                console.log(q);
                 var numbers = new Bloodhound({
                     datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.text); },
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -120,7 +123,7 @@
                 ];
             }
 
-        }, 500);
+        }, 2500);
 
         $scope.multiExample=[];
 
