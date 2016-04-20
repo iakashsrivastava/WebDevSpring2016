@@ -72,6 +72,7 @@
                     }
                 );
             }
+            $scope.searchText ='';
                 if(searchText.text === undefined)
                     $location.url("/search/" + searchText);
                 else
@@ -128,7 +129,7 @@
 
         $scope.multiExample=[];
 
-        var obj =['Messi','Paul Walker','Boston Marathon Bombing','Nelson Mandela','Cory Monteith','iPhone s','Government Shutdown',
+        var obj =['Messi','Paul Walker','Nelson Mandela','Cory Monteith','iPhone s','Government Shutdown',
             'James Gandolfini','Harlem Shake','Royal Baby','Adrian Peterson','','Miley Cyrus','Drake','Kim Kardashian','Justin Bieber',
             'Beyonce','Rihanna','Taylor Swift','Selena Gomez','Katy Perry','Kanye West','','Black Friday','Cyber Monday','Daytona ',
             'Chinese New Year','Tour de France','AMAs','French Open','Cinco de Mayo','Yom Kippur','LA Auto Show',
