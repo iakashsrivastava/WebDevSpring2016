@@ -16,7 +16,8 @@
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
             findAllUsers: findAllUsers,
-            deleteUserById: deleteUserById
+            deleteUserById: deleteUserById,
+            logout :logout
         };
 
         return api;
@@ -74,15 +75,21 @@
         }
 
         function findUserByCredentials(username,password){
-            var deferred = $q.defer();
-            var string = "/api/assignment/user?username="+ username + "&password=" +password;
+            //var deferred = $q.defer();
+            //var string = "/api/assignment/user?username="+ username + "&password=" +password;
+            //
+            //$http.get(string)
+            //    .success(function(response){
+            //        deferred.resolve(response);
+            //    });
+            //
+            //return deferred.promise;
+            var user = {
+                username: username,
+                password: password
+            };
 
-            $http.get(string)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.post("/api/assignment/login", user);
         }
 
         function findAllUsers(){
@@ -99,12 +106,16 @@
         function deleteUserById(id){
             var deferred = $q.defer();
 
-            $http.delete("/api/assignment/user/:"+id)
+            $http.delete("/api/assignment/user/"+id)
                 .success(function(response){
                     deferred.resolve(response);
                 });
 
             return deferred.promise;
+        }
+
+        function logout() {
+            return $http.post("/api/assignment/logout");
         }
 
     }

@@ -1,10 +1,5 @@
-/**
- * Created by akash on 3/17/16.
- */
-
-//var mock = require("./user.mock.json");
-// load q promise library
 var q = require("q");
+var bcrypt = require('bcrypt-nodejs');
 
 
 module.exports = function(db,mongoose) {
@@ -16,11 +11,14 @@ module.exports = function(db,mongoose) {
 
     var api = {
         createUser: createUser,
-        getUsers:getUsers,
+        findAllUsers:findAllUsers,
         updateUser:updateUser,
-        getUserDetails:getUserDetails,
+        findUserByCredentials:findUserByCredentials,
         deleteUser:deleteUser,
-        getUserDetailsByUsername:getUserDetailsByUsername
+        findUserByUsername:findUserByUsername,
+        findUserById:findUserById,
+        getMongooseModel: getMongooseModel,
+        findUsersByIds:findUsersByIds
     };
 
     return api;
@@ -29,6 +27,9 @@ module.exports = function(db,mongoose) {
 
         // use q to defer the response
         var deferred = q.defer();
+        var decrytedPassword = user.password;
+        var encrytedPassword = bcrypt.hashSync(decrytedPassword);
+        user.password = encrytedPassword;
 
         // insert new user with mongoose user model's create()
         UserModel.create(user, function (err, doc) {
@@ -47,7 +48,7 @@ module.exports = function(db,mongoose) {
         return deferred.promise;
     }
 
-    function getUsers(){
+    function findAllUsers(){
         var deferred = q.defer();
         // find without first argument retrieves all documents
         UserModel.find({}, function(err, docs) {
@@ -62,40 +63,55 @@ module.exports = function(db,mongoose) {
         return deferred.promise;
     }
 
-    function getUserDetails(username, password){
+    function findUserByCredentials(username, password){
+
         var deferred = q.defer();
         // find without first argument retrieves all documents
-        UserModel.findOne({ username: username ,password: password }, function(err, docs) {
+        UserModel.findOne({ username: username }, function(err, doc) {
             if (err) {
                 // reject promise if error
                 deferred.reject(err);
             } else {
                 // resolve promise
-                deferred.resolve(docs);
+                if(doc && doc.password) {
+                    if(bcrypt.compareSync(password, doc.password)) {
+                        deferred.resolve(doc);
+                    } else{
+                        deferred.resolve('');
+                    }
+                } else {
+                    deferred.resolve('');
+                }
+
             }
+
         });
+
         return deferred.promise;
 
     }
 
-    function getUserDetailsByUsername(username){
-        var deferred = q.defer();
-        // find without first argument retrieves all documents
-        UserModel.findOne({ username: username }, function(err, docs) {
-            if (err) {
-                // reject promise if error
-                deferred.reject(err);
-            } else {
-                // resolve promise
-                deferred.resolve(docs);
-            }
-        });
-        return deferred.promise;
+    function findUserByUsername(username){
+        if(username) {
+            var deferred = q.defer();
+            // find without first argument retrieves all documents
+            UserModel.findOne({username: username}, function (err, docs) {
+                if (err) {
+                    // reject promise if error
+                    deferred.reject(err);
+                } else {
+                    // resolve promise
+                    deferred.resolve(docs);
+                }
+            });
+            return deferred.promise;
+        }
     }
 
     function updateUser(userId, user) {
 
         var deferred = q.defer();
+
         UserModel.findById(userId, function (err, doc) {
             if (err) {
                 deferred.reject(err);
@@ -103,12 +119,14 @@ module.exports = function(db,mongoose) {
                 return doc;
             }
         }).then(function(doc) {
-            doc.username = updatedUser.username;
-            doc.password = updatedUser.password;
-            doc.firstName = updatedUser.firstName;
-            doc.lastName = updatedUser.lastName;
-            doc.emails = updatedUser.emails;
-            doc.phones = updatedUser.phones;
+            if(doc.password != user.password)
+                doc.password = bcrypt.hashSync(user.password);
+            doc.username = user.username;
+            doc.firstName = user.firstName;
+            doc.lastName = user.lastName;
+            doc.emails = user.emails;
+            doc.roles = user.roles;
+            doc.phones = user.phones;
             doc.save(function(err, resp) {
                 if(err) {
                     console.log(err);
@@ -120,19 +138,48 @@ module.exports = function(db,mongoose) {
         });
 
         return deferred.promise;
-
     }
 
     function deleteUser(userId){
+        return UserModel.remove({_id: userId});
+    }
+
+    function findUserById(userId) {
+        if(userId) {
+            var deferred = q.defer();
+            UserModel.findById(userId, function (err, doc) {
+                if (err) {
+                    // reject promise if error
+                    deferred.reject(err);
+                } else {
+                    // resolve promise
+                    deferred.resolve(doc);
+                }
+            });
+            return deferred.promise;
+        }
+    }
+
+
+    function getMongooseModel() {
+        return UserModel;
+    }
+
+    function findUsersByIds (userIds) {
         var deferred = q.defer();
-        UserModel.remove({_id: userId}, function (err, resp) {
+
+        // find all users in array of user IDs
+        UserModel.find({
+            _id: {$in: userIds}
+        }, function (err, users) {
             if (err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(resp);
+                deferred.resolve(users);
             }
         });
 
         return deferred.promise;
     }
+
 }

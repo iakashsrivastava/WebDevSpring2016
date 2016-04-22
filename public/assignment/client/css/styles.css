@@ -84,3 +84,14 @@ hr {
     outline: 0;
 
 }
+
+.sortorder:after {
+    content: '\25b2';
+}
+.sortorder.reverse:after {
+    content: '\25bc';
+}
+
+.action-padding{
+    margin-top: 20px; !important;
+}

@@ -17,6 +17,7 @@
         $scope.openModal =openModal;
         $scope.fromModal =fromModal;
         $scope.cancelModal =cancelModal;
+        $scope.sort = sort;
         $scope.sortOption ={
           handle : '.mover'
         };
@@ -32,6 +33,17 @@
                     $scope.allFields = response;
                 }
             );
+        }
+
+        function sort(start, end) {
+            FieldService.sort(formId, start, end).then(
+                function (response) {
+
+                },
+                function(err) {
+                    $scope.error = err;
+                }
+            )
         }
 
         getfields(formId);

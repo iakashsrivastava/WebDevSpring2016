@@ -12,15 +12,18 @@
         $scope.register = register;
 
         function register(newuser) {
-            newuser.emails =newuser.emails.split(',');
-
-            UserService.createUser(newuser).then(
-                function(response){
-                    $rootScope.loggedUser = response;
-                    $location.url("/profile");
-                });
+            if(newuser.password != newuser.verifypassword)
+                $scope.error ="Passwords do not match"
+            else {
+                newuser.emails = newuser.emails.split(',');
+                newuser.roles = ['student'];
+                UserService.createUser(newuser).then(
+                    function (response) {
+                        $rootScope.loggedUser = response;
+                        $location.url("/profile");
+                    });
+            }
         }
-
     }
 
 

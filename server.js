@@ -31,6 +31,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -42,7 +43,7 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 //require('./public/assignment/server/app.js')(app);
 require('./public/assignment/server/app.js')(app, db, mongoose);
-require('./public/project/server/app.js')(app, db, mongoose);
+//require('./public/project/server/app.js')(app, db, mongoose);
 
 app.get('/hello', function(req, res){
     res.send('hello world from webstorm');

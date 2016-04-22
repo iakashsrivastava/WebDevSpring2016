@@ -5,6 +5,6 @@
 "use strict";
 (function(){
     angular
-        .module("FormBuilderApp",['ngRoute','ui.sortable','ngAnimate', 'ui.bootstrap']);
+        .module("FormBuilderApp",['ngRoute','ui.sortable','ngAnimate', 'ui.bootstrap','jgaDirectives']);
 
 })();

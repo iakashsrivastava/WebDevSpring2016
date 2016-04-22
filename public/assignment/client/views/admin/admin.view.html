@@ -1,54 +1,52 @@
+<h3>Admin</h3>
 
-    <h1 class="page-header">Admin</h1>
-    <h2> Users </h2>
+<h3>User List</h3>
 <div class="table-responsive">
-    <table class="table table-bordered table-striped nowrap">
+    <table class="table table-striped">
         <tr>
+            <td>&nbsp;</td>
+            <td >
+                <span class="sortorder" ng-show="predicate === 'username'" ng-class="{reverse:reverse}"></span>
+                <span ng-click="order('username')">Username</span>
+                <input ng-model="user.username" class="form-control" placeholder="username"/>
+            </td>
             <td>
-                <a class="admin-table-glyphicons-links glyphicon glyphicon-triangle-bottom"></a>
-                <span class="admin-table-header-links">Username</span> </td>
+                <span>Password</span>
+                <input ng-model="user.password" class="form-control" type="password" placeholder="password"/>
+            </td>
             <td>
-            <a class="admin-table-glyphicons-links glyphicon glyphicon-triangle-bottom"></a>
-            <span class="admin-table-header-links">Password</span> </td>
+                <span class="sortorder" ng-show="predicate === 'firstName'" ng-class="{reverse:reverse}"></span>
+                <span ng-click="order('firstName')">First Name</span>
+                <input ng-model="user.firstName" class="form-control" placeholder="first"/>
+            </td>
             <td>
-                <a class="admin-table-glyphicons-links glyphicon glyphicon-triangle-bottom"></a>
-                <span class="admin-table-header-links">Role</span> </td>
+                <span class="sortorder" ng-show="predicate === 'lastName'" ng-class="{reverse:reverse}"></span>
+                <span ng-click="order('lastName')">Last Name</span>
+                <input ng-model="user.lastName" class="form-control" placeholder="last"/>
+            </td>
             <td>
-                <a class="admin-table-glyphicons-links glyphicon glyphicon-triangle-bottom"></a>
-                <span class="admin-table-header-links">Action</span> </td>
+                Roles
+                <input ng-model="user.roles" class="form-control" placeholder="roles"/>
+            </td>
+
+            <td class=""><button ng-click="add(user)" class="btn btn-primary action-padding">&plus;</button>
+            <td class=""><button ng-click="update(user)" class="btn btn-success action-padding">&check;</button>
         </tr>
-        <tr>
-            <td><input type="text" class="form-control" id="inputUsername" placeholder="username"></td>
-            <td><input type="password" class="form-control" id="inputPassword" placeholder="password"></td>
-            <td><input type="text" class="form-control" id="inputRole" placeholder="role1,role2"></td>
-            <td class ="admin-table-columns-links">
-                <a><span class = "glyphicon glyphicon-plus admin-table-glyphicons-rows-links"></span></a>
-                <a><span class = "glyphicon glyphicon-ok admin-table-glyphicons-rows-links"></span></a></td>
+
         </tr>
-        <tr>
-            <td><label>alice</label></td>
-            <td></td>
-            <td><label>student</label></td>
-            <td class ="admin-table-columns-links">
-                <a><span class = "glyphicon glyphicon-remove admin-table-glyphicons-rows-links"></span></a>
-                <a><span class = "glyphicon glyphicon-pencil admin-table-glyphicons-rows-links"></span></a></td>
-        </tr>
-        <tr>
-            <td><label>bob</label></td>
-            <td></td>
-            <td><label>faculty | admin</label></td>
-            <td class ="admin-table-columns-links">
-                <a><span class = "glyphicon glyphicon-remove admin-table-glyphicons-rows-links"></span></a>
-                <a><span class = "glyphicon glyphicon-pencil admin-table-glyphicons-rows-links"></span></a></td>
-        </tr>
-        <tr>
-            <td><label>charlie</label></td>
-            <td></td>
-            <td></td>
-            <td class ="admin-table-columns-links">
-                <a><span class = "glyphicon glyphicon-remove admin-table-glyphicons-rows-links"></span></a>
-                <a><span class = "glyphicon glyphicon-pencil admin-table-glyphicons-rows-links"></span></a></td>
+        <!--<tr ng-repeat="friend in friends | orderBy:predicate:reverse">-->
+        <tr ng-repeat="user in users | orderBy:predicate:reverse" >
+            <td>{{user._id}}</td>
+            <td>{{user.username}}</td>
+            <td>&nbsp;</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.roles}}</td>
+            <td><button ng-click="remove(user)" class="btn btn-danger ">X</button>
+            <td><button ng-click="select(user)" class="btn btn-success">...</button>
         </tr>
     </table>
 </div>
-
+<div ng-if="error" class="alert alert-danger text-center">
+    <p>{{error}}</p>
+</div>

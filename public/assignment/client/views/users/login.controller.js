@@ -15,9 +15,9 @@
         function login(existingUser){
             UserService.findUserByCredentials(existingUser.username,existingUser.password).then(
                 function(response){
-
+                    console.log(response);
                     if(response !== null) {
-                        $rootScope.loggedUser = response;
+                        $rootScope.loggedUser = response.data;
                         $location.url("/profile");
                     }
                 });

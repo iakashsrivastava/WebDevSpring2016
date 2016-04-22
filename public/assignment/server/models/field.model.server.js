@@ -25,7 +25,8 @@ module.exports = function(db,mongoose,formModel) {
         createField :createField,
         updateField : updateField,
         deleteField : deleteField,
-        cloneField : cloneField
+        cloneField : cloneField,
+        sort: sort
     };
 
     return api;
@@ -43,6 +44,18 @@ module.exports = function(db,mongoose,formModel) {
             }
         });
         return deferred.promise;
+    }
+
+    function sort(formId, start, end) {
+        return formModel
+            .findById(formId)
+            .then(
+                function(form) {
+                    form.fields.splice(end, 0, form.fields.splice(start, 1)[0]);
+                    form.markModified("fields");
+                    form.save();
+                }
+            )
     }
 
     function getForm(formId){

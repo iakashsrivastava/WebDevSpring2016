@@ -15,10 +15,15 @@
             createField:createField,
             deleteField:deleteField,
             cloneField:cloneField,
-            updateField:updateField
+            updateField:updateField,
+            sort: sort
         }
 
         return api;
+
+        function sort(formId, start, end){
+            return $http.put("/api/assignment/form/" + formId + "/" + start + "/" + end);
+        }
 
         function getFieldsForForm(formId){
             var deferred = $q.defer();

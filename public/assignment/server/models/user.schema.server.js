@@ -16,6 +16,7 @@ module.exports = function(mongoose) {
         firstName: String,
         lastName: String,
         emails: [String],
+        roles: [String],
         phones: [String]
 
     }, {collection: 'user'});
