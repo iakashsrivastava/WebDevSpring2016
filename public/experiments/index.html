@@ -63,9 +63,9 @@
                 <li>
                     <a class="navbar-brand" style="font-size:15px;" href="#experience"><i class="fa fa-briefcase"></i> Experience</a>
                 </li>
-                <li>
-                    <a class="navbar-brand" style="font-size:15px;" href="#coursework"><i class="fa fa-book"></i> Coursework</a>
-                </li>
+                <!--<li>-->
+                    <!--<a class="navbar-brand" style="font-size:15px;" href="#coursework"><i class="fa fa-book"></i> Coursework</a>-->
+                <!--</li>-->
                 <li>
                     <a class="navbar-brand" style="font-size:15px;" href="#Certification"><i class="fa fa-wrench"></i> Certification</a>
                 </li>
@@ -80,6 +80,7 @@
         </div>
     </div>
 </nav>
+
 <header class="header" id="home">
     <div class="container">
         <img class="profile-image img-responsive pull-left" height="155" width="155" src="img/profile_pic.jpg" alt="Akash Srivastava" />
@@ -112,14 +113,14 @@
                     <h2 class="heading">Professional Experience</h2>
                     <div class="content">
                         <div class="item" style="text-align:justify;">
-                            <h3 class="title"><a href="" target="_blank">Massachusetts Bay Terminal Authority, Boston MA</a><span class="place"> - Master's Project</span></h3>
+                            <h3 class="title"><a href="http://www.mbta.com/" target="_blank">Massachusetts Bay Terminal Authority, Boston MA</a><span class="place"> - Master's Project</span></h3>
                             <span class="year" style="font-size:14px;"><i class="fa fa-calendar"></i> May 2016 - Present</span>
                             <p>
                             <li>
                                 <strong>
                                     Efficiency Improvement:
                                 </strong>
-                            Currently working on building a software solution for removing discrepancies between units read by fare vending machines and the units collected at the money room which have an estimated impact of around 2 million dollars.
+                                Extract, Transform, Load data from distributed sources of fare vending machine across Boston region to provide data discovery model for finding discrepancies having estimated impact in millions
                             </p>
                         </div><!--//item-->
                         <div class="item" style="text-align:justify;">
@@ -136,13 +137,13 @@
                                 <strong>
                                     Realtime Monitoring:
                                 </strong>
-                                Designed and partially developed the tool which can detect the Java exception in production log files and create JIRA/Salesforce tickets based upon the matched criteria
+                                Created a tool which automates the creation of JIRA/Salesforce tickets while parsing the Java exception in production log files with possible resolution
                             </li>
                             <li>
                                 <strong>
                                     Web Interface:
                                 </strong>
-                                Developed client interfaces which provides real time analysis of various SQL tables using Angular JS, Node JS and Socket.io
+                                Designed and developed dashboard for process-monitoring, data visualization, reporting and workflow management of the project in Angular JS, Node JS and Socket.io using Restful API
                             </li>
                             </p>
                         </div><!--//item-->
@@ -161,6 +162,12 @@
                                     Application Development:
                                 </strong>
                                 Gathered client requirement, performed impact & value analysis and implemented the required solution using Java/C++ Programming, Siebel configuration, Scripting, EIM and JavaScript
+                            </li>
+                            <li>
+                                <strong>
+                                    Parallel Processing:
+                                </strong>
+                                Used multi-threading to allow processing of requests and responses simultaneously
                             </li>
                             <li>
                                 <strong>
@@ -188,18 +195,26 @@
                             <h3 class="title"><a href="https://www.accenture.com" target="_blank">Accenture, Chennai India</a><span class="place"> - Associate Software Engineer </span></h3>
                             <span class="year" style="font-size:14px;"><i class="fa fa-calendar"></i> July 2011 - Sept 2012</span>
                             <p>
-                            <li>
-                                <strong>
-                                    Change Management:
-                                </strong>
-                                Supported world’s largest Siebel upgrade (at that point) from version 7.8 to 8.1
-                            </li>
-                            <li>
-                                <strong>
-                                    Requirement Analysis:
-                                </strong>
-                                Evaluated operational requirements and overall characteristics of applications. Upgraded and maintained detailed software functional specifications
-                            </li>
+                                <li>
+                                    <strong>
+                                        Requirement Analysis:
+                                    </strong>
+                                    Evaluated operational requirements and overall characteristics of applications. Upgraded and maintained detailed software functional specifications
+                                </li>
+                                <li>
+                                    <strong>
+                                        User Interface:
+                                    </strong>
+                                    Enhanced user experience of legacy client websites using bootstrap for responsive design
+
+                                </li>
+                                <li>
+                                    <strong>
+                                        Change Management:
+                                    </strong>
+                                    Supported world’s largest Siebel upgrade (at that point) from version 7.8 to 8.1
+                                </li>
+
                                 <li>
                                     <strong>
                                         Automation:
@@ -236,7 +251,8 @@
                             <div class="desc col-md-12 col-sm-8 col-xs-12">
                                 <h3 class="title">Music Recommendation System</h3>
                                 <p style="text-align:justify;">
-                                    Developed a web crawler in Python for focused and unfocused crawling over 20,000 Wikipedia pages.
+                                    Developed Recommendation System using collaborative filtering algorithms scaling over 48 million records,
+                                     worked through entire design cycle, from analysis to development of test suites to achieve error as low as 0.46
                                 </p>
                             </div><!--//desc-->
                         </div><!--//item-->
@@ -245,7 +261,8 @@
                             <div class="desc col-md-12 col-sm-8 col-xs-12">
                                 <h3 class="title">Social Mashup</h3>
                                 <p style="text-align:justify;">
-                                    Developed a web crawler in Python for focused and unfocused crawling over 20,000 Wikipedia pages.
+                                    Created responsive web application featuring trending content fetched via Facebook, Twitter, Google Restful API.
+                                    Implemented authentication strategies, caching, error handling, promises for seamless interactive user experience
                                 </p>
                             </div><!--//desc-->
                         </div><!--//item-->
@@ -337,58 +354,6 @@
                     </div><!--//content-->
                 </div><!--//section-inner-->
             </aside><!--//section-->
-
-            <!--<aside class="languages aside section" id="coursework">-->
-                <!--<div class="section-inner">-->
-                    <!--<h2 class="heading">Coursework</h2>-->
-                    <!--<div class="content">-->
-                        <!--<ul class="list-unstyled">-->
-                            <!--<li class="item">-->
-                                <!--<i class="fa fa-book"></i>-->
-                                <!--<span class="title"><strong>Programming Design Paradigm</strong></span>-->
-                                <!--<span class="level pull-right"><i class="fa fa-bar-chart"></i> CS5010</span>-->
-                                <!--<p class="summary" style="text-align:justify;">This course introduces modern program design paradigms. The course starts with functional program design, introducing the notion of a design recipe. The latter consists of two parts: a task organization (ranging from the description of data to the creation of a test suite) and a data-oriented approach to the organization of programs (ranging from atomic data to self-referential data definitions and functions as data). The course then progresses to object-oriented design, explaining how it generalizes and contrasts with functional design. In addition to studying program design, students practice pair-programming and public code review techniques.</p>-->
-                            <!--</li>&lt;!&ndash;//item&ndash;&gt;-->
-                            <!--<li class="item">-->
-                                <!--<i class="fa fa-book"></i>-->
-                                <!--<span class="title"><strong>Foundations of Artificial Intelligence</strong></span>-->
-                                <!--<span class="level pull-right"><i class="fa fa-bar-chart"></i> CS5100</span><br />-->
-                                <!--<p class="summary" style="text-align:justify;">This course introduces the fundamental problems, theories, and algorithms of the artificial intelligence field. Topics include heuristic search and game trees, knowledge representation using predicate calculus, automated deduction and its applications, problem solving and planning, and introduction to machine learning. Required course work includes the creation of working programs that solve problems, reason logically, and/or improve their own performance using techniques presented in the course.</p>-->
-                            <!--</li>&lt;!&ndash;//item&ndash;&gt;-->
-                            <!--<li class="item">-->
-                                <!--<i class="fa fa-book"></i>-->
-                                <!--<span class="title"><strong>Information Retrieval</strong></span>-->
-                                <!--<span class="level pull-right"><i class="fa fa-bar-chart"></i> CS6200</span><br />-->
-                                <!--<p class="summary" style="text-align:justify;">This course provides an introduction to information retrieval systems and different approaches to information retrieval. Topics covered include evaluation of information retrieval systems; retrieval, language, and indexing models; file organization; compression; relevance feedback; clustering; distributed retrieval and metasearch; probabilistic approaches to information retrieval; Web retrieval; filtering, collaborative filtering, and recommendation systems; cross-language IR; multimedia IR; and machine learning for information retrieval.</p>-->
-                            <!--</li>&lt;!&ndash;//item&ndash;&gt;-->
-                            <!--<li class="item">-->
-                                <!--<i class="fa fa-book"></i>-->
-                                <!--<span class="title"><strong>Algorithms</strong></span>-->
-                                <!--<span class="level pull-right"><i class="fa fa-bar-chart"></i> CS5800</span>-->
-                                <!--<p class="summary" style="text-align:justify;">This course presents the mathematical techniques used for the design and analysis of computer algorithms. Focuses on algorithmic design paradigms and techniques for analyzing the correctness, time, and space complexity of algorithms. Topics may include asymptotic notation, recurrences, loop invariants, Hoare triples, sorting and searching, advanced data structures, lower bounds, hashing, greedy algorithms, dynamic programming, graph algorithms, and NP-completeness.</p>-->
-                            <!--</li>&lt;!&ndash;//item&ndash;&gt;-->
-                            <!--<li class="item">-->
-                                <!--<i class="fa fa-book"></i>-->
-                                <!--<span class="title"><strong>Managing Software Development</strong></span>-->
-                                <!--<span class="level pull-right"><i class="fa fa-bar-chart"></i> CS5500</span>-->
-                                <!--<p class="summary" style="text-align:justify;">This course covers software life cycle models (waterfall, spiral, and so forth), domain engineering methods, requirements analysis methods (including formal specifications), software design principles and methods, verification and testing methods, resource and schedule estimation for individual software engineers, component-based software development methods and architecture, and languages for describing software processes. Includes a project where some of the software engineering methods (from domain modeling to testing) are applied in an example.</p>-->
-                            <!--</li>&lt;!&ndash;//item&ndash;&gt;-->
-                            <!--<li class="item">-->
-                                <!--<i class="fa fa-book"></i>-->
-                                <!--<span class="title"><strong>Web Development</strong></span>-->
-                                <!--<span class="level pull-right"><i class="fa fa-bar-chart"></i> CS5610</span>-->
-                                <!--<p class="summary" style="text-align:justify;">This course guides through in learning building Web applications from Scratch. Web applications are applications that use various Web technologies as building blocks. HTML, CSS, JavaScript and Angular will be used to build the front directly interacting with users. As users interact with the Web application they will be generating a sequence of HTTP requests directed at a server built on Node.js and Express, a popular Node.js library. The server will handle the requests and use Mongoose (another very popular Node.js library) to store and retrieve a data model from MongoDB, a NoSQL database. The front end, web services, and data access and storage are all hosted and/or configured in a Node.js runtime instance. This module covers Node.js installation and configuration. </p>-->
-                            <!--</li>&lt;!&ndash;//item&ndash;&gt;-->
-                            <!--<li class="item">-->
-                                <!--<i class="fa fa-book"></i>-->
-                                <!--<span class="title"><strong>Data Mining Techniques</strong></span>-->
-                                <!--<span class="level pull-right"><i class="fa fa-bar-chart"></i> CS6220</span>-->
-                                <!--<p class="summary" style="text-align:justify;">This course covers various aspects of data mining, including classification, prediction, ensemble methods, association rules, sequence mining, and cluster analysis. The class project involves hands-on practice of mining useful knowledge from a large data set.</p>-->
-                            <!--</li>&lt;!&ndash;//item&ndash;&gt;-->
-                        <!--</ul>-->
-                    <!--</div>&lt;!&ndash;//content&ndash;&gt;-->
-                <!--</div>&lt;!&ndash;//section-inner&ndash;&gt;-->
-            <!--</aside>&lt;!&ndash;//section&ndash;&gt;-->
 
             <aside class="skills aside section" id="skills">
                 <div class="section-inner">
@@ -553,7 +518,7 @@
 
 <!-- Javascript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- custom js -->
 <script type="text/javascript" src="js/main.js"></script>
