@@ -1,6 +1,6 @@
 /*
  * Template Name: Developer - Responsive Website Template for Developers
- * Version: 1.3
+ * Version: 1.5
  * Author: Xiaoying Riley
  * Twitter: @3rdwave_themes
  * License: Creative Commons Attribution 3.0 License
@@ -10,7 +10,7 @@
 body {
     font-family: 'Lato', arial, sans-serif;
     color: #434343;
-    background: #dae3e7;
+    background: #DAE3E7;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -26,7 +26,7 @@ h6 {
     color: #778492;
 }
 a {
-    color: #3aaa64;
+    color: #3AAA64;
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     -ms-transition: all 0.4s ease-in-out;
@@ -74,8 +74,8 @@ a.btn-cta-primary:hover,
 }
 a.btn-cta-secondary,
 .btn-cta-secondary {
-    background: #479fc8;
-    border: 1px solid #479fc8;
+    background: #479FC8;
+    border: 1px solid #479FC8;
     color: #fff;
     font-weight: 600;
     text-transform: uppercase;
@@ -90,7 +90,7 @@ a.btn-cta-secondary:hover,
     color: #32383e;
 }
 .label-theme {
-    background: #3aaa64;
+    background: #3AAA64;
     font-size: 12px;
 }
 a.dotted-link {
@@ -234,7 +234,7 @@ iframe {
     position: relative;
 }
 .latest .featured-image .text {
-    background: #3aaa64;
+    background: #3AAA64;
     color: #fff;
 }
 .latest .featured-image .ribbon {
@@ -257,7 +257,7 @@ iframe {
     text-align: center;
     text-transform: uppercase;
     color: #fff;
-    background-color: #479fc8;
+    background-color: #479FC8;
     -webkit-transform: rotate(45deg) translate3d(0, 0, 0);
     -moz-transform: rotate(45deg) translate3d(0, 0, 0);
     -ms-transform: rotate(45deg) translate3d(0, 0, 0);
@@ -305,20 +305,26 @@ iframe {
     line-height: 1.5;
 }
 .experience .item .title .place {
-    color: #999999;
+    color: #999;
     font-weight: normal;
 }
 .experience .item .title .place a {
-    color: #999999;
+    color: #999;
 }
 .experience .item .title .place a:hover {
     color: #666666;
 }
 .experience .item .title .year {
-    color: #999999;
+    color: #999;
     font-weight: normal;
 }
 /* Git section */
+.github-graph {
+    margin-bottom: 30px;
+}
+.github-graph .js-calendar-graph-svg {
+    max-width: 100%;
+}
 .ghfeed {
     height: 600px;
 }
@@ -385,7 +391,7 @@ iframe {
     margin-bottom: 0;
 }
 .testimonials .item .quote {
-    color: #666666;
+    color: #666;
     font-size: 16px;
     border-left-color: #9fdeb7;
     margin-bottom: 15px;
@@ -404,7 +410,7 @@ iframe {
     font-weight: 600;
 }
 .testimonials .item .source .title {
-    color: #999999;
+    color: #999;
 }
 /* Education section */
 .education .item {
@@ -420,7 +426,7 @@ iframe {
 .education .item .university {
     font-family: "Lato", arial, sans-serif;
     font-size: 13px;
-    color: #999999;
+    color: #999;
     font-weight: 600;
     padding-left: 25px;
 }
@@ -436,7 +442,7 @@ iframe {
     color: #778492;
 }
 .languages .item .level {
-    color: #999999;
+    color: #999;
 }
 .languages .item:last-child {
     margin-bottom: 0;
@@ -537,3 +543,5 @@ iframe {
         width: 1360px;
     }
 }
+
+
