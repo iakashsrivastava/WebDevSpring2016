@@ -75,8 +75,7 @@
 <!--Tweets-->
 <div class="col-md-9 col-lg-9" >
         <span class="well fixed-content photos fixed-positionPopularTweets">
-                <div  ng-repeat="content in popularTweets track by $index">
-                    {{content}}
+                <div  ng-repeat="content in popularTweets track by $index" class="col-lg-6">
                     <blockquote class="twitter-tweet">
                         <a href=" https://twitter.com/{{ content.name}}/status/{{ content.id}}"/>
                     </blockquote>
