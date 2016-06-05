@@ -71,14 +71,18 @@
     </div>
 </div>
 
+
 <!--Tweets-->
 <div class="col-md-9 col-lg-9" >
         <span class="well fixed-content photos fixed-positionPopularTweets">
                 <div  ng-repeat="content in popularTweets track by $index">
+                    {{content}}
                     <blockquote class="twitter-tweet">
                         <a href=" https://twitter.com/{{ content.name}}/status/{{ content.id}}"/>
-                    </blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </blockquote>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
+
 
             <div ng-show="showSpinner">
                 <span us-spinner></span>

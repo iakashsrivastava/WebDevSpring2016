@@ -20,7 +20,7 @@
             [
                 {location :'Worldwide', content: [], prev:-6,next:0},
                 {location :'US', content: [], prev:-6,next:0},
-               // {location :'Massachusetts', content: [], prev:-6,next:0},
+                // {location :'Massachusetts', content: [], prev:-6,next:0},
                 {location :'Boston', content: [], prev:-6,next:0}
                 //{location :'India', content: [], prev:-6,next:0},
                 //{location :'Worldwide', content: [], prev:-6,next:0},
@@ -29,7 +29,7 @@
                 //{location :'Mumbai', content: [], prev:-6,next:0},
                 //{location :'Chennai', content: [], prev:-6,next:0},
                 //{location :'Pune', content: [], prev:-6,next:0}
-                ];
+            ];
 
         $scope.timeStamps = ['Trending Now'];
 
@@ -37,9 +37,8 @@
 
         function loadTrends() {
 
-            console.log('loadTrends');
             for (var i = 0; i < $scope.locationsList.length; i++) {
-                console.log()
+
                 TrendsService.getTopLocationTrends($scope.locationsList[i].location,i).then(
                     function (response) {
                         var counter = response.counter;
@@ -53,7 +52,7 @@
         }
 
         function getTopicTweets(location, topic, smallerDevice){
-            console.log(location+','+topic+','+smallerDevice)
+
             $scope.showSpinner = true;
             if(smallerDevice)
                 $scope.onlyTrends = true;
@@ -61,6 +60,7 @@
             $scope.popularTweets =[];
             TrendsService.getTopicTweets(location,topic).then(
                 function (response) {
+                    console.log(response.content);
                     $scope.popularTweets = response.content;
                 });
 
