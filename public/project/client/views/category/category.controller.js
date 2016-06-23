@@ -52,6 +52,7 @@
             var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
             windowBottom = windowHeight + window.pageYOffset;
             if (windowBottom >= docHeight) {
+                console.log(windowBottom);
                 $scope.showSpinnerBottom = true;
                 getCategoryDetails();
             }
