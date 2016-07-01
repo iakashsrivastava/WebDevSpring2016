@@ -70,6 +70,6 @@
             });
 
         return deferred.promise;
-    }
+    }2
     }
 })();
