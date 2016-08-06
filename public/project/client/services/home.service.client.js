@@ -21,12 +21,10 @@
                 .success(function(response){
                     var content={};
                     if(response.length ==0){
-                        console.log(category);
                         SearchService.getSearchDataforHomeContent(category,page,render);
 
                         function render(response) {
                             //$scope.data = response.list;
-                            console.log(response.list);
                             items =[]
                             for(var k=0; k<6;k++){
                                 var obj ={
@@ -66,12 +64,12 @@
             $http.get('/api/detail/category/'+category +'/page/'+page)
                 .success(function(response){
                     if(response.length ==0){
-                        console.log(category);
+
                         SearchService.getSearchDataforDetailContent(category,page,render);
 
                         function render(response) {
                             //$scope.data = response.list;
-                            console.log(response.list);
+
                             items =[]
                             for(var k=0; k<30;k++){
                                 var obj ={

@@ -25,7 +25,6 @@
         }
 
         function userCommentsOnArticle(userId, article){
-            console.log(article);
             return $http.post("/api/project/user/"+userId+"/comment/article/"+article.articleId, article);
         }
 

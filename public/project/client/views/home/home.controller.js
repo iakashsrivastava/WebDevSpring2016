@@ -2,59 +2,59 @@
  * Created by akash on 3/3/16.
  */
 
-(function(){
+(function () {
     angular
         .module("SocialMashup")
-        .controller("HomeController",HomeController);
+        .controller("HomeController", HomeController);
 
-    function HomeController(HomeService, $scope,$location,usSpinnerService,$rootScope) {
+    function HomeController(HomeService, $scope, $location, usSpinnerService, $rootScope) {
 
-        $scope.gotoDetailPage =gotoDetailPage;
-        $scope.getCategoryDetails=getCategoryDetails;
-        $scope.getHomeContent=getHomeContent;
+        $scope.gotoDetailPage = gotoDetailPage;
+        $scope.getCategoryDetails = getCategoryDetails;
+        $scope.getHomeContent = getHomeContent;
         $scope.categoryNext = categoryNext;
         $scope.categoryPrevious = categoryPrevious;
         $scope.getUserCategories = getUserCategories;
 
         $scope.showSpinner = true;
 
-        function getUserCategories(){
+        function getUserCategories() {
             console.log('Hello');
-            if($rootScope.loggedUser && $rootScope.loggedUser.categories.length>0) {
-                    categoriesList1 = [];
-                    categories = $rootScope.loggedUser.categories;
-                    for (var i = 0; i < categories.length; i++) {
-                        var obj = {name: categories[i], content: [], prev: -6, next: 0}
-                        categoriesList1.push(obj);
-                    }
-                    $rootScope.categoriesList = categoriesList1;
+            if ($rootScope.loggedUser && $rootScope.loggedUser.categories.length > 0) {
+                categoriesList1 = [];
+                categories = $rootScope.loggedUser.categories;
+                for (var i = 0; i < categories.length; i++) {
+                    var obj = {name: categories[i], content: [], prev: -6, next: 0}
+                    categoriesList1.push(obj);
+                }
+                $rootScope.categoriesList = categoriesList1;
             }
-            else{
+            else {
                 $rootScope.categoriesList =
-                    [{name :'Science', content: [], prev:-6,next:0},
-                        {name :'News', content: [], prev:-6,next:0},
-                        {name :'Entertainment', content: [], prev:-6,next:0},
-                        {name :'Sports', content: [], prev:-6,next:0}];
+                    [{name: 'Science', content: [], prev: -6, next: 0},
+                        {name: 'News', content: [], prev: -6, next: 0},
+                        {name: 'Entertainment', content: [], prev: -6, next: 0},
+                        {name: 'Sports', content: [], prev: -6, next: 0}];
             }
             console.log($rootScope.categoriesList);
         }
 
-        function getCategoryDetails(category){
-            $location.url("/category/"+category);
+        function getCategoryDetails(category) {
+            $location.url("/category/" + category);
         }
 
-        function gotoDetailPage(id,source){
-            if(source != undefined)
-                $location.url("/details/"+id+"/d");
+        function gotoDetailPage(id, source) {
+            if (source != undefined)
+                $location.url("/details/" + id + "/d");
             else
-                $location.url("/details/"+id+"/F");
+                $location.url("/details/" + id + "/F");
         }
 
-        function getHomeContent(){
+        function getHomeContent() {
 
-            for(var i=0; i<$rootScope.categoriesList.length; i++){
-                HomeService.getCategoryContent($rootScope.categoriesList[i].name,$rootScope.categoriesList[i].next,i).then(
-                    function(response){
+            for (var i = 0; i < $rootScope.categoriesList.length; i++) {
+                HomeService.getCategoryContent($rootScope.categoriesList[i].name, $rootScope.categoriesList[i].next, i).then(
+                    function (response) {
                         var counter = response.counter;
                         $rootScope.categoriesList[counter].content = response.items;
                         $scope.showSpinner = false;
@@ -64,32 +64,32 @@
 
         }
 
-        function categoryNext(category){
+        function categoryNext(category) {
 
-            for(var i=0; i<$rootScope.categoriesList.length; i++){
+            for (var i = 0; i < $rootScope.categoriesList.length; i++) {
 
-                if($rootScope.categoriesList[i].name === category){
+                if ($rootScope.categoriesList[i].name === category) {
 
                     $rootScope.categoriesList[i].prev = $rootScope.categoriesList[i].prev + 6;
                     $rootScope.categoriesList[i].next = $rootScope.categoriesList[i].next + 6;
-                    HomeService.getCategoryContent($rootScope.categoriesList[i].name,$rootScope.categoriesList[i].next,i).then(
-                        function(response){
+                    HomeService.getCategoryContent($rootScope.categoriesList[i].name, $rootScope.categoriesList[i].next, i).then(
+                        function (response) {
                             var counter = response.counter;
                             $rootScope.categoriesList[counter].content = response.items;
                         });
                     break;
-                    }
+                }
             }
         }
 
-        function categoryPrevious(category){
+        function categoryPrevious(category) {
 
-            for(var i=0; i<$rootScope.categoriesList.length; i++){
+            for (var i = 0; i < $rootScope.categoriesList.length; i++) {
 
-                if($rootScope.categoriesList[i].name === category){
+                if ($rootScope.categoriesList[i].name === category) {
 
-                    HomeService.getCategoryContent($rootScope.categoriesList[i].name,$rootScope.categoriesList[i].prev,i).then(
-                        function(response){
+                    HomeService.getCategoryContent($rootScope.categoriesList[i].name, $rootScope.categoriesList[i].prev, i).then(
+                        function (response) {
                             var counter = response.counter;
                             $rootScope.categoriesList[counter].content = response.items;
                         });

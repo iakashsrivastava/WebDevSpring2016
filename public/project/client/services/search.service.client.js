@@ -24,21 +24,19 @@
         return api;
 
         function getSearchData(category,callback){
-            console.log(category);
+
             $http.get(url + category+limit)
                 .success(callback);
         }
 
         function getSearchDataforHomeContent(category,counter,callback){
             counter = counter/6 +1;
-            console.log(url + category + page + limitforHomeContent);
             $http.get(url + category + page + counter+limitforHomeContent)
                 .success(callback);
         }
 
         function getSearchDataforDetailContent(category,counter,callback){
             counter = counter/30 +1;
-            console.log(url + category + page + limitforDetailContent);
             $http.get(url + category + page + counter+limitforDetailContent)
                 .success(callback);
         }

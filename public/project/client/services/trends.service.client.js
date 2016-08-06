@@ -41,7 +41,6 @@
                         content :response,
                         counter : counter
                     }
-                    console.log('getTopLocationTrends' + response.length);
                     deferred.resolve(obj);
                 });
 
@@ -51,7 +50,6 @@
         function getTopicTweets(location , topic){
 
             var deferred = $q.defer();
-            console.log('Inside getTopLocationTrends service');
             hash ='#';
             url ='';
             if (topic.indexOf(hash) > -1){
@@ -70,6 +68,6 @@
             });
 
         return deferred.promise;
-    }2
+    }
     }
 })();
